@@ -1,0 +1,5 @@
+npm i @emotion/styled@latest @emotion/react@latest @mui/icons-material@latest @mui/lab@latest @mui/material@latest @web3-react/core@latest @web3-react/injected-connector@latest bootstrap@latest ethers@latest prop-types@latest react-router-dom@latest use-clipboard-copy@latest web3@1.8.1
+
+npm i --save-dev eslint-config-airbnb-base@latest eslint-config-prettier@latest eslint-plugin-import@latest eslint-plugin-prettier@latest eslint-plugin-react@latest eslint-plugin-simple-import-sort@latest eslint-plugin-unused-imports@latest eslint-plugin-react-hooks@latest
+
+    // "react-scripts": "^2.1.8", 

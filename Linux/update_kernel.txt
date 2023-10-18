@@ -1,0 +1,38 @@
+sudo apt update && sudo apt upgrade -y && sudo apt -y autoclean && sudo apt -y autoremove
+
+#### update kernel
+####################################################################################
+sudo apt update
+sudo uname -mrs
+sudo add-apt-repository ppa:cappelikan/ppa -y
+sudo apt install mainline -y
+# press ALT+F2 and paste Ubuntu Mainline Kernel Installer
+sudo update-grub
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+sudo reboot
+
+sudo uname -a
+sudo apt list --installed | egrep "linux-image|linux-headers"
+# sudo dpkg --list | egrep "linux-image|linux-headers"
+# sudo apt purge linux-image-4.15.0-66-generic linux-headers-4.15.0-91-generic
+
+
+sudo apt update
+sudo apt search linux-image-*| more
+sudo apt search linux-image-5.19.0-28*
+
+sudo apt install linux-headers-5.19.0-28-generic
+sudo apt install linux-modules-5.19.0-28-generic
+sudo apt install linux-image-5.19.0-28-generic
+sudo apt install linux-modules-extra-5.19.0-28-generic
+
+dpkg --list | grep linux-image
+
+sudo reboot
+uname -r
+
+
+apt remove --purge linux-image-5.15.0-43-generic
+
+####################################################################################

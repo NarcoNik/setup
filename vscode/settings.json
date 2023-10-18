@@ -1,0 +1,155 @@
+{
+  "C_Cpp.inlayHints.parameterNames.enabled": true,
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  // tips alt settings
+  "[dockerfile]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[dotenv]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.insertSpaces": true,
+    "editor.minimap.maxColumn": 132,
+    "editor.renderWhitespace": "boundary",
+    "editor.rulers": [
+      {
+        "color": "#1e751633",
+        "column": 72
+      },
+      {
+        "color": "#c2790b99",
+        "column": 80
+      },
+      {
+        "color": "#a10d2d99",
+        "column": 132
+      }
+    ],
+    "editor.tabCompletion": "on",
+    "editor.tabSize": 2,
+    "editor.wordWrap": "off",
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[yml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "debug.onTaskErrors": "abort",
+  // editor settings
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.foldingImportsByDefault": true,
+  "editor.foldingMaximumRegions": 65000,
+  "editor.fontFamily": "'Fira Code', 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.inlineSuggest.enabled": true,
+  // "editor.guides.bracketPairs": "active", // color helpers for bracket pairs
+  "editor.largeFileOptimizations": false,
+  "editor.lineNumbers": "interval",
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "none",
+  "editor.scrollBeyondLastColumn": 0,
+  "editor.suggest.preview": true,
+  "editor.suggestSelection": "recentlyUsedByPrefix",
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "keyword.other.dotenv",
+        "settings": {
+          "foreground": "#FF000000"
+        }
+      }
+    ]
+  },
+  "editor.unicodeHighlight.ambiguousCharacters": false, // useful for russian symbols
+  // explorer settings
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  // work on files
+  "files.associations": {
+    "*.svg": "html",
+    "*.xml": "html"
+  },
+  "files.autoSave": "onFocusChange",
+  "files.defaultLanguage": "markdown",
+  // git settings
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "git.openRepositoryInParentFolders": "never",
+  // helper tips js
+  "javascript.inlayHints.enumMemberValues.enabled": true,
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "javascript.inlayHints.parameterNames.enabled": "literals",
+  "javascript.inlayHints.parameterTypes.enabled": true,
+  "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "javascript.inlayHints.variableTypes.enabled": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  // liveserver settings
+  "liveServer.settings.AdvanceCustomBrowserCmdLine": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+  "liveServer.settings.ChromeDebuggingAttachment": false,
+  "liveServer.settings.CustomBrowser": "microsoft-edge",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.fullReload": true,
+  "liveServer.settings.port": 3500,
+  "liveshare.presence": true,
+  "nginx-conf-hint.format.align": true,
+  //prettier settings
+  "prettier.arrowParens": "avoid",
+  "prettier.bracketSameLine": true,
+  "prettier.bracketSpacing": true,
+  "prettier.embeddedLanguageFormatting": "auto",
+  "prettier.endOfLine": "auto",
+  "prettier.jsxSingleQuote": true,
+  "prettier.printWidth": 140,
+  "prettier.proseWrap": "always",
+  "prettier.quoteProps": "as-needed",
+  "prettier.semi": true,
+  "prettier.singleQuote": true,
+  "prettier.tabWidth": 2,
+  "prettier.trailingComma": "none",
+  "prettier.useTabs": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "tabnine.experimentalAutoImports": true,
+  // terminal settings
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.tabs.location": "left",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "vscode-edge-devtools.browserFlavor": "Default",
+  "vscode-edge-devtools.defaultUrl": "http://localhost:3000/",
+  "vscode-edge-devtools.port": 3000,
+  // workbench settings
+  "workbench.colorCustomizations": {
+    "tab.activeBackground": "#fff3"
+  },
+  "workbench.editor.limit.value": 5,
+  "workbench.editorAssociations": {
+    "*.exe": "default"
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.startupEditor": "none"
+}

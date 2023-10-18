@@ -1,0 +1,7 @@
+# restore repo ppa:
+# sudo ppa-purge ppa:cappelikan/ppa
+
+# cd /etc/apt/sources.list.d
+# sudo rm -r archive_uri-https_packages_microsoft_com_repos_edge-jammy.list
+# sudo chown -R sddm:sddm /var/lib/sddm/.config
+# sudo apt remove --purge
