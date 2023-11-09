@@ -18,7 +18,7 @@ echo cdfecdfe | sudo -S sudo apt -y update \
 echo "Installing wireguard"
 echo "####################################################################################"
 cd ~ \
-  && curl -O https://raw.githubusercontent.com/angristan/wireguard-install/master/wireguard-install.sh \
+  && curl -O https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/wireguard-install.sh \
   && chmod +x wireguard-install.sh \
   && sudo ./wireguard-install.sh
 
