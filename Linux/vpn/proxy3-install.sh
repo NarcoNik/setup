@@ -1,7 +1,6 @@
 version="3proxy-0.9.3"
-echo "Installing proxy3"
+echo "Update system"
 echo "####################################################################################"
-
 sudo apt -y update \
   && sudo apt -y upgrade \
   && sudo apt install git wget nano resolvconf curl build-essential gcc make -y
@@ -22,8 +21,8 @@ sudo mkdir /etc/3proxy \
   && sudo cp 3proxy /usr/bin/ \
   && cd /etc/3proxy/
 
-sudo adduser --system --no-create-home --disabled-login --group proxy3
-  # && id proxy3
+sudo adduser --system --no-create-home --disabled-login --group myproxy
+  # && id myproxy
 
 echo "Getting config & proxyauth"
 sudo wget https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/3proxy.cfg
@@ -31,8 +30,8 @@ sudo wget https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/.proxy
 
 echo "Setting access rights to proxy server files"
 # sudo chmod 600 /etc/3proxy/
-sudo chown proxy3:proxy3 -R /etc/3proxy \
-  && sudo chown proxy3:proxy3 /usr/bin/3proxy \
+sudo chown myproxy:myproxy -R /etc/3proxy \
+  && sudo chown myproxy:myproxy /usr/bin/3proxy \
   && sudo chmod 444 /etc/3proxy/3proxy.cfg \
   && sudo chmod 400 /etc/3proxy/.proxyauth
 
@@ -56,7 +55,7 @@ sudo rm ~/${version}.tar.gz \
   && sudo rm -r ~/${version} \
   && cd ~
 
-echo "proxy3 installed & running now"
+echo "3proxy installed & running now"
 
 # echo "settings & example
 # sudo nano /etc/3proxy/3proxy.cfg
