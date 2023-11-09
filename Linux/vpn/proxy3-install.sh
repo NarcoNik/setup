@@ -21,8 +21,8 @@ sudo mkdir /etc/3proxy \
   && sudo cp 3proxy /usr/bin/ \
   && cd /etc/3proxy/
 
-sudo adduser --system --no-create-home --disabled-login --group myproxy
-  # && id myproxy
+sudo adduser --system --no-create-home --disabled-login --group myproxy \
+  && id myproxy
 
 echo "Getting config & proxyauth"
 sudo wget https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/3proxy.cfg
