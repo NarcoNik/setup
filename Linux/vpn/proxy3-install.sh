@@ -8,7 +8,7 @@ sudo apt -y update \
 
 echo "Download and unpack the sources"
 cd ~ \
-  && sudo wget -O ${version}.tar.gz https://github.com/NarcoNik/setup/main/Linux/vpn/archive/${version}.tar.gz
+  && sudo wget https://github.com/NarcoNik/setup/raw/main/Linux/vpn/${version}.tar.gz
 
 tar xzf ${version}.tar.gz \
   && cd ~/${version}
