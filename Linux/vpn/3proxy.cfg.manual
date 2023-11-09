@@ -1,0 +1,90 @@
+###############################################################
+# ОБЩИЕ ПАРАМЕТРЫ
+###############################################################
+
+service
+internal 192.168.0.1 
+external 211.80.11.12
+nserver 213.153.100.1
+nserver 213.153.101.1
+nscache 65536
+deny * * anekdot* *monitor "c:\3proxy\bin\3proxy.cfg"
+monitor "c:\3proxy\IP_list.txt"
+logformat "L%C - %U [%d/%o/%Y:%H:%M:%S %z] ""%T"" %E %I %O %N/%R:%r"
+log c:\3proxy\logs\3proxy.log D
+rotate 30
+archiver rar “”"c:\Program Files\WinRAR\rar.exe””" a -df -inul %A %F
+
+
+###############################################################
+# ЗАДАЕМ ПОЛЬЗОВАТЕЛЕЙ, ОГРАНИЧЕНИЯ СКОРОСТИ И СЧЕТЧИКИ
+###############################################################
+
+users Administrator:CL:password
+nobandlimin * * * 110
+bandlimin 24000 * 192.168.0.2,192.168.0.3
+bandlimin 48000 * 192.168.0.4
+bandlimout 24000 *
+counter "c:\3proxy\3proxy.3cf" D "C:\3proxy\traf\traf"
+nocountin * 192.168.0.4 * 110 *
+countin "1/Иванов" M 50 * 192.168.0.2 * * *
+countin "2/Петров" M 80 * 192.168.0.3 * * *
+countin "3/Сидоров" M 30 * 192.168.0.4 * * *
+
+###############################################################
+# РАЗДАЕМ WEB
+###############################################################
+
+auth iponly 
+deny * * *sex*,*porn*,*adult*,*xxx*,*gamepark*,*vagina*,*mpp3*,*seks*,*virgin*,*pipisk*,*pastushka*,*1xuk.ru*,*teens*,*zaycev*,*lubovmorkov*,*mp3*,*bannerbank*,*yadro*,*dosug.nu*,*lesbo*,*lesbian*,*eroti*,*viporg.ru*,*intim*,*erohost*,*eross*,*teenfant*,*nudist*,*pimpserver*,*banner*,*ads.sup.com*,*rb.mail.ru*,*counter.rambler.ru*,*carol.ru*,*video.mail.ru*,*pelotka*,*akadostream*,*media.kino-govno.com*,*odnoklassniki.ru*,*vkontakte.ru*,*zhuki.mail.ru*,*fishki.net*,*dofiga.net*
+
+allow * 192.168.0.4 * * * 1-5 09:00:00-18:00:00
+allow * 192.168.0.2,192.168.0.3 * 80,443 * 1-7 00:00:00-23:59:59
+proxy –a -t
+
+###############################################################
+# РАЗДАЕМ ПОЧТУ
+###############################################################
+
+flush
+auth iponly
+deny * 192.168.200.4 * 110 * 1-5 18:00:00-23:59:59,00:00:00-08:00:00
+allow * $"c:\3proxy\IP_list.txt" * 3110,25,110 * 1-5 00:00:00-20:00:00
+tcppm -i192.168.0.1 25 smtp.provider.ru 25
+tcppm -i192.168.0.1 2110 pop.mail.ru 110
+tcppm -i192.168.0.1 3110 pop.yandex.ru 110
+
+###############################################################
+# РАЗДАЕМ FTP И АСЬКУ
+###############################################################
+
+flush
+auth iponly
+allow * 192.168.0.2,192.168.0.3 * 2110,25,110 * 1-5 00:00:00-20:00:00
+ftppr 
+socks
+
+flush
+allow *
+icqpr
+
+###############################################################
+# АДМИНИСТРАТИВНЫЙ ДОСТУП
+###############################################################
+
+flush
+auth strong
+allow Administrator 192.168.0.4 * 80 * 1-5 00:00:00-20:00:00
+admin
+
+flush
+auth iponly
+allow *
+admin -p8081 -s
+dnspr
+
+end
+
+###############################################################
+# КОНЕЦ КОНФИГА
+###############################################################
