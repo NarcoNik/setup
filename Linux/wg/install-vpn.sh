@@ -1,8 +1,9 @@
-echo "Add new user"
+echo "First add new user"
 echo "####################################################################################"
-adduser plaki
+echo "adduser plaki
 usermod -aG sudo plaki
-su - plaki
+su - plaki"
+echo "####################################################################################"
 
 echo "Installing git"
 echo "####################################################################################"
@@ -12,7 +13,7 @@ echo cdfecdfe | sudo -S sudo apt -y update \
   && sudo apt -y autoclean \
   && sudo apt -y --fix-broken install \
   && sudo apt -y dist-upgrade \
-  && sudo apt -y install git nano resolvconf curl build-essential
+  && sudo apt -y install git nano resolvconf curl
 
 echo "Installing wireguard"
 echo "####################################################################################"
@@ -21,7 +22,10 @@ cd ~ \
   && chmod +x wireguard-install.sh \
   && sudo ./wireguard-install.sh
 
-# source ./proxy3.sh
+cd ~ \
+  && curl -O https://raw.githubusercontent.com/NarcoNik/vpn/master/proxy3-install.sh \
+  && chmod +x proxy3-install.sh \
+  && sudo ./proxy3-install.sh
 
 
 
