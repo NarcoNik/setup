@@ -1,3 +1,8 @@
+# cd ~ \
+#   && curl -O https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/install-vpn.sh \
+#   && chmod +x install-vpn.sh \
+#   && sudo ./install-vpn.sh
+
 echo "First add new user"
 echo "####################################################################################"
 echo "adduser plaki
