@@ -10,7 +10,7 @@ sudo usermod -aG sudo plaki
 su - plaki"
 echo "####################################################################################"
 
-echo "Installing git"
+echo "Updating system"
 echo "####################################################################################"
 echo cdfecdfe | sudo -S sudo apt -y update \
   && sudo apt -y upgrade \
