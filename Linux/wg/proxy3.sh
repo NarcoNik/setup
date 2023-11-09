@@ -21,9 +21,6 @@ sudo adduser --system --no-create-home --disabled-login --group proxy3 && id pro
 echo "Creating config file"
 sudo bash -c \
 "cat << EOF > /etc/3proxy/3proxy.cfg
-# Запускаем сервер от пользователя proxy3
-# (возможно в вашей ОС uid и gid пользователя proxy3
-# будут другими. Для их определения воспользуйтесь командой id proxy3)
 setgid 117
 setuid 110
 #
@@ -31,11 +28,7 @@ setuid 110
 # на своем сервере в /etc/resolv.conf
 nserver 127.0.0.53
 nserver 127.0.0.53
-#
-# Оставьте размер кэша для запросов DNS по умолчанию
 nscache 65536
-#
-# Равно как и таймауты
 timeouts 1 5 30 60 180 1800 15 60
 #
 # Если несколько IP на одном сервере, указываем тот,
@@ -45,17 +38,10 @@ timeouts 1 5 30 60 180 1800 15 60
 # Тоже самое, только указываем IP, который надо слушать
 # Если проигнорировать, то прокси слушает все адреса на сервере
 #internal <YOURSERVERIP>
-#
-# Указываем на расположение файла с пользователями и паролями
 users $/etc/3proxy/.proxyauth
-#
-# укажите режим запуска как deamon
 daemon
-#
-# Включаем авторизацию по логинам и паролям
 auth cache strong
 #
-# Конфигурация http(s) proxy
 # Запускаем анонимный (-a) HTTP-proxy на порту (-p) 3128 и
 # c отключенной NTLM-авторизацией (-n)
 proxy -n -p3128 -a
@@ -72,7 +58,7 @@ sudo bash -c \
 ## addusers in this format:
 #user:CL:password
 ##see for documentation: http://www.3proxy.ru/howtoe.asp#USERS
-proxy3:CL:cdfecdfe
+proxy3:CL:88C1mgzd1Q
 EOF"
 
 echo "Setting access rights to proxy server files"

@@ -4,8 +4,6 @@ adduser plaki
 usermod -aG sudo plaki
 su - plaki
 
-echo cdfecdfe | sudo ls -la /root
-
 echo "Installing git"
 echo "####################################################################################"
 echo cdfecdfe | sudo -S sudo apt -y update \
