@@ -50,8 +50,6 @@ sudo systemctl daemon-reload \
 
 echo "Oppening port 3128"
 sudo iptables -I INPUT -p tcp -m tcp --dport 3128 -j ACCEPT
-# sudo ufw allow 3128/tcp \
-#   && sudo ufw enable
 
 echo "Deleting temporery files"
 sudo rm ~/${version}.tar.gz \

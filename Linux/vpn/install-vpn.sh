@@ -6,7 +6,7 @@
 echo "First add new user"
 echo "####################################################################################"
 echo "adduser plaki
-usermod -aG sudo plaki
+sudo usermod -aG sudo plaki
 su - plaki"
 echo "####################################################################################"
 
