@@ -62,3 +62,5 @@ echo "3proxy installed & running now"
 # nano ~/3proxy-0.9.3/cfg/3proxy.cfg.sample
 # nano ~/3proxy-0.9.3/doc/ru/example1.txt
 # nano ~/3proxy-0.9.3/scripts/3proxy.service"
+
+# *.ru;*.github.com;*.sbrf;*.gpb;*.metamask;*.binance;*.huobi;*.okx;*.bybit;*.htx;*.telegram.org;*.telegram;*.tg.me;*.tg;
