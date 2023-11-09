@@ -6,7 +6,7 @@ After=network.target
 [Service]
 Type=simple
 ExecStart=/usr/bin/3proxy /etc/3proxy/3proxy.cfg
-ExecStop=/bin/kill `/usr/bin/pgrep -u myproxy`
+ExecStop=/bin/kill `/usr/bin/pgrep -u slaweekq`
 RemainAfterExit=yes
 Restart=on-failure
 

@@ -21,8 +21,8 @@ sudo mkdir /etc/3proxy \
   && sudo cp 3proxy /usr/bin/ \
   && cd /etc/3proxy/
 
-sudo adduser --system --no-create-home --disabled-login --group myproxy \
-  && id myproxy
+sudo adduser --system --no-create-home --disabled-login --group slaweekq \
+  && id slaweekq
 
 echo "Getting config & proxyauth"
 sudo wget https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/3proxy.cfg
@@ -30,8 +30,8 @@ sudo wget https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/.proxy
 
 echo "Setting access rights to proxy server files"
 # sudo chmod 600 /etc/3proxy/
-sudo chown myproxy:myproxy -R /etc/3proxy \
-  && sudo chown myproxy:myproxy /usr/bin/3proxy \
+sudo chown slaweekq:slaweekq -R /etc/3proxy \
+  && sudo chown slaweekq:slaweekq /usr/bin/3proxy \
   && sudo chmod 444 /etc/3proxy/3proxy.cfg \
   && sudo chmod 400 /etc/3proxy/.proxyauth
 
