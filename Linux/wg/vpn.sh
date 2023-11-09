@@ -3,15 +3,18 @@ echo "##########################################################################
 adduser plaki
 usermod -aG sudo plaki
 su - plaki
-sudo ls -la /root
+
+echo cdfecdfe | sudo ls -la /root
 
 echo "Installing git"
 echo "####################################################################################"
-sudo apt -y update \
+echo cdfecdfe | sudo -S sudo apt -y update \
   && sudo apt -y upgrade \
   && sudo apt -y autoremove \
   && sudo apt -y autoclean \
-  && sudo apt -y install git nano resolvconf curl
+  && sudo apt -y --fix-broken install \
+  && sudo apt -y dist-upgrade \
+  && sudo apt -y install git nano resolvconf curl build-essential
 
 echo "Installing wireguard"
 echo "####################################################################################"
@@ -20,7 +23,7 @@ cd ~ \
   && chmod +x wireguard-install.sh \
   && sudo ./wireguard-install.sh
 
-
+# source ./proxy3.sh
 
 
 
