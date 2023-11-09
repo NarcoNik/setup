@@ -27,6 +27,8 @@ cd ~ \
   && chmod +x wireguard-install.sh \
   && sudo ./wireguard-install.sh
 
+echo "Installing proxy3"
+echo "####################################################################################"
 cd ~ \
   && curl -O https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/proxy3-install.sh \
   && chmod +x proxy3-install.sh \
