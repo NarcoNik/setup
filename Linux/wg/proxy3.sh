@@ -1,0 +1,125 @@
+
+echo "Installing proxy3"
+echo "####################################################################################"
+sudo apt install -y build-essential
+cd ~ && wget https://github.com/z3APA3A/3proxy/archive/0.9.3.tar.gz
+tar xzf 0.9.3.tar.gz \
+  && cd ~/3proxy-0.9.3 \
+  && sudo make -f Makefile.Linux
+
+sudo mkdir /etc/3proxy \
+  && cd ~/3proxy-0.9.3/bin \
+  && sudo cp 3proxy /usr/bin/
+
+sudo adduser --system --no-create-home --disabled-login --group proxy3 && id proxy3
+
+# uid=113(proxy3) gid=121(proxy3) groups=121(proxy3)
+
+sudo bash -c \
+"cat << EOF > /etc/3proxy/3proxy.cfg
+# Запускаем сервер от пользователя proxy3
+# (возможно в вашей ОС uid и gid пользователя proxy3
+# будут другими. Для их определения воспользуйтесь командой id proxy3)
+setgid 121
+setuid 113
+#
+# Пропишите правильные серверы имен посмотрев их
+# на своем сервере в /etc/resolv.conf
+nserver 127.0.0.53
+nserver 127.0.0.53
+#
+# Оставьте размер кэша для запросов DNS по умолчанию
+nscache 65536
+#
+# Равно как и таймауты
+timeouts 1 5 30 60 180 1800 15 60
+#
+# Если несколько IP на одном сервере, указываем тот,
+# через который будем ходить во внешний мир.
+# Иначе эту строку игнорируем
+#external <YOURSERVERIP>
+# Тоже самое, только указываем IP, который надо слушать
+# Если проигнорировать, то прокси слушает все адреса на сервере
+#internal <YOURSERVERIP>
+#
+# Указываем на расположение файла с пользователями и паролями
+users $/etc/3proxy/.proxyauth
+#
+# укажите режим запуска как deamon
+daemon
+#
+# Включаем авторизацию по логинам и паролям
+auth cache strong
+#
+# Конфигурация http(s) proxy
+# Запускаем анонимный (-a) HTTP-proxy на порту (-p) 3128 и
+# c отключенной NTLM-авторизацией (-n)
+proxy -n -p3128 -a
+EOF"
+
+echo "settings & example"
+echo "sudo nano /etc/3proxy/3proxy.cfg"
+echo "nano ~/3proxy-0.9.3/cfg/3proxy.cfg.sample"
+echo "nano ~/3proxy-0.9.3/doc/ru/example1.txt"
+
+sudo bash -c \
+"cat << EOF > /etc/3proxy/.proxyauth
+## addusers in this format:
+#user:CL:password
+##see for documentation: http://www.3proxy.ru/howtoe.asp#USERS
+plaki:CL:88C1mgzd1Q
+proxy3:CL:88C1mgzd1Q
+EOF"
+
+sudo chown proxy3:proxy3 -R /etc/3proxy \
+  && sudo chown proxy3:proxy3 /usr/bin/3proxy \
+  && sudo chmod 444 /etc/3proxy/3proxy.cfg \
+  && sudo chmod 400 /etc/3proxy/.proxyauth
+
+sudo chown plaki:plaki -R /etc/3proxy \
+  && sudo chown plaki:plaki /usr/bin/3proxy \
+  && sudo chmod 444 /etc/3proxy/3proxy.cfg \
+  && sudo chmod 400 /etc/3proxy/.proxyauth
+
+sudo bash -c \
+"cat << EOF > /etc/systemd/system/3proxy.service
+[Unit]
+Description=3proxy Proxy Server
+After=network.target
+
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/3proxy /etc/3proxy/3proxy.cfg
+ExecStop=/bin/kill `/usr/bin/pgrep -u proxy3`
+RemainAfterExit=yes
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+EOF"
+
+echo "example"
+echo "nano ~/3proxy-0.9.3/scripts/3proxy.service"
+
+sudo systemctl daemon-reload \
+  && sudo systemctl enable 3proxy \
+  && sudo systemctl start 3proxy \
+  && systemctl status 3proxy.service \
+  && ps -ela | grep "3proxy"
+
+sudo iptables -I INPUT -p tcp -m tcp --dport 3128 -j ACCEPT \
+  && sudo ufw allow 3128/tcp \
+  && sudo ufw enable
+
+sudo rm ~/0.9.3.tar.gz \
+  && sudo rm -r ~/3proxy-0.9.3
+
+
+# for deleting proxy3
+# sudo systemctl stop 3proxy.service \
+#   && sudo rm /etc/systemd/system/3proxy.service \
+#   && sudo rm -rf /etc/3proxy \
+#   && sudo rm -rf /var/log/3proxy \
+#   && sudo rm /usr/bin/3proxy \
+#   && sudo systemctl daemon-reload

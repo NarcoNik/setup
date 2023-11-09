@@ -3,7 +3,7 @@ echo Installing everything you need...
 echo "update all packages"
 echo "####################################################################################"
 
-sudo apt -y update \
+echo cdfecdfe | sudo -S sudo apt -y update \
   && sudo apt -y upgrade \
   && sudo apt -y autoremove \
   && sudo apt -y autoclean \
@@ -16,8 +16,8 @@ echo "##########################################################################
 echo "Install new usless packages"
 echo "####################################################################################"
 
-sudo apt -y install nodejs \
-  kate \
+sudo apt install -y nodejs \
+  mc \
   linux-firmware \
   inxi \
   npm \
@@ -41,13 +41,6 @@ sudo apt -y install nodejs \
   unrar \
   zip \
   unzip \
-  vlc \
-  wireguard \
-  network-manager \
-  network-manager-vpnc \
-  network-manager-gnome \
-  net-tools \
-  kubuntu-restricted-extras \
   nmon \
   nload \
   conmon \
@@ -57,23 +50,42 @@ sudo apt -y install nodejs \
   cmake \
   g++ \
   zlib1g-dev \
-  sweeper \
   hardinfo \
   hwinfo \
-  pavucontrol \
   ppa-purge \
   bash-completion \
-  gparted \
   ubuntu-restricted-extras \
-  vim \
   clang \
   xz-utils \
   gcc-multilib \
-  virtualbox \
-  virtualbox-ext-pack
+  apache2 \
+  mysql-server \
+  nginx \
+  vim \
+  kate \
+  sweeper \
+  gparted \
+  pavucontrol \
+  wireguard \
+  network-manager \
+  network-manager-vpnc \
+  network-manager-gnome \
+  net-tools \
+  kubuntu-restricted-extras \
+  vlc
+
+sudo a2enmod rewrite
 
 sudo systemctl daemon-reload
 sudo dpkg --configure -a
+
+sudo service mysql start
+sudo mysql -uroot -p
+
+SELECT user, authentication_string, plugin, host FROM mysql.user WHERE user="root";
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';
+FLUSH PRIVILEGES;
+exit
 
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
 sudo bash -c \
@@ -113,11 +125,22 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 source ~/.bashrc
 nvm list-remote
-nvm install lts/gallium
+nvm install lts/Iron
 nvm list
 npm install -g npm@latest
-nvm use v16.20.2
-npm i -g yarn prettier eslint nodemon
+nvm use v20.9.0
+npm i -g yarn \
+  prettier \
+  eslint \
+  nodemon \
+  serve \
+  eslint-plugin-simple-import-sort \
+  eslint-plugin-import prettier \
+  eslint-plugin-unused-imports \
+  eslint-plugin-prettier \
+  eslint-plugin-html \
+  eslint-config-airbnb-base \
+  eslint-config-prettier
 
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
@@ -147,7 +170,35 @@ set show-all-if-ambiguous On
 "\e[B": history-search-forward"
 echo "Ended"
 
+sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/testingme.ru.conf
 
+# sudo nano /etc/apache2/sites-available/testingme.ru.conf
+sudo bash -c \
+"cat << EOF > /etc/apache2/sites-available/testingme.ru.conf
+<VirtualHost *:80>
+        ServerAdmin webmaster@testingme.ru
+        ServerName testingme.ru
+        ServerAlias www.testingme.ru
+    DocumentRoot /mnt/d/CRYPTO/testingme.ru/build/
+    <Directory /mnt/d/CRYPTO/testingme.ru/build/>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+EOF"
+
+sudo service apache2 start
+sudo service mysql start
+
+sudo a2ensite testingme.ru.conf
+sudo systemctl reload apache2
+# 127.0.0.1 testingme.ru
+
+# sudo service apache2 stop
+# sudo service mysql stop
 
 
 # sudo dpkg -i virtualbox-7.0_7.0.8-156879~Ubuntu~jammy_amd64.deb

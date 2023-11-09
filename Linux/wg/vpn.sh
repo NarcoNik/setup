@@ -22,15 +22,13 @@ cd ~ \
 
 
 
-9lyhpbIbses+va/jOOIDtH35qyR62N2Ng2pfXRaG33E=
 
 
 
 
-root@plaki:~# cat /etc/wireguard/new-private.key
-cNEjXaYJvm6G2f+iP+I297f0s4felo4SAEPRduD7jWU=
-root@plaki:~# cat /etc/wireguard/new-public.key
-mcwOB/3yDPT22eBAqCruafJpvDHZkRds0G+3sVsO5UE=
+
+
+
 
 
 # #### then on my local pc init ssh key
