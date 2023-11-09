@@ -1,8 +1,12 @@
 version="3proxy-0.9.3"
-echo "Update system"
+echo "Updating system"
 echo "####################################################################################"
-sudo apt -y update \
+sudo -S sudo apt -y update \
   && sudo apt -y upgrade \
+  && sudo apt -y autoremove \
+  && sudo apt -y autoclean \
+  && sudo apt -y --fix-broken install \
+  && sudo apt -y dist-upgrade \
   && sudo apt install git wget nano resolvconf curl build-essential gcc make -y
 
 echo "Download and unpack the sources"
@@ -47,8 +51,9 @@ sudo systemctl daemon-reload \
   && sudo ps -ela | grep "3proxy"
   # && sudo systemctl status 3proxy.service \
 
-echo "Oppening port 3128"
+echo "Oppening port 3128 & 2525"
 sudo iptables -I INPUT -p tcp -m tcp --dport 3128 -j ACCEPT
+sudo iptables -I INPUT -p tcp -m tcp --dport 2525 -j ACCEPT
 
 echo "Deleting temporery files"
 sudo rm ~/${version}.tar.gz \
@@ -63,4 +68,4 @@ echo "3proxy installed & running now"
 # nano ~/3proxy-0.9.3/doc/ru/example1.txt
 # nano ~/3proxy-0.9.3/scripts/3proxy.service"
 
-# *.ru;*.github.com;*.sbrf;*.gpb;*.metamask;*.binance;*.huobi;*.okx;*.bybit;*.htx;*.telegram.org;*.telegram;*.tg.me;*.tg;
+# *.ru;*.github.com;*.google.com;*.youtube.com;*.digitalocean.com;*.telegram.org;*.tg.me;*.binance.com;*.huobi;*.okx;*.bybit;*.htx;*.sbrf;*.gpb;*.metamask
