@@ -8,7 +8,7 @@ sudo apt -y update \
 
 echo "Download and unpack the sources"
 cd ~ \
-  && sudo wget --no-check-certificate -O ${version}.tar.gz https://github.com/NarcoNik/vpn/archive/${version}.tar.gz
+  && sudo wget -O ${version}.tar.gz https://github.com/NarcoNik/setup/main/Linux/vpn/archive/${version}.tar.gz
 
 tar xzf ${version}.tar.gz \
   && cd ~/${version}
@@ -26,8 +26,8 @@ sudo adduser --system --no-create-home --disabled-login --group proxy3
   # && id proxy3
 
 echo "Getting config & proxyauth"
-sudo wget --no-check-certificate https://github.com/NarcoNik/vpn/raw/master/3proxy.cfg
-sudo wget --no-check-certificate https://github.com/NarcoNik/vpn/raw/master/.proxyauth
+sudo wget https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/3proxy.cfg
+sudo wget https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/.proxyauth
 
 echo "Setting access rights to proxy server files"
 # sudo chmod 600 /etc/3proxy/
@@ -38,7 +38,7 @@ sudo chown proxy3:proxy3 -R /etc/3proxy \
 
 echo "Setting 3proxy.service"
 cd /etc/systemd/system
-sudo wget --no-check-certificate https://github.com/NarcoNik/vpn/3proxy.service
+sudo wget https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/3proxy.service
 cd ~
 
 echo "Enable & starting 3proxy.service"
@@ -57,6 +57,8 @@ echo "Deleting temporery files"
 sudo rm ~/${version}.tar.gz \
   && sudo rm -r ~/${version} \
   && cd ~
+
+echo "proxy3 installed & running now"
 
 # echo "settings & example
 # sudo nano /etc/3proxy/3proxy.cfg
