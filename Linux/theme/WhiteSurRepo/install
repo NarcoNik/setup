@@ -1,0 +1,11 @@
+git clone https://github.com/vinceliuice/WhiteSur-kde.git && git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
+
+sudo add-apt-repository ppa:papirus/papirus
+sudo apt update
+sudo apt install qt5-style-kvantum qt5-style-kvantum-themes
+
+
+
+./install.sh -n WhiteSurMy -o solid -c Dark -p 30 -m -N mojave --darker
+
+./tweaks.sh -c Dark -p 30 -f -F
