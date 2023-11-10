@@ -18,9 +18,9 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.11.0",
-    "@mui/lab": "^5.0.0-alpha.115",
-    "@mui/material": "^5.11.4",
+    "@mui/icons-material": "^5.14.0",
+    "@mui/lab": "^5.0.0-alpha.136",
+    "@mui/material": "^5.14.0",
     "@web3modal/ethereum": "^2.2.2",
     "@web3modal/react": "^2.2.2",
     "axios": "^1.4.0",
@@ -45,16 +45,16 @@
     "viem": "^1.2.15",
     "wagmi": "^0.12.15",
     "web-vitals": "^3.4.0",
-    "web3": "^4.0.3"
+    "web3": "^1.9.0"
   },
   "description": "My projects",
   "devDependencies": {
-    "eslint": "^8.38.0",
+    "eslint": "^8.37.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.7.0",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-unused-imports": "^2.0.0"
   },
