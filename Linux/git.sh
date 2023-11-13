@@ -28,7 +28,7 @@ git config --global user.name "Slaweekq" \
 sudo tee -a ~/.bashrc <<< \
 "
 alias sshcon='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/slaweekq && ssh -T git@github.com'
-alias gpush='ssh-add ~/.ssh/slaweekq && git add . && git commit -m «new» -a && git push origin'
+alias gpush='ssh-add ~/.ssh/slaweekq && git add ./ && git commit -m «new» -a && git push origin'
 alias docon='ssh plaki@188.166.12.166'
 "
 
@@ -42,7 +42,6 @@ alias docon='ssh plaki@188.166.12.166'
 # ssh-add ~/.ssh/GitHub && git add . && git commit -m «new» -a && git push origin
 # git remote add origin git@github.com:NarcoNik/git-test.git
 # git push --set-upstream origin main
-
 
 #### md
 # echo "######################################################################"\n
