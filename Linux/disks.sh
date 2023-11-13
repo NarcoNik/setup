@@ -1,5 +1,5 @@
 #### Mount disks
-####################################################################################
+echo '######################################################################'\n
 sudo fdisk -l
 sudo mount -o rw UUID=0E7A-1BF7 /boot/efi
 sudo mount -t ntfs -o rw,realtime /dev/nvme1n1p2 /mnt/Linux && sudo chmod 0777 /mnt/Documents
@@ -57,12 +57,12 @@ sudo umount /deb/nvme1n1p2
 sudo ntfsfix /deb/nvme1n1p2
 sudo mount -t ntfs -o remove_hiberfile /dev/nvme1n1p2 /mnt/Linux
 
-####################################################################################
+echo '######################################################################'\n
 
 
 
 #### Grub2 install
-####################################################################################
+echo '######################################################################'\n
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer \
   && sudo apt update -y \
   && sudo apt install grub-customizer \
@@ -90,4 +90,4 @@ sudo apt-add-repository -y ppa:yannubuntu/boot-repair \
   && sudo apt install -y boot-repair \
   && sudo boot-repair
 
-####################################################################################
+echo '######################################################################'\n

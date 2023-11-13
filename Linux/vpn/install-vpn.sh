@@ -4,14 +4,14 @@
 #   && sudo ./install-vpn.sh
 
 # echo "First add new user"
-# echo "####################################################################################"
+# echo "echo '######################################################################'\n"
 # echo "adduser plaki
 # sudo usermod -aG sudo plaki
 # su - plaki"
-# echo "####################################################################################"
+# echo "echo '######################################################################'\n"
 
 echo "Updating system"
-echo "####################################################################################"
+echo '######################################################################'\n
 echo cdfecdfe | sudo -S sudo apt -y update \
   && sudo apt -y upgrade \
   && sudo apt -y autoremove \
@@ -20,15 +20,15 @@ echo cdfecdfe | sudo -S sudo apt -y update \
   && sudo apt -y dist-upgrade \
   && sudo apt -y install git nano resolvconf curl
 
-echo "Installing wireguard"
-echo "####################################################################################"
+echo \n"Installing wireguard"
+echo '######################################################################'\n
 cd ~ \
   && curl -O https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/wireguard-install.sh \
   && chmod +x wireguard-install.sh \
   && sudo ./wireguard-install.sh
 
-echo "Installing 3proxy"
-echo "####################################################################################"
+echo \n"Installing 3proxy"
+echo '######################################################################'\n
 cd ~ \
   && curl -O https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/proxy3-install.sh \
   && curl -O https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/proxy3-uninstall.sh \
@@ -45,7 +45,7 @@ cd ~ \
 
 
 # #### then on my local pc init ssh key
-# ####################################################################################
+# echo '######################################################################'\n
 # If no ssh keys
 # ssh-keygen # ->plaki->pswd->pswd
 # eval "$(ssh-agent -s)" && ssh-add ~/.ssh/plaki
@@ -53,7 +53,7 @@ cd ~ \
 # ssh-copy-id -i ~/.ssh/plaki.pub plaki@64.227.69.234 # pswd user->enter
 
 # #### after connect to droplet
-# ####################################################################################
+# echo '######################################################################'\n
 # ssh 64.227.69.234
 
 # check adding keys
@@ -70,7 +70,7 @@ cd ~ \
 
 
 #### Node.js
-####################################################################################
+# echo '######################################################################'\n
 # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh
 # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 # source ~/.bashrc
@@ -81,10 +81,10 @@ cd ~ \
 # nvm use v16.17.0
 # sudo npm i -g pm2@latest
 
-####################################################################################
+# echo '######################################################################'\n
 
 #### npm service
-####################################################################################
+# echo '######################################################################'\n
 # git clone git@github.com:NarcoNik/newton-bot.git && cd ./newton-bot
 # sudo npm i
 # sudo pm2 start bot.js
@@ -102,7 +102,7 @@ cd ~ \
 # sudo pm2 list
 # sudo pm2 info app_name
 # sudo pm2 monit
-####################################################################################
+# echo '######################################################################'\n
 
 
 
@@ -125,7 +125,7 @@ cd ~ \
 # https://habr.com/ru/articles/594877/
 
 # echo "Installing GO Lang"
-# echo "####################################################################################"
+# echo "echo '######################################################################'\n"
 # sudo apt install wget software-properties-common apt-transport-https -y \
 #   && wget https://golang.org/dl/go1.17.linux-amd64.tar.gz \
 #   && sudo tar -zxvf go1.17.linux-amd64.tar.gz -C /usr/local/
@@ -139,7 +139,7 @@ cd ~ \
 # echo $PATH
 
 # echo "Installing DNS-proxy"
-# echo "####################################################################################"
+# echo "echo '######################################################################'\n"
 # git clone https://github.com/AdguardTeam/dnsproxy.git \
 #   && cd dnsproxy \
 #   && go build -mod=vendor

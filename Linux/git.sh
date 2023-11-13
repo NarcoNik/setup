@@ -2,8 +2,8 @@ echo "Installing git"
 sudo apt install -y git git-core git-gui
 git --version
 
-echo "generate ssh"
-echo "#################################################################################"
+echo \n"Generate ssh"
+echo "######################################################################"\n
 cd ~ \
   && mkdir ./.ssh \
   && cd ~/.ssh \
@@ -15,29 +15,27 @@ eval "$(ssh-agent -s)" \
 
 git config --global user.name "Slaweekq" \
  && git config --global user.email "plakidin.vyacheslav@mail.ru" \
- && git config --global --add safe.directory /mnt/Documents/Nelly/nelly-bot \
  && git config --global --add safe.directory /mnt/Documents/CRYPTO/contract \
- && git config --global --add safe.directory /mnt/Documents/CRYPTO/cpp \
+ && git config --global --add safe.directory /mnt/Documents/CRYPTO/docker-info \
  && git config --global --add safe.directory /mnt/Documents/CRYPTO/hardhat \
- && git config --global --add safe.directory /mnt/Documents/CRYPTO/hash \
- && git config --global --add safe.directory /mnt/Documents/CRYPTO/project \
  && git config --global --add safe.directory /mnt/Documents/CRYPTO/setup \
  && git config --global --add safe.directory /mnt/Documents/CRYPTO/websites \
- && git config --global core.editor kate \
+ && git config --global core.editor code \
  && git config --global core.safecrlf true \
  && git config --global push.autoSetupRemote true \
  && git config --list
 
-
-# kate ~/.bashrc
-# alias sshcon='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/slaweekq && ssh -T git@github.com'
-# alias gpush='ssh-add ~/.ssh/slaweekq && git add . && git commit -m «new» -a && git push origin'
-# alias docon='ssh plaki@64.227.69.234'
+sudo tee -a ~/.bashrc <<< \
+"
+alias sshcon='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/slaweekq && ssh -T git@github.com'
+alias gpush='ssh-add ~/.ssh/slaweekq && git add . && git commit -m «new» -a && git push origin'
+alias docon='ssh plaki@188.166.12.166'
+"
 
 # cd ~/.ssh && kate slaweekq.pub
 
 #### git create
-#################################################################################
+# echo "######################################################################"\n
 # cd && mkdir git-test && cd ./git-test && git init
 # git clone git@github.com:NarcoNik/git-test.git
 
@@ -47,7 +45,7 @@ git config --global user.name "Slaweekq" \
 
 
 #### md
-#################################################################################
+# echo "######################################################################"\n
 # add . - add change
 # commit -m "Initial Commit" -a - write change
 # push - send change

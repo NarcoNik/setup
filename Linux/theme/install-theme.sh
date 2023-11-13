@@ -1,5 +1,5 @@
-echo 'install WhiteSur KDE, GTK & ICON theme'
-echo '########################################################################'
+echo \n'Install WhiteSur KDE, GTK & ICON theme'
+echo '######################################################################'\n
 sudo add-apt-repository -y ppa:papirus/papirus \
   && sudo apt update -y \
   && sudo apt install -y \
@@ -13,12 +13,9 @@ sudo add-apt-repository -y ppa:papirus/papirus \
   inkscape \
   x11-apps
 
-echo ' '
-echo ' '
-echo '  ###############################################################################################'
+echo \n\n'  echo '######################################################################'\n###########'
 echo ' #### Read https://www.linuxuprising.com/2020/10/whitesur-macos-big-sur-like-gtk-gnome.html ####'
-echo '###############################################################################################'
-# tar xzf WhiteSurRepo.tar.gz
+echo '####################################################################'\n\n
 
 git clone https://github.com/vinceliuice/grub2-themes.git
 git clone https://github.com/vinceliuice/McMojave-kde.git
@@ -30,7 +27,6 @@ git clone https://github.com/keeferrourke/capitaine-cursors.git
 chmod +x ./grub2-themes/install.sh
 chmod +x ./McMojave-kde/sddm/install.sh
 chmod +x ./WhiteSur-gtk-theme/install.sh
-chmod +x ./WhiteSur-gtk-theme/tweaks.sh
 chmod +x ./Monterey-kde/install.sh
 chmod +x ./WhiteSur-icon-theme/install.sh
 chmod +x ./capitaine-cursors/build.sh
@@ -48,12 +44,10 @@ mkdir -p ~/.icons/capitaine-cursors
 sudo cp -pr ./capitaine-cursors /usr/share/icons/capitaine-cursors
 sudo /usr/share/icons/capitaine-cursors/build.sh
 
-echo ' '
-echo 'install done'
-echo '########################################################################'
-echo ' '
-echo 'Remove files'
-echo '########################################################################'
+echo \nInstall done
+echo '######################################################################'\n
+echo \nRemove files
+echo '######################################################################'\n
 
 sudo rm -r ./grub2-themes
 sudo rm -r ./McMojave-kde
@@ -72,9 +66,8 @@ sudo rm -r Oxygen_Yellow
 sudo rm -r Oxygen_Zion
 cd -
 
-echo ' '
-echo 'Remove done'
-echo '########################################################################'
+echo \nRemove done
+echo '######################################################################'\n
 
 
   ##########################################################

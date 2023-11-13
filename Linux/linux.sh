@@ -1,7 +1,7 @@
-echo Installing everything you need...
+echo Installing everything you need...\n
 
-echo "update all packages"
-echo "####################################################################################"
+echo \nFirst update all packages
+echo '######################################################################'\n
 
 echo cdfecdfe | sudo -S sudo apt -y update \
   && sudo apt -y upgrade \
@@ -10,19 +10,14 @@ echo cdfecdfe | sudo -S sudo apt -y update \
   && sudo apt -y --fix-broken install \
   && sudo apt -y dist-upgrade
 
-echo " "
-echo "All packages updated"
-echo "####################################################################################"
-echo " "
-echo "Install new usless packages"
-echo "####################################################################################"
-echo " "
+echo \nAll packages updated
+echo '######################################################################'\n
+echo \nInstall new usless packages
+echo '######################################################################'\n
 
 sudo apt install -y nodejs \
   mc \
   nano \
-  python3 \
-  python3-pip \
   linux-firmware \
   inxi \
   npm \
@@ -103,16 +98,13 @@ sudo apt -y update
 sudo apt -y install grub-customizer
 
 # wget http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0/libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb
-sudo dpkg -i libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb
+sudo dpkg -i ./libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb
 sudo apt -y --fix-broken install
 
-echo " "
-echo "All new usless packages installed successfully"
-echo "####################################################################################"
-echo " "
-echo "Install programm"
-echo "####################################################################################"
-echo " "
+echo \nAll new usless packages installed successfully
+echo '######################################################################'\n
+echo \nInstall programm
+echo '######################################################################'\n
 
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
@@ -123,10 +115,10 @@ sudo apt update
 sudo apt install microsoft-edge-stable
 
 sudo dpkg -i powershell_7.3.4-1.deb_amd64.deb
-sudo apt -y --fix-broken install
 sudo dpkg -i discord-0.0.24.deb
 sudo apt -y --fix-broken install
-sudo dpkg -i mucommander_1.1.0-1_amd64.deb
+sudo dpkg -i discord-0.0.24.deb
+# sudo dpkg -i mucommander_1.1.0-1_amd64.deb
 sudo dpkg -i GitHubDesktop-linux-3.1.1-linux1.deb
 sudo apt -y update
 sudo apt -y upgrade
@@ -192,10 +184,8 @@ code --locate-shell-integration-path bash
 # flatpak install -y flathub com.usebottles.bottles
 # flatpak run com.usebottles.bottles
 
-echo ' '
-echo "Installing wine"
-echo "####################################################################################"
-echo ' '
+echo \nInstalling wine
+echo '######################################################################'\n
 
 sudo dpkg --add-architecture i386
 sudo mkdir -pm755 /etc/apt/keyrings
@@ -204,10 +194,8 @@ sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/
 sudo apt update -y \
   && sudo apt install -y --install-recommends winehq-stable
 
-echo ' '
-echo "Installing Nvidia & other graphics drivers"
-echo "####################################################################################"
-echo ' '
+echo \nInstalling Nvidia & other graphics drivers
+echo '######################################################################'\n
 
 # echo blacklist nouveau | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
 # echo options nouveau modeset=0 | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
@@ -220,10 +208,11 @@ sudo ubuntu-drivers list
 sudo ubuntu-drivers install
 # sudo ubuntu-drivers install nvidia:525
 
-echo ' '
-echo "All programm installed"
-echo "####################################################################################"
-echo ' '
+sudo chmod +x ./docker-install.sh
+./docker-install.sh
+
+echo \nAll programm installed
+echo '######################################################################'\n
 
 # sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/testingme.ru.conf
 #
@@ -251,25 +240,15 @@ echo ' '
 # sudo a2ensite testingme.ru.conf
 # sudo systemctl reload apache2
 
-echo ' '
-echo "Set autocomlete bash"
-echo "####################################################################################"
-echo ' '
+echo \nSet autocomlete bash
+echo '######################################################################'\n
 
-sudo bash -c \
-"cat << EOF > /etc/fstab
-# /etc/fstab: static file system information.
-#
-# Use 'blkid' to print the universally unique identifier for a
-# device; this may be used with UUID= as a more robust way to name devices
-# that works even if disks are added and removed. See fstab(5).
-#
+sudo tee -a /etc/fstab <<< \
+"
 # UUID=<uuid>                             <mount point> <FSType> <FSOptions>        <dump> <pass>
-UUID=1e2475c3-103c-4c58-928b-f36c1b262f89 /               ext4   errors=remount-ro    0      1
-UUID=00B8-8DC5                            /boot/efi       vfat   umask=0077           0      1
 UUID=8A34B39934B3872B                     /mnt/Documents  ntfs   defaults,rw,realtime 0      0
 UUID=9A34BC1034BBECFF                     /mnt/Windows    ntfs   defaults,ro          0      0
-EOF"
+"
 
 sudo tee -a /etc/inputrc <<< \
 "
@@ -279,8 +258,7 @@ set show-all-if-ambiguous On
 "\e[B": history-search-forward
 "
 
-echo ' '
-echo "Ended"
+echo "\nEnded"
 
 sudo reboot
 # 127.0.0.1 testingme.ru
