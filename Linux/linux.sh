@@ -135,11 +135,12 @@ nvm install lts/Iron
 nvm list
 npm install -g npm@latest
 nvm use v20.9.0
-npm i -g yarn \
+sudo npm i -g yarn \
   prettier \
   eslint \
   nodemon \
   serve \
+  typescript \
   eslint-plugin-simple-import-sort \
   eslint-plugin-import prettier \
   eslint-plugin-unused-imports \
@@ -250,19 +251,18 @@ UUID=8A34B39934B3872B                     /mnt/Documents  ntfs   defaults,rw,rea
 UUID=9A34BC1034BBECFF                     /mnt/Windows    ntfs   defaults,ro          0      0
 "
 
-sudo tee -a /etc/inputrc <<< \
-"
-# paste after all text
-set show-all-if-ambiguous On
-"\e[A": history-search-backward
-"\e[B": history-search-forward
-"
+# sudo tee -a /etc/inputrc <<< \
+# "
+# # paste after all text
+# set show-all-if-ambiguous On
+# "\e[A": history-search-backward
+# "\e[B": history-search-forward
+# "
 
 echo "\nEnded"
 
 sudo reboot
 # 127.0.0.1 testingme.ru
-
 # sudo service apache2 stop
 # sudo service mysql stop
 
