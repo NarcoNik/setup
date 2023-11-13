@@ -209,24 +209,13 @@ echo "Installing Nvidia & other graphics drivers"
 echo "####################################################################################"
 echo ' '
 
-echo blacklist nouveau | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
-echo options nouveau modeset=0 | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
+# echo blacklist nouveau | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
+# echo options nouveau modeset=0 | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
 sudo update-initramfs -u
 
 sudo add-apt-repository -y ppa:graphics-drivers/ppa
 sudo apt update -y
-sudo apt install -y \
-  libnvidia-gl-525:i386 \
-  libnvidia-decode-525:i386 \
-  libnvidia-encode-525:i386
-sudo apt install -y nvidia-driver-525 \
-  libnvidia-gl-525 \
-  nvidia-utils-525 \
-  xserver-xorg-video-nvidia-525 \
-  libnvidia-cfg1-525 \
-  libnvidia-decode-525 \
-  libnvidia-encode-525 \
-  nvidia-settings
+sudo apt install -y nvidia-settings
 sudo ubuntu-drivers list
 sudo ubuntu-drivers install
 # sudo ubuntu-drivers install nvidia:525
