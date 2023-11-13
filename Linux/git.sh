@@ -1,5 +1,5 @@
 echo "Installing git"
-sudo apt -y install git git-core git-gui
+sudo apt install -y git git-core git-gui
 git --version
 
 echo "generate ssh"
@@ -32,7 +32,7 @@ git config --global user.name "Slaweekq" \
 # kate ~/.bashrc
 # alias sshcon='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/slaweekq && ssh -T git@github.com'
 # alias gpush='ssh-add ~/.ssh/slaweekq && git add . && git commit -m «new» -a && git push origin'
-# alias docon='ssh 64.227.69.234'
+# alias docon='ssh plaki@64.227.69.234'
 
 # cd ~/.ssh && kate slaweekq.pub
 

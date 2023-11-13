@@ -10,14 +10,19 @@ echo cdfecdfe | sudo -S sudo apt -y update \
   && sudo apt -y --fix-broken install \
   && sudo apt -y dist-upgrade
 
+echo " "
 echo "All packages updated"
 echo "####################################################################################"
-
+echo " "
 echo "Install new usless packages"
 echo "####################################################################################"
+echo " "
 
 sudo apt install -y nodejs \
   mc \
+  nano \
+  python3 \
+  python3-pip \
   linux-firmware \
   inxi \
   npm \
@@ -58,14 +63,10 @@ sudo apt install -y nodejs \
   clang \
   xz-utils \
   gcc-multilib \
-  apache2 \
-  mysql-server \
-  nginx \
   vim \
   kate \
   sweeper \
   gparted \
-  pavucontrol \
   wireguard \
   network-manager \
   network-manager-vpnc \
@@ -73,56 +74,69 @@ sudo apt install -y nodejs \
   net-tools \
   kubuntu-restricted-extras \
   vlc
+#   apache2 \
+#   mysql-server \
+#   nginx \
+#     pavucontrol \
 
-sudo a2enmod rewrite
+
+# sudo a2enmod rewrite
 
 sudo systemctl daemon-reload
 sudo dpkg --configure -a
 
-sudo service mysql start
-sudo mysql -uroot -p
+# sudo service mysql start
+# sudo mysql -uroot -p
 
-SELECT user, authentication_string, plugin, host FROM mysql.user WHERE user="root";
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';
-FLUSH PRIVILEGES;
-exit
+# SELECT user, authentication_string, plugin, host FROM mysql.user WHERE user="root";
+# ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';
+# FLUSH PRIVILEGES;
+# exit
 
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
-sudo bash -c \
-"cat << EOF > /etc/apt/sources.list.d/danielrichter2007-ubuntu-grub-customizer-jammy.list
-deb https://ppa.launchpadcontent.net/danielrichter2007/grub-customizer/ubuntu/ jammy main
-# deb-src https://ppa.launchpadcontent.net/danielrichter2007/grub-customizer/ubuntu/ jammy main
-EOF" \
-  && sudo apt -y update \
-  && sudo apt -y install grub-customizer
+# sudo bash -c \
+# "cat << EOF > /etc/apt/sources.list.d/danielrichter2007-ubuntu-grub-customizer-jammy.list
+# deb https://ppa.launchpadcontent.net/danielrichter2007/grub-customizer/ubuntu/ jammy main
+# # deb-src https://ppa.launchpadcontent.net/danielrichter2007/grub-customizer/ubuntu/ jammy main
+# EOF"
+sudo apt -y update
+sudo apt -y install grub-customizer
+
 # wget http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0/libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb
 sudo dpkg -i libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb
 sudo apt -y --fix-broken install
 
+echo " "
 echo "All new usless packages installed successfully"
 echo "####################################################################################"
-
+echo " "
 echo "Install programm"
 echo "####################################################################################"
+echo " "
 
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
 sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge.list'
 sudo rm microsoft.gpg
 sudo rm -r /etc/apt/sources.list.d/microsoft-edge-dev.list
-sudo apt update \
-  && sudo apt install microsoft-edge-stable
+sudo apt update
+sudo apt install microsoft-edge-stable
 
 sudo dpkg -i powershell_7.3.4-1.deb_amd64.deb
+sudo apt -y --fix-broken install
 sudo dpkg -i discord-0.0.24.deb
+sudo apt -y --fix-broken install
 sudo dpkg -i mucommander_1.1.0-1_amd64.deb
-sudo apt -y update && sudo apt -y upgrade
+sudo dpkg -i GitHubDesktop-linux-3.1.1-linux1.deb
+sudo apt -y update
+sudo apt -y upgrade
 
-sudo add-apt-repository -y ppa:atareao/telegram
-sudo apt -y update && sudo apt -y install telegram
+sudo add-apt-repository -y ppa:atareao/telegram \
+  && sudo apt -y update \
+  && sudo apt -y install telegram
 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 source ~/.bashrc
 nvm list-remote
 nvm install lts/Iron
@@ -146,9 +160,10 @@ wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > pa
 sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
 sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
 rm -f packages.microsoft.gpg
+
 sudo apt update \
-  && sudo apt install code
-sudo apt -y --fix-broken install
+  && sudo apt install code \
+  && sudo apt -y --fix-broken install
 
 source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
 eval $(/usr/bin/gnome-keyring-daemon --start)
@@ -157,44 +172,128 @@ sudo mkdir -p "$HOME"/.local/share/keyrings
 code --locate-shell-integration-path bash
 [[ "$TERM_PROGRAM" == "vscode" ]] && . "/path/to/shell/integration/script.sh"
 
+# echo ' '
+# echo "Installing Bottle"
+# echo "  ######################################################################"
+# echo ' #### Read more on https://flathub.org/apps/com.usebottles.bottles ###'
+# echo "#####################################################################"
+# echo ' '
+# sudo add-apt-repository -y ppa:flatpak/stable
+# sudo bash -c \
+# "cat << EOF > /etc/apt/sources.list.d/flatpak-ubuntu-stable-lunar.list
+# deb https://ppa.launchpadcontent.net/flatpak/stable/ubuntu/ jammy main
+# # deb-src https://ppa.launchpadcontent.net/flatpak/stable/ubuntu/ jammy main
+# EOF"
+# sudo mv /etc/apt/sources.list.d/flatpak-ubuntu-stable-lunar.list /etc/apt/sources.list.d/flatpak-ubuntu-stable-jammy.list
+# sudo apt update -y
+# sudo apt install -y flatpak \
+#   gnome-software-plugin-flatpak
+# flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+# flatpak install -y flathub com.usebottles.bottles
+# flatpak run com.usebottles.bottles
+
+echo ' '
+echo "Installing wine"
+echo "####################################################################################"
+echo ' '
+
+sudo dpkg --add-architecture i386
+sudo mkdir -pm755 /etc/apt/keyrings
+sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/lunar/winehq-lunar.sources
+sudo apt update -y \
+  && sudo apt install -y --install-recommends winehq-stable
+
+echo ' '
+echo "Installing Nvidia & other graphics drivers"
+echo "####################################################################################"
+echo ' '
+
+echo blacklist nouveau | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
+echo options nouveau modeset=0 | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
+sudo update-initramfs -u
+
+sudo add-apt-repository -y ppa:graphics-drivers/ppa
+sudo apt update -y
+sudo apt install -y \
+  libnvidia-gl-525:i386 \
+  libnvidia-decode-525:i386 \
+  libnvidia-encode-525:i386
+sudo apt install -y nvidia-driver-525 \
+  libnvidia-gl-525 \
+  nvidia-utils-525 \
+  xserver-xorg-video-nvidia-525 \
+  libnvidia-cfg1-525 \
+  libnvidia-decode-525 \
+  libnvidia-encode-525 \
+  nvidia-settings
+sudo ubuntu-drivers list
+sudo ubuntu-drivers install
+# sudo ubuntu-drivers install nvidia:525
+
+echo ' '
 echo "All programm installed"
 echo "####################################################################################"
+echo ' '
 
+# sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/testingme.ru.conf
+#
+# # sudo nano /etc/apache2/sites-available/testingme.ru.conf
+# sudo bash -c \
+# "cat << EOF > /etc/apache2/sites-available/testingme.ru.conf
+# <VirtualHost *:80>
+#         ServerAdmin webmaster@testingme.ru
+#         ServerName testingme.ru
+#         ServerAlias www.testingme.ru
+#     DocumentRoot /mnt/d/CRYPTO/testingme.ru/build/
+#     <Directory /mnt/d/CRYPTO/testingme.ru/build/>
+#         Options Indexes FollowSymLinks
+#         AllowOverride All
+#         Require all granted
+#     </Directory>
+#     ErrorLog ${APACHE_LOG_DIR}/error.log
+#     CustomLog ${APACHE_LOG_DIR}/access.log combined
+# </VirtualHost>
+# EOF"
+#
+# sudo service apache2 start
+# sudo service mysql start
+#
+# sudo a2ensite testingme.ru.conf
+# sudo systemctl reload apache2
+
+echo ' '
 echo "Set autocomlete bash"
 echo "####################################################################################"
+echo ' '
 
-echo "kate /etc/inputrc
+sudo bash -c \
+"cat << EOF > /etc/fstab
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# UUID=<uuid>                             <mount point> <FSType> <FSOptions>        <dump> <pass>
+UUID=1e2475c3-103c-4c58-928b-f36c1b262f89 /               ext4   errors=remount-ro    0      1
+UUID=00B8-8DC5                            /boot/efi       vfat   umask=0077           0      1
+UUID=8A34B39934B3872B                     /mnt/Documents  ntfs   defaults,rw,realtime 0      0
+UUID=9A34BC1034BBECFF                     /mnt/Windows    ntfs   defaults,ro          0      0
+EOF"
+
+sudo tee -a /etc/inputrc <<< \
+"
 # paste after all text
 set show-all-if-ambiguous On
 "\e[A": history-search-backward
-"\e[B": history-search-forward"
+"\e[B": history-search-forward
+"
+
+echo ' '
 echo "Ended"
 
-sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/testingme.ru.conf
-
-# sudo nano /etc/apache2/sites-available/testingme.ru.conf
-sudo bash -c \
-"cat << EOF > /etc/apache2/sites-available/testingme.ru.conf
-<VirtualHost *:80>
-        ServerAdmin webmaster@testingme.ru
-        ServerName testingme.ru
-        ServerAlias www.testingme.ru
-    DocumentRoot /mnt/d/CRYPTO/testingme.ru/build/
-    <Directory /mnt/d/CRYPTO/testingme.ru/build/>
-        Options Indexes FollowSymLinks
-        AllowOverride All
-        Require all granted
-    </Directory>
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-EOF"
-
-sudo service apache2 start
-sudo service mysql start
-
-sudo a2ensite testingme.ru.conf
-sudo systemctl reload apache2
+sudo reboot
 # 127.0.0.1 testingme.ru
 
 # sudo service apache2 stop
@@ -204,6 +303,4 @@ sudo systemctl reload apache2
 # sudo dpkg -i virtualbox-7.0_7.0.8-156879~Ubuntu~jammy_amd64.deb
 # sudo dpkg -i docker-desktop-4.16.1-amd64.deb
 # sudo dpkg -i anydesk_6.2.1-1_amd64.deb
-# sudo dpkg -i discord-0.0.24.deb
-# sudo dpkg -i docker-desktop-4.16.1-amd64.deb
 # sudo dpkg -i GitHubDesktop-linux-3.1.1-linux1.deb
