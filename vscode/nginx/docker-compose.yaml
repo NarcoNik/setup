@@ -1,0 +1,116 @@
+
+services:
+  reverse-proxy:
+    image: traefik:latest
+    restart: always
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+    command:
+      - --providers.docker
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.http.address=:80
+      - --entrypoints.https.address=:443
+      - --certificatesresolvers.le.acme.email=volatileasm@protonmail.com
+      - --certificatesresolvers.le.acme.storage=/certificates/acme.json
+      - --certificatesresolvers.le.acme.tlschallenge=true
+      - --accesslog
+      - '--entryPoints.http.forwardedHeaders.insecure'
+      - --log
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - traefik-public
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - traefik-public-certificates:/certificates
+
+  webserver:
+    image: nginx:latest
+    build: .
+    restart: always
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/nginxconfig/general.conf:/etc/nginx/general.conf
+      - ./nginx/nginxconfig/security.conf:/etc/nginx/security.conf
+      - ./build:/usr/share/nginx/html
+    networks:
+      - traefik-public
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.webserver-http.entrypoints=http
+      - traefik.http.routers.webserver-http.rule=Host(`localhost`)
+      - traefik.docker.network=traefik-public
+      - traefik.http.routers.webserver-https.entrypoints=https
+      - traefik.http.routers.webserver-https.rule=Host(`localhost`)
+      - traefik.http.routers.webserver-https.tls=true
+      - traefik.http.routers.webserver-https.tls.certresolver=le
+      - traefik.http.middlewares.https-redirect.redirectscheme.scheme=https
+      - traefik.http.middlewares.https-redirect.redirectscheme.permanent=true
+      - traefik.http.services.webserver.loadbalancer.server.port=80
+      - traefik.http.routers.webserver-http.middlewares=https-redirect
+
+volumes:
+  traefik-public-certificates:
+
+networks:
+  traefik-public:
+    external: false
+
+
+
+# version: "3"
+# services:
+
+#   react:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     restart: 'always'
+#     volumes:
+#       - ./src:/app/src
+#     ports:
+#       - "3001:3000"
+#     labels:
+#       - traefik.enable=true
+#       - traefik.http.routers.react-http.entrypoints=web
+#       - traefik.http.routers.react-http.rule=Host(`localhost`)
+#       - traefik.docker.network=traefik-public
+#       - traefik.http.routers.react-https.entrypoints=secureweb
+#       - traefik.http.routers.react-https.rule=Host(`localhost`)
+#       - traefik.http.routers.react-https.tls=true
+#       - traefik.http.routers.react-https.tls.certresolver=le
+#       - traefik.http.middlewares.https-redirect.redirectscheme.scheme=https
+#       - traefik.http.middlewares.https-redirect.redirectscheme.permanent=true
+#       - traefik.http.routers.react-http.middlewares=https-redirect
+#       - traefik.http.services.react.loadbalancer.server.port=3000
+#     networks:
+#       - getaway
+
+# networks:
+#   getaway:
+#     external: true
+
+
+# services:
+#   reactapp_svc:
+#     #тут либо image либо build (build from dockerfile) использоваться должно
+#     #image означает что собирать из конкретного готового образа (локального или удалённого)
+# #    image: reactapp_svc_img
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     restart: 'always'
+#     container_name: reactapp_svc
+#     #если никак не используется, то не нужен
+#     hostname: reactapp_svc
+#     ports:
+#       - '8080:80'
+#     volumes:
+#       #а для чего тебе этот доступ тут?
+#       - reactapp_volume:/reactapp
+
+# volumes:
+#   reactapp_volume:
+

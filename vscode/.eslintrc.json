@@ -33,7 +33,7 @@
       "files": ["src/*.js", "src/*.jsx", "src/*.tsx", "src/*.ts"]
     }
   ],
-  //   "parser": "@typescript-eslint/parser",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     // "ecmaFeatures": {
     //       "js": true,
