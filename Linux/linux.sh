@@ -67,12 +67,12 @@ sudo apt install -y nodejs \
   network-manager-vpnc \
   network-manager-gnome \
   net-tools \
-  kubuntu-restricted-extras \
   vlc
 #   apache2 \
 #   mysql-server \
 #   nginx \
-#     pavucontrol \
+#     pavucontrol \  kubuntu-restricted-extras \
+
 
 
 # sudo a2enmod rewrite
@@ -89,11 +89,12 @@ sudo dpkg --configure -a
 # exit
 
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
-# sudo bash -c \
-# "cat << EOF > /etc/apt/sources.list.d/danielrichter2007-ubuntu-grub-customizer-jammy.list
-# deb https://ppa.launchpadcontent.net/danielrichter2007/grub-customizer/ubuntu/ jammy main
-# # deb-src https://ppa.launchpadcontent.net/danielrichter2007/grub-customizer/ubuntu/ jammy main
-# EOF"
+sudo rm -r /etc/apt/sources.list.d/danielrichter2007-ubuntu-grub-customizer-andromeda.list
+sudo bash -c \
+"cat << EOF > /etc/apt/sources.list.d/danielrichter2007-ubuntu-grub-customizer-jammy.list
+deb https://ppa.launchpadcontent.net/danielrichter2007/grub-customizer/ubuntu/ jammy main
+# deb-src https://ppa.launchpadcontent.net/danielrichter2007/grub-customizer/ubuntu/ jammy main
+EOF"
 sudo apt -y update
 sudo apt -y install grub-customizer
 
@@ -115,9 +116,9 @@ sudo apt update
 sudo apt install microsoft-edge-stable
 
 sudo dpkg -i powershell_7.3.4-1.deb_amd64.deb
-sudo dpkg -i discord-0.0.24.deb
+sudo dpkg -i discord-0.0.35.deb
 sudo apt -y --fix-broken install
-sudo dpkg -i discord-0.0.24.deb
+sudo dpkg -i discord-0.0.35.deb
 # sudo dpkg -i mucommander_1.1.0-1_amd64.deb
 sudo dpkg -i GitHubDesktop-linux-3.1.1-linux1.deb
 sudo apt -y update
@@ -127,27 +128,26 @@ sudo add-apt-repository -y ppa:atareao/telegram \
   && sudo apt -y update \
   && sudo apt -y install telegram
 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+sudo rm -r /etc/apt/sources.list.d/atareao-ubuntu-telegram-andromeda.list
+sudo bash -c \
+"cat << EOF > /etc/apt/sources.list.d/atareao-ubuntu-telegram--jammy.list
+deb https://ppa.launchpadcontent.net/atareao/telegram/ubuntu/ jammy main
+# deb-src https://ppa.launchpadcontent.net/atareao/telegram/ubuntu/ jammy main
+EOF"
+
+sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh
+sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 source ~/.bashrc
 nvm list-remote
 nvm install lts/Iron
 nvm list
-npm install -g npm@latest
+sudo npm install -g npm@latest
 nvm use v20.9.0
 sudo npm i -g yarn \
   prettier \
   eslint \
   nodemon \
-  serve \
-  typescript \
-  eslint-plugin-simple-import-sort \
-  eslint-plugin-import prettier \
-  eslint-plugin-unused-imports \
-  eslint-plugin-prettier \
-  eslint-plugin-html \
-  eslint-config-airbnb-base \
-  eslint-config-prettier
+  serve
 
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
@@ -164,26 +164,6 @@ export SSH_AUTH_SOCK
 sudo mkdir -p "$HOME"/.local/share/keyrings
 code --locate-shell-integration-path bash
 [[ "$TERM_PROGRAM" == "vscode" ]] && . "/path/to/shell/integration/script.sh"
-
-# echo ' '
-# echo "Installing Bottle"
-# echo "  ######################################################################"
-# echo ' #### Read more on https://flathub.org/apps/com.usebottles.bottles ###'
-# echo "#####################################################################"
-# echo ' '
-# sudo add-apt-repository -y ppa:flatpak/stable
-# sudo bash -c \
-# "cat << EOF > /etc/apt/sources.list.d/flatpak-ubuntu-stable-lunar.list
-# deb https://ppa.launchpadcontent.net/flatpak/stable/ubuntu/ jammy main
-# # deb-src https://ppa.launchpadcontent.net/flatpak/stable/ubuntu/ jammy main
-# EOF"
-# sudo mv /etc/apt/sources.list.d/flatpak-ubuntu-stable-lunar.list /etc/apt/sources.list.d/flatpak-ubuntu-stable-jammy.list
-# sudo apt update -y
-# sudo apt install -y flatpak \
-#   gnome-software-plugin-flatpak
-# flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-# flatpak install -y flathub com.usebottles.bottles
-# flatpak run com.usebottles.bottles
 
 echo \nInstalling wine
 echo '######################################################################'\n
@@ -203,6 +183,14 @@ echo '######################################################################'\n
 sudo update-initramfs -u
 
 sudo add-apt-repository -y ppa:graphics-drivers/ppa
+
+sudo rm -r /etc/apt/sources.list.d/graphics-drivers-ubuntu-ppa-andromeda.list
+sudo bash -c \
+"cat << EOF > /etc/apt/sources.list.d/graphics-drivers-ubuntu-ppa-jammy.list
+deb https://ppa.launchpadcontent.net/graphics-drivers/ppa/ubuntu/ jammy main
+# deb-src https://ppa.launchpadcontent.net/graphics-drivers/ppa/ubuntu/ jammy main
+EOF"
+
 sudo apt update -y
 sudo apt install -y nvidia-settings
 sudo ubuntu-drivers list
@@ -210,7 +198,7 @@ sudo ubuntu-drivers install
 # sudo ubuntu-drivers install nvidia:525
 
 sudo chmod +x ./docker-install.sh
-./docker-install.sh
+sudo ./docker-install.sh
 
 echo \nAll programm installed
 echo '######################################################################'\n
