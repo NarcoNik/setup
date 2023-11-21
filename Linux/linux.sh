@@ -40,7 +40,6 @@ sudo apt install -y nodejs \
   rar \
   unrar \
   zip \
-  unzip \
   nmon \
   nload \
   conmon \
@@ -58,7 +57,6 @@ sudo apt install -y nodejs \
   clang \
   xz-utils \
   gcc-multilib \
-  vim \
   kate \
   sweeper \
   gparted \
@@ -71,30 +69,13 @@ sudo apt install -y nodejs \
 #   apache2 \
 #   mysql-server \
 #   nginx \
-#     pavucontrol \  kubuntu-restricted-extras \
+#   pavucontrol \  kubuntu-restricted-extras \
 
-
-
-# sudo a2enmod rewrite
 
 sudo systemctl daemon-reload
 sudo dpkg --configure -a
 
-# sudo service mysql start
-# sudo mysql -uroot -p
-
-# SELECT user, authentication_string, plugin, host FROM mysql.user WHERE user="root";
-# ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';
-# FLUSH PRIVILEGES;
-# exit
-
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
-sudo rm -r /etc/apt/sources.list.d/danielrichter2007-ubuntu-grub-customizer-andromeda.list
-sudo bash -c \
-"cat << EOF > /etc/apt/sources.list.d/danielrichter2007-ubuntu-grub-customizer-jammy.list
-deb https://ppa.launchpadcontent.net/danielrichter2007/grub-customizer/ubuntu/ jammy main
-# deb-src https://ppa.launchpadcontent.net/danielrichter2007/grub-customizer/ubuntu/ jammy main
-EOF"
 sudo apt -y update
 sudo apt -y install grub-customizer
 
@@ -112,8 +93,8 @@ sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
 sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge.list'
 sudo rm microsoft.gpg
 sudo rm -r /etc/apt/sources.list.d/microsoft-edge-dev.list
-sudo apt update
-sudo apt install microsoft-edge-stable
+sudo apt -y update
+sudo apt install -y microsoft-edge-stable
 
 sudo dpkg -i powershell_7.3.4-1.deb_amd64.deb
 sudo dpkg -i discord-0.0.35.deb
@@ -121,19 +102,10 @@ sudo apt -y --fix-broken install
 sudo dpkg -i discord-0.0.35.deb
 # sudo dpkg -i mucommander_1.1.0-1_amd64.deb
 sudo dpkg -i GitHubDesktop-linux-3.1.1-linux1.deb
+
+sudo add-apt-repository -y ppa:atareao/telegram
 sudo apt -y update
-sudo apt -y upgrade
-
-sudo add-apt-repository -y ppa:atareao/telegram \
-  && sudo apt -y update \
-  && sudo apt -y install telegram
-
-sudo rm -r /etc/apt/sources.list.d/atareao-ubuntu-telegram-andromeda.list
-sudo bash -c \
-"cat << EOF > /etc/apt/sources.list.d/atareao-ubuntu-telegram--jammy.list
-deb https://ppa.launchpadcontent.net/atareao/telegram/ubuntu/ jammy main
-# deb-src https://ppa.launchpadcontent.net/atareao/telegram/ubuntu/ jammy main
-EOF"
+sudo apt -y install telegram
 
 sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh
 sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
@@ -147,6 +119,7 @@ sudo npm i -g yarn \
   prettier \
   eslint \
   nodemon \
+  create-react-app \
   serve
 
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
@@ -154,9 +127,9 @@ sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/
 sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
 rm -f packages.microsoft.gpg
 
-sudo apt update \
-  && sudo apt install code \
-  && sudo apt -y --fix-broken install
+sudo apt -y update
+sudo apt -y install code
+sudo apt -y --fix-broken install
 
 source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
 eval $(/usr/bin/gnome-keyring-daemon --start)
@@ -172,8 +145,15 @@ sudo dpkg --add-architecture i386
 sudo mkdir -pm755 /etc/apt/keyrings
 sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
 sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/lunar/winehq-lunar.sources
-sudo apt update -y \
-  && sudo apt install -y --install-recommends winehq-stable
+sudo apt -y update
+sudo apt install -y --install-recommends winehq-stable
+
+echo \nInstalling lutris
+echo '######################################################################'\n
+
+sudo add-apt-repository -y ppa:lutris-team/lutris
+sudo apt -y update
+sudo apt -y install lutris
 
 echo \nInstalling Nvidia & other graphics drivers
 echo '######################################################################'\n
@@ -183,16 +163,11 @@ echo '######################################################################'\n
 sudo update-initramfs -u
 
 sudo add-apt-repository -y ppa:graphics-drivers/ppa
+sudo apt -y update
+sudo apt install -y nvidia-settings \
+  libvulkan1 \
+  libvulkan1:i386
 
-sudo rm -r /etc/apt/sources.list.d/graphics-drivers-ubuntu-ppa-andromeda.list
-sudo bash -c \
-"cat << EOF > /etc/apt/sources.list.d/graphics-drivers-ubuntu-ppa-jammy.list
-deb https://ppa.launchpadcontent.net/graphics-drivers/ppa/ubuntu/ jammy main
-# deb-src https://ppa.launchpadcontent.net/graphics-drivers/ppa/ubuntu/ jammy main
-EOF"
-
-sudo apt update -y
-sudo apt install -y nvidia-settings
 sudo ubuntu-drivers list
 sudo ubuntu-drivers install
 # sudo ubuntu-drivers install nvidia:525
@@ -200,8 +175,44 @@ sudo ubuntu-drivers install
 sudo chmod +x ./docker-install.sh
 sudo ./docker-install.sh
 
+echo \nInstalling Bluetooth Audio for AirPods
+echo '######################################################################'\n
+
+sudo apt -y install 'bluez*' blueman
+modprobe btusb
+sudo tee -a /etc/bluetooth/main.conf <<< \
+"
+ControllerMode = bredr
+"
+sudo /etc/init.d/bluetooth restart
+sudo systemctl restart bluetooth
+
+sudo add-apt-repository -y ppa:pipewire-debian/pipewire-upstream
+sudo apt -y update
+sudo apt -y install pulseaudio-utils \
+  pipewire \
+  pipewire-pulse \
+  pipewire-tests \
+  pipewire-locales \
+  gstreamer1.0-pipewire \
+  libspa-0.2-bluetooth \
+  libspa-0.2-jack \
+  pipewire-audio-client-libraries
+sudo systemctl disable --global pulseaudio
+sudo systemctl enable --global pipewire-pulse
+pactl info | grep "Server Name"
+
 echo \nAll programm installed
 echo '######################################################################'\n
+
+# sudo a2enmod rewrite
+# sudo service mysql start
+# sudo mysql -uroot -p
+
+# SELECT user, authentication_string, plugin, host FROM mysql.user WHERE user="root";
+# ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';
+# FLUSH PRIVILEGES;
+# exit
 
 # sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/testingme.ru.conf
 #
@@ -239,15 +250,20 @@ UUID=8A34B39934B3872B                     /mnt/Documents  ntfs   defaults,rw,rea
 UUID=9A34BC1034BBECFF                     /mnt/Windows    ntfs   defaults,ro          0      0
 "
 
-# sudo tee -a /etc/inputrc <<< \
-# "
-# # paste after all text
-# set show-all-if-ambiguous On
-# "\e[A": history-search-backward
-# "\e[B": history-search-forward
-# "
+sudo tee -a /etc/inputrc <<< \
+"
+# paste after all text
+set show-all-if-ambiguous On
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"
 
-echo "\nEnded"
+sudo apt -y update \
+  && sudo apt -y upgrade \
+  && sudo apt -y autoremove \
+  && sudo apt -y autoclean
+
+echo \n"Ended"
 
 sudo reboot
 # 127.0.0.1 testingme.ru

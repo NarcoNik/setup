@@ -23,21 +23,6 @@ echo '######################################################################'\n
 
 
 
-#### Install NVIDIA
-echo '######################################################################'\n
-sudo apt install nvidia-driver-515 nvidia-dkms-515
-
-apt search nvidia-driver
-apt-cache search 'nvidia-driver-' | grep '^nvidia-driver-[[:digit:]]*'
-## search for DKMS package too ##
-apt-cache search 'nvidia-dkms-' | grep '^nvidia-dkms-[[:digit:]]*'
-nvidia-smi
-
-sudo nvidia-settings
-
-echo '######################################################################'\n
-
-
 pacmd list-sinks
 
 amixer -c 0 sset "Auto-Mute Mode" Enabled
