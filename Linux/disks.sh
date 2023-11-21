@@ -90,4 +90,13 @@ sudo apt-add-repository -y ppa:yannubuntu/boot-repair \
   && sudo apt install -y boot-repair \
   && sudo boot-repair
 
+
+sudo apt - update \
+  && sudo apt install -y ubuntu-desktop \
+  xfce4 \
+  xfce4-goodies \
+  xorg \
+  dbus-x11 \
+  x11-xserver-utils
+
 echo '######################################################################'\n
