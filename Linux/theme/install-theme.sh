@@ -42,7 +42,9 @@ sudo ./WhiteSur-icon-theme/install.sh -a -b
 
 mkdir -p ~/.icons/capitaine-cursors
 sudo cp -pr ./capitaine-cursors /usr/share/icons/capitaine-cursors
-sudo /usr/share/icons/capitaine-cursors/build.sh
+cd /usr/share/icons/capitaine-cursors/
+sudo ./build.sh
+cd -
 
 echo \nInstall done
 echo '######################################################################'\n
@@ -55,6 +57,8 @@ sudo rm -r ./WhiteSur-gtk-theme
 sudo rm -r ./Monterey-kde
 sudo rm -r ./WhiteSur-icon-theme
 sudo rm -r ./capitaine-cursors
+sudo rm -r ./_build
+sudo rm -r ./dist
 
 cd /usr/share/icons
 sudo rm -r Humanity

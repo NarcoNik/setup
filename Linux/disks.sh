@@ -91,12 +91,21 @@ sudo apt-add-repository -y ppa:yannubuntu/boot-repair \
   && sudo boot-repair
 
 
-sudo apt - update \
+sudo apt -y update \
   && sudo apt install -y ubuntu-desktop \
   xfce4 \
   xfce4-goodies \
   xorg \
   dbus-x11 \
   x11-xserver-utils
+
+sudo apt -y update \
+  && sudo apt -y upgrade \
+  && sudo add-apt-repository ppa:kubuntu-ppa/backports -y \
+  && sudo apt -y update \
+  && sudo apt install -y kde-plasma-desktop
+
+cat /etc/sddm.conf
+echo -e "[General]\nInputMethod=" | sudo tee -a /etc/sddm.conf
 
 echo '######################################################################'\n
