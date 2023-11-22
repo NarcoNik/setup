@@ -30,10 +30,9 @@
   ],
   "overrides": [
     {
-      "files": ["src/*.js", "src/*.jsx", "src/*.tsx", "src/*.ts"]
+      "files": ["*.js", "*.jsx", "*.tsx", "*.ts"]
     }
   ],
-  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     // "ecmaFeatures": {
     //       "js": true,
@@ -42,6 +41,8 @@
     //       "tsx": true,
     //       "modules": true
     //     },
+    // "parser": "@typescript-eslint/parser",
+    // "project": "./tsconfig.json",
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
