@@ -182,6 +182,8 @@ sudo apt -y install 'bluez*' blueman
 modprobe btusb
 sudo tee -a /etc/bluetooth/main.conf <<< \
 "
+AutoEnable=true
+
 ControllerMode = bredr
 "
 sudo /etc/init.d/bluetooth restart
