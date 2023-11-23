@@ -113,9 +113,9 @@ source ~/.bashrc
 nvm list-remote
 nvm install lts/Iron
 nvm list
-sudo npm install -g npm@latest
-nvm use v20.9.0
-sudo npm i -g yarn \
+npm install -g npm@latest
+nvm use v20.10.0
+npm i -g yarn \
   prettier \
   eslint \
   nodemon \
