@@ -43,10 +43,8 @@ function notify(text: string, type: string, id: string | number) {
     toastId: id
   };
   if (type === 'loading') return toast(text, options);
-  if (type === 'success')
-    return toast.update(options.toastId, { render: text, type, isLoading: false, autoClose: 5000, hideProgressBar: false });
-  if (type === 'error')
-    return toast.update(options.toastId, { render: text, type, isLoading: false, autoClose: 5000, hideProgressBar: false });
+  if (type === 'success') return toast.update(options.toastId, { render: text, type, isLoading: false, autoClose: 5000, hideProgressBar: false });
+  if (type === 'error') return toast.update(options.toastId, { render: text, type, isLoading: false, autoClose: 5000, hideProgressBar: false });
 }
 function errorMessage(e: any, id: string | number) {
   const err = e.error;

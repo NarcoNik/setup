@@ -1,3 +1,5 @@
+NODE_MAJOR=20
+
 echo Installing everything you need...\n
 
 echo \nFirst update all packages
@@ -15,12 +17,11 @@ echo '######################################################################'\n
 echo \nInstall new usless packages
 echo '######################################################################'\n
 
-sudo apt install -y nodejs \
-  npm \
-  nano \
+sudo apt install -y nano \
   mc \
   linux-firmware \
   inxi \
+  npm \
   curl \
   cpu-x \
   dpkg \
@@ -66,6 +67,11 @@ sudo apt install -y nodejs \
   network-manager-gnome \
   net-tools \
   vlc
+#   apache2 \
+#   mysql-server \
+#   nginx \
+#   pavucontrol \  kubuntu-restricted-extras \
+
 
 sudo systemctl daemon-reload
 sudo dpkg --configure -a
@@ -102,25 +108,32 @@ sudo add-apt-repository -y ppa:atareao/telegram
 sudo apt -y update
 sudo apt -y install telegram
 
-sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh
-sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-source ~/.bashrc
-nvm list-remote
-nvm install lts/iron
-nvm list
-npm install -g npm@latest
-nvm use lts/iron
-npm i -g yarn \
-  prettier \
-  eslint \
-  nodemon \
-  serve \
-  create-react-app
+sudo apt -y update
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+sudo apt -y update
+sudo apt -y install nodejs
 
 # TODO for deleting nodejs
-# sudo apt remove --purge nodejs npm
-# sudo rm -r /etc/apt/sources.list.d/nodesource.list
+# sudo apt remove --purge nodejs &&\
+# sudo rm -r /etc/apt/sources.list.d/nodesource.list &&\
 # sudo rm -r /etc/apt/keyrings/nodesource.gpg
+
+# sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh
+# sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+# source ~/.bashrc
+# nvm list-remote
+# nvm install stable
+# nvm list
+# npm install -g npm@latest
+# nvm use stable
+# npm i -g yarn \
+#   prettier \
+#   eslint \
+#   nodemon \
+#   serve \
+#   create-react-app
 
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
@@ -138,6 +151,23 @@ sudo mkdir -p "$HOME"/.local/share/keyrings
 code --locate-shell-integration-path bash
 [[ "$TERM_PROGRAM" == "vscode" ]] && . "/path/to/shell/integration/script.sh"
 
+# echo \nInstalling wine
+# echo '######################################################################'\n
+
+# sudo dpkg --add-architecture i386
+# sudo mkdir -pm755 /etc/apt/keyrings
+# sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+# sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/lunar/winehq-lunar.sources
+# sudo apt -y update
+# sudo apt install -y --install-recommends winehq-stable
+
+# echo \nInstalling lutris
+# echo '######################################################################'\n
+
+# sudo add-apt-repository -y ppa:lutris-team/lutris
+# sudo apt -y update
+# sudo apt -y install lutris
+
 echo \nInstalling Nvidia & other graphics drivers
 echo '######################################################################'\n
 # echo blacklist nouveau | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
@@ -147,16 +177,18 @@ sudo update-initramfs -u
 sudo add-apt-repository -y ppa:graphics-drivers/ppa
 sudo apt -y update
 sudo apt install -y nvidia-settings libvulkan1
+# libvulkan1:i386
+
 sudo ubuntu-drivers list
 sudo ubuntu-drivers install
+# sudo ubuntu-drivers install nvidia:525
 
-echo \nInstalling Docker
-echo '######################################################################'\n
 sudo chmod +x ./docker-install.sh
 sudo ./docker-install.sh
 
 echo \nInstalling Bluetooth Audio for AirPods
 echo '######################################################################'\n
+
 sudo apt -y install 'bluez*' blueman
 modprobe btusb
 sudo tee -a /etc/bluetooth/main.conf <<< \
@@ -185,48 +217,6 @@ pactl info | grep "Server Name"
 
 echo \nAll programm installed
 echo '######################################################################'\n
-
-echo \nSet autocomlete bash
-echo '######################################################################'\n
-
-sudo tee -a /etc/fstab <<< \
-"
-# UUID=<uuid>                             <mount point> <FSType> <FSOptions>        <dump> <pass>
-UUID=8A34B39934B3872B                     /mnt/Documents  ntfs   defaults,rw,realtime 0      0
-UUID=9A34BC1034BBECFF                     /mnt/Windows    ntfs   defaults,ro          0      0
-"
-
-sudo tee -a /etc/inputrc <<< \
-"
-# paste after all text
-set show-all-if-ambiguous On
-"\e[A": history-search-backward
-"\e[B": history-search-forward
-"
-
-sudo apt -y update \
-  && sudo apt -y upgrade \
-  && sudo apt -y autoremove \
-  && sudo apt -y autoclean
-
-echo \n"Ended"
-
-sudo reboot
-# 127.0.0.1 testingme.ru
-# sudo service apache2 stop
-# sudo service mysql stop
-
-
-# sudo dpkg -i virtualbox-7.0_7.0.8-156879~Ubuntu~jammy_amd64.deb
-# sudo dpkg -i docker-desktop-4.16.1-amd64.deb
-# sudo dpkg -i anydesk_6.2.1-1_amd64.deb
-# sudo dpkg -i GitHubDesktop-linux-3.1.1-linux1.deb
-
-
-#   apache2 \
-#   mysql-server \
-#   nginx \
-
 
 # sudo a2enmod rewrite
 # sudo service mysql start
@@ -263,18 +253,38 @@ sudo reboot
 # sudo a2ensite testingme.ru.conf
 # sudo systemctl reload apache2
 
+echo \nSet autocomlete bash
+echo '######################################################################'\n
 
-# sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh
-# sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-# source ~/.bashrc
-# nvm list-remote
-# nvm install stable
-# nvm list
-# npm install -g npm@latest
-# nvm use stable
-# npm i -g yarn \
-#   prettier \
-#   eslint \
-#   nodemon \
-#   serve \
-#   create-react-app
+sudo tee -a /etc/fstab <<< \
+"
+# UUID=<uuid>                             <mount point> <FSType> <FSOptions>        <dump> <pass>
+UUID=8A34B39934B3872B                     /mnt/Documents  ntfs   defaults,rw,realtime 0      0
+UUID=9A34BC1034BBECFF                     /mnt/Windows    ntfs   defaults,ro          0      0
+"
+
+sudo tee -a /etc/inputrc <<< \
+"
+# paste after all text
+set show-all-if-ambiguous On
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"
+
+sudo apt -y update \
+  && sudo apt -y upgrade \
+  && sudo apt -y autoremove \
+  && sudo apt -y autoclean
+
+echo \n"Ended"
+
+sudo reboot
+# 127.0.0.1 testingme.ru
+# sudo service apache2 stop
+# sudo service mysql stop
+
+
+# sudo dpkg -i virtualbox-7.0_7.0.8-156879~Ubuntu~jammy_amd64.deb
+# sudo dpkg -i docker-desktop-4.16.1-amd64.deb
+# sudo dpkg -i anydesk_6.2.1-1_amd64.deb
+# sudo dpkg -i GitHubDesktop-linux-3.1.1-linux1.deb

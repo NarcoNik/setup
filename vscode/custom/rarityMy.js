@@ -85,75 +85,75 @@ let rarityData = [];
 // });
 
 const newData = data.map(obj => {
-    // let alpha = [];
-    let atrib = [];
-    let type = '';
-    obj.attributes.map(x => {
-        for (var i = 0; i < obj.attributes.length; i++) {
-            atrib[i] = obj.attributes[i];
-        }
-    });
-    obj.attributes.forEach(obj => {
-        let traitType = obj.trait_type;
-        let value = obj.value;
-        if (traitType == 'type') {
-            type += value;
-        }
-        if (traitType == 'type sith') {
-            type += value;
-            traitType = 'type';
-        }
-        if (traitType == 'type jedi') {
-            type += value;
-            traitType = 'type';
-        }
-        if (traitType == 'type legend') {
-            type += value;
-            traitType = 'type';
-        }
-    });
-    // for (var i = 0; i < obj.attributes.length; i++) {
-    //     if (atrib[i].rarity != 100) {
-    //         alpha[i] = 100 - Number(atrib[i].rarity);
-    //         score += (alpha[i] / obj.attributes.length) * 100;
-    //     }
-    // }
+  // let alpha = [];
+  let atrib = [];
+  let type = '';
+  obj.attributes.map(x => {
+    for (var i = 0; i < obj.attributes.length; i++) {
+      atrib[i] = obj.attributes[i];
+    }
+  });
+  obj.attributes.forEach(obj => {
+    let traitType = obj.trait_type;
+    let value = obj.value;
+    if (traitType == 'type') {
+      type += value;
+    }
+    if (traitType == 'type sith') {
+      type += value;
+      traitType = 'type';
+    }
+    if (traitType == 'type jedi') {
+      type += value;
+      traitType = 'type';
+    }
+    if (traitType == 'type legend') {
+      type += value;
+      traitType = 'type';
+    }
+  });
+  // for (var i = 0; i < obj.attributes.length; i++) {
+  //     if (atrib[i].rarity != 100) {
+  //         alpha[i] = 100 - Number(atrib[i].rarity);
+  //         score += (alpha[i] / obj.attributes.length) * 100;
+  //     }
+  // }
 
-    return {
-        name: obj.name,
-        // symbol: obj.symbol,
-        description: obj.description,
-        image: obj.image,
-        edition: obj.edition,
-        // dna: obj.dna,
-        // type: type,
-        // attributes: obj.attributes,
-        attributes: [
-            {
-                trait_type: 'background',
-                value: 'stars'
-            },
-            {
-                trait_type: 'rarity',
-                value: 'pass'
-            }
-        ]
+  return {
+    name: obj.name,
+    // symbol: obj.symbol,
+    description: obj.description,
+    image: obj.image,
+    edition: obj.edition,
+    // dna: obj.dna,
+    // type: type,
+    // attributes: obj.attributes,
+    attributes: [
+      {
+        trait_type: 'background',
+        value: 'stars'
+      },
+      {
+        trait_type: 'rarity',
+        value: 'pass'
+      }
+    ]
 
-        // score: n4.format(score),
-        // attributes: obj.attributes.map((x) => {
-        //     return {
-        //         ...x,
-        //         // rarity: rarityData[x.trait_type].find(
-        //         //     (l) => x.value === l.trait
-        //         // ).occurrence,
-        //         rarity: rarityData[x.trait_type].find(
-        //             (l) => x.value === l.trait
-        //         ).chance,
-        //     };
-        // }),
-        // creators: obj.creators,
-        // seller_fee_basis_points: obj.seller_fee_basis_points,
-    };
+    // score: n4.format(score),
+    // attributes: obj.attributes.map((x) => {
+    //     return {
+    //         ...x,
+    //         // rarity: rarityData[x.trait_type].find(
+    //         //     (l) => x.value === l.trait
+    //         // ).occurrence,
+    //         rarity: rarityData[x.trait_type].find(
+    //             (l) => x.value === l.trait
+    //         ).chance,
+    //     };
+    // }),
+    // creators: obj.creators,
+    // seller_fee_basis_points: obj.seller_fee_basis_points,
+  };
 });
 
 fs.writeFileSync(`${basePath}/build/json/_metadata.json`, JSON.stringify(newData, null, 2));
