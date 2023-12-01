@@ -283,3 +283,21 @@ sudo reboot
 #   nodemon \
 #   serve \
 #   create-react-app
+
+
+# ganache
+# sudo apt -y update \
+#   && apt -y upgrade \
+#   && apt -y install wget \
+#   libgtk-3-dev \
+#   libfuse-dev \
+#   libgtkextra-dev \
+#   libgconf2-dev \
+#   libnss3 libasound2 \
+#   libxtst-dev \
+#   libxss1 \
+#   libx11-6 \
+#   libx11-xcb-dev
+# wget https://github.com/trufflesuite/ganache-ui/releases/download/v2.7.1/ganache-2.7.1-linux-x86_64.AppImage
+# chmod a+x ganache-2.7.1-linux-x86_64.AppImage
+# ./ganache-2.7.1-linux-x86_64.AppImage
