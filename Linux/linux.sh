@@ -114,8 +114,13 @@ npm i -g yarn \
   prettier \
   eslint \
   nodemon \
+  solc \
   serve \
   create-react-app
+
+sudo add-apt-repository -y ppa:ethereum/ethereum
+sudo apt -y update
+sudo apt -y install solc
 
 # TODO for deleting nodejs
 # sudo apt remove --purge nodejs npm
