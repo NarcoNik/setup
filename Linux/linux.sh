@@ -118,6 +118,11 @@ npm i -g yarn \
   serve \
   create-react-app
 
+sudo groupadd npm
+sudo usermod -aG npm $USER
+newgrp npm
+npm --version
+
 sudo add-apt-repository -y ppa:ethereum/ethereum
 sudo apt -y update
 sudo apt -y install solc

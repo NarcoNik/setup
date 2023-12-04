@@ -87,9 +87,10 @@ sudo apt -y update \
 
 sudo groupadd docker
 sudo usermod -aG docker $USER
+newgrp docker
 docker compose version
 fi
 
-sudo docker network create traefik-public
+docker network create traefik-public
 
 # sudo docker-compose up -d --build
