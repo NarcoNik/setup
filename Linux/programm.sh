@@ -121,7 +121,7 @@ echo 'Installing Bluetooth Audio for AirPods'
 echo '######################################################################'
 sudo apt -y install 'bluez*' blueman
 modprobe btusb
-tee -a /etc/bluetooth/main.conf <<< \
+sudo tee -a /etc/bluetooth/main.conf <<< \
 "
 AutoEnable=true
 
