@@ -5,7 +5,7 @@ curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microso
 install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
 sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge.list'
 rm microsoft.gpg
-rm -r /etc/apt/sources.list.d/microsoft-edge-dev.list
+rm -rf /etc/apt/sources.list.d/microsoft-edge-dev.list
 apt -y update
 apt install -y microsoft-edge-stable
 
@@ -70,8 +70,8 @@ apt -y install solc
 
 # TODO for deleting nodejs
 # apt remove --purge nodejs npm
-# rm -r /etc/apt/sources.list.d/nodesource.list
-# rm -r /etc/apt/keyrings/nodesource.gpg
+# rm -rf /etc/apt/sources.list.d/nodesource.list
+# rm -rf /etc/apt/keyrings/nodesource.gpg
 
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg

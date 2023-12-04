@@ -6,10 +6,10 @@ echo '######################################################################\n'
 # echo cdfecdfe | sudo -S
 apt -y update \
   && apt -y upgrade \
-  && apt -y autoremove \
   && apt -y autoclean \
-  && apt -y --fix-broken install \
-  && apt -y dist-upgrade
+  && apt -y autoremove \
+  && apt -y --fix-broken install
+  # && apt -y dist-upgrade
 
 echo '\nAll packages updated'
 echo '######################################################################\n'
@@ -81,13 +81,13 @@ apt -y --fix-broken install
 
 echo '\nAll new usless packages installed successfully'
 echo '######################################################################\n'
-chmod 755 ./programm-install.sh
+chmod +x ./programm-install.sh
 ./programm-install.sh
 
-chmod 755 ./docker-install.sh
+chmod +x ./docker-install.sh
 ./docker-install.sh
 
-chmod 755 ./python-install.sh
+chmod +x ./python-install.sh
 ./python-install.sh
 
 echo '\nSet autocomlete bash'

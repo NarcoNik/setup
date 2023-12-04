@@ -93,7 +93,7 @@ curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microso
 sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
 sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge.list'
 sudo rm microsoft.gpg
-sudo rm -r /etc/apt/sources.list.d/microsoft-edge-dev.list
+sudo rm -rf/etc/apt/sources.list.d/microsoft-edge-dev.list
 sudo apt -y update
 sudo apt install -y microsoft-edge-stable
 
@@ -117,8 +117,8 @@ sudo apt -y install nodejs
 
 # TODO for deleting nodejs
 # sudo apt remove --purge nodejs &&\
-# sudo rm -r /etc/apt/sources.list.d/nodesource.list &&\
-# sudo rm -r /etc/apt/keyrings/nodesource.gpg
+# sudo rm -rf/etc/apt/sources.list.d/nodesource.list &&\
+# sudo rm -rf/etc/apt/keyrings/nodesource.gpg
 
 # sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh
 # sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash

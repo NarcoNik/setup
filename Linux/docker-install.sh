@@ -12,7 +12,6 @@ rm -rf /var/lib/docker
 rm -rf /var/lib/containerd
 rm -rf /home/$USER/.docker
 groupdel docker
-groupdel docker-compose
 cd /bin
 rm -rf containerd containerd-shim containerd-shim-runc-v2 ctr docker docker-init docker-proxy dockerd dockerd-rootless-setuptool.sh dockerd-rootless.sh rootlesskit rootlesskit-docker-proxy runc vpnkit
 cd -

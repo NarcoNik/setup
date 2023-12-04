@@ -22,87 +22,87 @@ sudo ./grub2-themes/install.sh -r -t tela
 # First step clean default icons & themes
 echo '######################################################################'\n###########
 cd /usr/share/icons
-sudo rm -r Adwaita
-sudo rm -r breeze
-sudo rm -r breeze_cursors
-sudo rm -r breeze-dark
-sudo rm -r Breeze_Snow
-sudo rm -r Humanity
-sudo rm -r Humanity-Dark
-sudo rm -r Oxygen_Black
-sudo rm -r Oxygen_Blue
-sudo rm -r Oxygen_White
-sudo rm -r Oxygen_Yellow
-sudo rm -r Oxygen_Zion
-sudo rm -r ubuntu-mono-light
-sudo rm -r WhiteSur
-sudo rm -r WhiteSur-cursors
-sudo rm -r WhiteSur-dark
-sudo rm -r WhiteSur-light
-sudo rm -r WhiteSur-green
-sudo rm -r WhiteSur-green-dark
-sudo rm -r WhiteSur-grey
-sudo rm -r WhiteSur-grey-dark
-sudo rm -r WhiteSur-nord
-sudo rm -r WhiteSur-nord-dark
-sudo rm -r WhiteSur-orange
-sudo rm -r WhiteSur-orange-dark
-sudo rm -r WhiteSur-pink
-sudo rm -r WhiteSur-pink-dark
-sudo rm -r WhiteSur-purple
-sudo rm -r WhiteSur-purple-dark
-sudo rm -r WhiteSur-red
-sudo rm -r WhiteSur-red-dark
-sudo rm -r WhiteSur-yellow
-sudo rm -r WhiteSur-yellow-dark
+sudo rm -rf Adwaita
+sudo rm -rf breeze
+sudo rm -rf breeze_cursors
+sudo rm -rf breeze-dark
+sudo rm -rf Breeze_Snow
+sudo rm -rf Humanity
+sudo rm -rf Humanity-Dark
+sudo rm -rf Oxygen_Black
+sudo rm -rf Oxygen_Blue
+sudo rm -rf Oxygen_White
+sudo rm -rf Oxygen_Yellow
+sudo rm -rf Oxygen_Zion
+sudo rm -rf ubuntu-mono-light
+sudo rm -rf WhiteSur
+sudo rm -rf WhiteSur-cursors
+sudo rm -rf WhiteSur-dark
+sudo rm -rf WhiteSur-light
+sudo rm -rf WhiteSur-green
+sudo rm -rf WhiteSur-green-dark
+sudo rm -rf WhiteSur-grey
+sudo rm -rf WhiteSur-grey-dark
+sudo rm -rf WhiteSur-nord
+sudo rm -rf WhiteSur-nord-dark
+sudo rm -rf WhiteSur-orange
+sudo rm -rf WhiteSur-orange-dark
+sudo rm -rf WhiteSur-pink
+sudo rm -rf WhiteSur-pink-dark
+sudo rm -rf WhiteSur-purple
+sudo rm -rf WhiteSur-purple-dark
+sudo rm -rf WhiteSur-red
+sudo rm -rf WhiteSur-red-dark
+sudo rm -rf WhiteSur-yellow
+sudo rm -rf WhiteSur-yellow-dark
 cd -
 
 cd /usr/share/themes
-sudo rm -r Breeze
-sudo rm -r Breeze-Dark
-sudo rm -r WhiteSur-Dark
-sudo rm -r WhiteSurDark-Dark
-sudo rm -r WhiteSurDark-Dark-grey
-sudo rm -r WhiteSurDark-Dark-solid-alt-grey
-sudo rm -r WhiteSurDark-Dark-solid-grey
-sudo rm -r WhiteSurDark-Dark-alt-grey
-sudo rm -r WhiteSur-Dark-hdpi
-sudo rm -r WhiteSur-Dark-solid
-sudo rm -r WhiteSur-Dark-solid-green
-sudo rm -r WhiteSur-Dark-xhdpi
-sudo rm -r WhiteSur-Dark-Light
-sudo rm -r WhiteSur-Light
-sudo rm -r WhiteSur-Light-solid
-sudo rm -r KvAdapta
-sudo rm -r KvAmbiance
-sudo rm -r KvAmbience
-sudo rm -r KvArc
-sudo rm -r KvArcDark
-sudo rm -r KvBeige
-sudo rm -r KvBrown
-sudo rm -r KvCurvesLight
-sudo rm -r KvCyan
-sudo rm -r KvDarkRed
-sudo rm -r KvFlatLight
-sudo rm -r KvGnomeAlt
-sudo rm -r KvGnomeDark
-sudo rm -r KvGnomish
-sudo rm -r KvGray
-sudo rm -r KvRoughGlass
-sudo rm -r KvSimplicity
-sudo rm -r KvSimplicityDark
+sudo rm -rf Breeze
+sudo rm -rf Breeze-Dark
+sudo rm -rf WhiteSur-Dark
+sudo rm -rf WhiteSurDark-Dark
+sudo rm -rf WhiteSurDark-Dark-grey
+sudo rm -rf WhiteSurDark-Dark-solid-alt-grey
+sudo rm -rf WhiteSurDark-Dark-solid-grey
+sudo rm -rf WhiteSurDark-Dark-alt-grey
+sudo rm -rf WhiteSur-Dark-hdpi
+sudo rm -rf WhiteSur-Dark-solid
+sudo rm -rf WhiteSur-Dark-solid-green
+sudo rm -rf WhiteSur-Dark-xhdpi
+sudo rm -rf WhiteSur-Dark-Light
+sudo rm -rf WhiteSur-Light
+sudo rm -rf WhiteSur-Light-solid
+sudo rm -rf KvAdapta
+sudo rm -rf KvAmbiance
+sudo rm -rf KvAmbience
+sudo rm -rf KvArc
+sudo rm -rf KvArcDark
+sudo rm -rf KvBeige
+sudo rm -rf KvBrown
+sudo rm -rf KvCurvesLight
+sudo rm -rf KvCyan
+sudo rm -rf KvDarkRed
+sudo rm -rf KvFlatLight
+sudo rm -rf KvGnomeAlt
+sudo rm -rf KvGnomeDark
+sudo rm -rf KvGnomish
+sudo rm -rf KvGray
+sudo rm -rf KvRoughGlass
+sudo rm -rf KvSimplicity
+sudo rm -rf KvSimplicityDark
 cd -
 
-sudo rm -r $HOME/.themes
-sudo rm -r $HOME/.icons
-sudo rm -r $HOME/.local/share/icons/WhiteSur
-sudo rm -r $HOME/.local/share/icons/WhiteSur-dark
-sudo rm -r $HOME/.local/share/icons/WhiteSur-light
-sudo rm -r $HOME/.local/share/icons/WhiteSur-cursors
+sudo rm -rf $HOME/.themes
+sudo rm -rf $HOME/.icons
+sudo rm -rf $HOME/.local/share/icons/WhiteSur
+sudo rm -rf $HOME/.local/share/icons/WhiteSur-dark
+sudo rm -rf $HOME/.local/share/icons/WhiteSur-light
+sudo rm -rf $HOME/.local/share/icons/WhiteSur-cursors
 
-rm -r ./WhiteSur-gtk-theme
-rm -r ./WhiteSur-icon-theme
-rm -r ./WhiteSur-kde
-rm -r ./grub2-themes/
+rm -rf ./WhiteSur-gtk-theme
+rm -rf ./WhiteSur-icon-theme
+rm -rf ./WhiteSur-kde
+rm -rf ./grub2-themes/
 
 echo '#########################################################################\n'

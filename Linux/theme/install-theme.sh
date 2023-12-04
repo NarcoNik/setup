@@ -51,23 +51,23 @@ echo '######################################################################\n'
 echo '\nRemove files'
 echo '######################################################################\n'
 
-sudo rm -r ./grub2-themes
-sudo rm -r ./McMojave-kde
-sudo rm -r ./WhiteSur-gtk-theme
-sudo rm -r ./Monterey-kde
-sudo rm -r ./WhiteSur-icon-theme
-sudo rm -r ./capitaine-cursors
-sudo rm -r ./_build
-sudo rm -r ./dist
+sudo rm -rf ./grub2-themes
+sudo rm -rf ./McMojave-kde
+sudo rm -rf ./WhiteSur-gtk-theme
+sudo rm -rf ./Monterey-kde
+sudo rm -rf ./WhiteSur-icon-theme
+sudo rm -rf ./capitaine-cursors
+sudo rm -rf ./_build
+sudo rm -rf ./dist
 
 cd /usr/share/icons
-sudo rm -r Humanity
-sudo rm -r Humanity-Dark
-sudo rm -r Oxygen_Black
-sudo rm -r Oxygen_Blue
-sudo rm -r Oxygen_White
-sudo rm -r Oxygen_Yellow
-sudo rm -r Oxygen_Zion
+sudo rm -rf Humanity
+sudo rm -rf Humanity-Dark
+sudo rm -rf Oxygen_Black
+sudo rm -rf Oxygen_Blue
+sudo rm -rf Oxygen_White
+sudo rm -rf Oxygen_Yellow
+sudo rm -rf Oxygen_Zion
 cd -
 
 echo "\nRemove done"
@@ -127,7 +127,7 @@ echo '######################################################################\n'
 # git clone https://github.com/KDE/latte-dock.git \
 #   && chmod +x ./latte-dock/install.sh \
 #   && sudo ./latte-dock/install.sh \
-#   && rm -r ./latte-dock
+#   && rm -rf ./latte-dock
 
 # https://www.pling.com/p/1399346
 
