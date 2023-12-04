@@ -89,6 +89,11 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
 docker compose version
+
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
+sudo systemctl daemon-reload
+
 fi
 
 docker network create traefik-public
