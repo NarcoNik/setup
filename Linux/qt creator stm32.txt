@@ -1,8 +1,0 @@
-sudo apt -y install build-essential openssl libssl-dev libgl1-mesa-dev libqt5x11extras5
-
-wget http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0/libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb
-wget http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0/libssl1.0-dev_1.0.2n-1ubuntu5.13_amd64.deb
-sudo dpkg -i libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb
-sudo dpkg -i libssl1.0-dev_1.0.2n-1ubuntu5.13_amd64.deb
-
-wget https://download.qt.io/official_releases/qtcreator/10.0/10.0.2/qt-creator-opensource-linux-x86_64-10.0.2.run

@@ -20,7 +20,7 @@ sudo ./grub2-themes/install.sh -r -t tela
 
 
 # First step clean default icons & themes
-echo '######################################################################'\n###########
+echo '######################################################################'###########
 cd /usr/share/icons
 sudo rm -rf Adwaita
 sudo rm -rf breeze
@@ -105,4 +105,4 @@ rm -rf ./WhiteSur-icon-theme
 rm -rf ./WhiteSur-kde
 rm -rf ./grub2-themes/
 
-echo '#########################################################################\n'
+echo '#########################################################################'

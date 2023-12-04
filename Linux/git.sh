@@ -1,17 +1,17 @@
 echo "Installing git"
-sudo apt install -y git git-core git-gui
+sudo apt -y install -y git git-core git-gui
 git --version
 
-echo "\nGenerate ssh"
-echo "######################################################################"\n
-cd ~ \
-  && mkdir ./.ssh \
-  && cd ~/.ssh \
-  && ssh-keygen -C "plakidin.vyacheslav@mail.ru"
+echo "Generate ssh"
+echo "######################################################################"
+cd ~
+mkdir ./.ssh
+cd ~/.ssh
+ssh-keygen -C "plakidin.vyacheslav@mail.ru"
 
-eval "$(ssh-agent -s)" \
-  && ssh-add ~/.ssh/slaweekq \
-  && ssh -T git@github.com
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/slaweekq
+# ssh -T git@github.com
 
 git config --global user.name "Slaweekq" \
  && git config --global user.email "plakidin.vyacheslav@mail.ru" \
@@ -35,7 +35,7 @@ alias docon='ssh plaki@188.166.12.166'
 # cd ~/.ssh && kate slaweekq.pub
 
 #### git create
-# echo "######################################################################"\n
+# echo "######################################################################"
 # cd && mkdir git-test && cd ./git-test && git init
 # git clone git@github.com:NarcoNik/git-test.git
 
@@ -44,7 +44,7 @@ alias docon='ssh plaki@188.166.12.166'
 # git push --set-upstream origin main
 
 #### md
-# echo "######################################################################"\n
+# echo "######################################################################"
 # add . - add change
 # commit -m "Initial Commit" -a - write change
 # push - send change

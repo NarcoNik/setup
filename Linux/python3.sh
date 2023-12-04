@@ -1,14 +1,15 @@
-echo '\n#### Installing Python3'
-echo '######################################################################\n'
+echo '#### Installing Python3'
+echo '######################################################################'
 if [[ $(python3 --version) && $(pip3 --version) ]]; then
-   echo Python3 installed, continue...\n
+   echo 'Python3 installed, continue...'
 else
-apt -y update \
-  && apt -y upgrade \
-  && apt -y autoclean \
-  && apt -y autoremove
+   echo 'Python3 NOT installed, continue...'
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y autoclean
+sudo apt -y autoremove
 
-apt -y install \
+sudo apt -y install \
   cpu-checker \
   python3-pip \
   python3-dev \
@@ -30,7 +31,7 @@ modprobe kvm_intel
 kvm-ok
 lsmod | grep kvm
 ls -al /dev/kvm
-usermod -aG kvm msi
+sudo usermod -aG kvm msi
 
 cd /tmp
 wget https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tgz
@@ -42,10 +43,12 @@ python3 --version
 pip3 --version
 cd ~
 
-apt -y update \
-  && apt -y upgrade \
-  && apt -y autoclean \
-  && apt -y autoremove
+
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y autoclean
+sudo apt -y autoremove
+
+echo '#### Python3 installed'
+echo '######################################################################'
 fi
-echo '\n#### Python3 installed'
-echo '######################################################################\n'

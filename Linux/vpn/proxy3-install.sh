@@ -1,6 +1,6 @@
 version="3proxy-0.9.3"
 echo Updating system
-echo '######################################################################\n'
+echo '######################################################################'
 sudo -S sudo apt -y update \
   && sudo apt -y upgrade \
   && sudo apt -y autoremove \
@@ -61,7 +61,7 @@ sudo rm ~/${version}.tar.gz \
   && cd ~
 
 echo "3proxy installed & running now"
-echo '######################################################################\n'
+echo '######################################################################'
 
 # echo "settings & example
 # sudo nano /etc/3proxy/3proxy.cfg

@@ -1,5 +1,5 @@
 echo \'nInstall WhiteSur KDE, GTK & ICON theme'
-echo '######################################################################\n'
+echo '######################################################################'
 sudo add-apt-repository -y ppa:papirus/papirus \
   && sudo apt update -y \
   && sudo apt install -y \
@@ -13,9 +13,9 @@ sudo add-apt-repository -y ppa:papirus/papirus \
   inkscape \
   x11-apps
 
-echo '  ###############################################################################################\n'
+echo '  ###############################################################################################'
 echo ' #### Read https://www.linuxuprising.com/2020/10/whitesur-macos-big-sur-like-gtk-gnome.html ####'
-echo '###############################################################################################\n\n'
+echo '###############################################################################################'
 
 git clone https://github.com/vinceliuice/grub2-themes.git
 git clone https://github.com/vinceliuice/McMojave-kde.git
@@ -46,10 +46,10 @@ cd /usr/share/icons/capitaine-cursors/
 sudo ./build.sh
 cd -
 
-echo '\nInstall done'
-echo '######################################################################\n'
-echo '\nRemove files'
-echo '######################################################################\n'
+echo 'Install done'
+echo '######################################################################'
+echo 'Remove files'
+echo '######################################################################'
 
 sudo rm -rf ./grub2-themes
 sudo rm -rf ./McMojave-kde
@@ -70,8 +70,8 @@ sudo rm -rf Oxygen_Yellow
 sudo rm -rf Oxygen_Zion
 cd -
 
-echo "\nRemove done"
-echo '######################################################################\n'
+echo "Remove done"
+echo '######################################################################'
 
 
   ##########################################################
@@ -127,7 +127,82 @@ echo '######################################################################\n'
 # git clone https://github.com/KDE/latte-dock.git \
 #   && chmod +x ./latte-dock/install.sh \
 #   && sudo ./latte-dock/install.sh \
-#   && rm -rf ./latte-dock
+#   && rm -rf -rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf
+-rf./latte-dock
 
 # https://www.pling.com/p/1399346
 
