@@ -1,21 +1,22 @@
-echo Installing everything you need...\n
+echo 'Installing everything you need...\n'
 
-echo \nFirst update all packages
-echo '######################################################################'\n
+echo '\nFirst update all packages'
+echo '######################################################################\n'
 
-echo cdfecdfe | sudo -S sudo apt -y update \
-  && sudo apt -y upgrade \
-  && sudo apt -y autoremove \
-  && sudo apt -y autoclean \
-  && sudo apt -y --fix-broken install \
-  && sudo apt -y dist-upgrade
+# echo cdfecdfe | sudo -S
+apt -y update \
+  && apt -y upgrade \
+  && apt -y autoremove \
+  && apt -y autoclean \
+  && apt -y --fix-broken install \
+  && apt -y dist-upgrade
 
-echo \nAll packages updated
-echo '######################################################################'\n
-echo \nInstall new usless packages
-echo '######################################################################'\n
+echo '\nAll packages updated'
+echo '######################################################################\n'
+echo '\nInstall new usless packages'
+echo '######################################################################\n'
 
-sudo apt install -y nodejs \
+apt install -y nodejs \
   npm \
   nano \
   mc \
@@ -67,161 +68,54 @@ sudo apt install -y nodejs \
   net-tools \
   vlc
 
-sudo systemctl daemon-reload
-sudo dpkg --configure -a
+systemctl daemon-reload
+dpkg --configure -a
 
-sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
-sudo apt -y update
-sudo apt -y install grub-customizer
+add-apt-repository -y ppa:danielrichter2007/grub-customizer
+apt -y update
+apt -y install grub-customizer
 
 # wget http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0/libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb
-sudo dpkg -i ./libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb
-sudo apt -y --fix-broken install
+dpkg -i ./libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb
+apt -y --fix-broken install
 
-echo \nAll new usless packages installed successfully
-echo '######################################################################'\n
-echo \nInstall programm
-echo '######################################################################'\n
+echo '\nAll new usless packages installed successfully'
+echo '######################################################################\n'
+chmod 755 ./programm-install.sh
+./programm-install.sh
 
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
-sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge.list'
-sudo rm microsoft.gpg
-sudo rm -r /etc/apt/sources.list.d/microsoft-edge-dev.list
-sudo apt -y update
-sudo apt install -y microsoft-edge-stable
+chmod 755 ./docker-install.sh
+./docker-install.sh
 
-sudo dpkg -i powershell_7.3.4-1.deb_amd64.deb
-sudo dpkg -i discord-0.0.35.deb
-sudo apt -y --fix-broken install
-sudo dpkg -i discord-0.0.35.deb
-# sudo dpkg -i mucommander_1.1.0-1_amd64.deb
-sudo dpkg -i GitHubDesktop-linux-3.1.1-linux1.deb
+chmod 755 ./python-install.sh
+./python-install.sh
 
-sudo add-apt-repository -y ppa:atareao/telegram
-sudo apt -y update
-sudo apt -y install telegram
+echo '\nSet autocomlete bash'
+echo '######################################################################\n'
 
-sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh
-sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-source ~/.bashrc
-nvm list-remote
-nvm install lts/iron
-nvm list
-npm install -g npm@latest
-nvm use lts/iron
-npm i -g yarn \
-  prettier \
-  eslint \
-  nodemon \
-  solc \
-  serve \
-  create-react-app
+# sudo tee -a /etc/fstab <<< \
+# "
+# # UUID=<uuid>                             <mount point> <FSType> <FSOptions>        <dump> <pass>
+# UUID=8A34B39934B3872B                     /mnt/Documents  ntfs   defaults,rw,realtime 0      0
+# UUID=9A34BC1034BBECFF                     /mnt/Windows    ntfs   defaults,ro          0      0
+# "
 
-sudo groupadd npm
-sudo usermod -aG npm $USER
-newgrp npm
-npm --version
+# sudo tee -a /etc/inputrc <<< \
+# "
+# # paste after all text
+# set show-all-if-ambiguous On
+# "\e[A": history-search-backward
+# "\e[B": history-search-forward
+# "
 
-sudo add-apt-repository -y ppa:ethereum/ethereum
-sudo apt -y update
-sudo apt -y install solc
+apt -y update \
+  && apt -y upgrade \
+  && apt -y autoremove \
+  && apt -y autoclean
 
-# TODO for deleting nodejs
-# sudo apt remove --purge nodejs npm
-# sudo rm -r /etc/apt/sources.list.d/nodesource.list
-# sudo rm -r /etc/apt/keyrings/nodesource.gpg
+echo '\nEnded'
 
-wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-rm -f packages.microsoft.gpg
-
-sudo apt -y update
-sudo apt -y install code
-sudo apt -y --fix-broken install
-
-source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
-eval $(/usr/bin/gnome-keyring-daemon --start)
-export SSH_AUTH_SOCK
-sudo mkdir -p "$HOME"/.local/share/keyrings
-code --locate-shell-integration-path bash
-[[ "$TERM_PROGRAM" == "vscode" ]] && . "/path/to/shell/integration/script.sh"
-
-echo \nInstalling Nvidia & other graphics drivers
-echo '######################################################################'\n
-# echo blacklist nouveau | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
-# echo options nouveau modeset=0 | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
-sudo update-initramfs -u
-
-sudo add-apt-repository -y ppa:graphics-drivers/ppa
-sudo apt -y update
-sudo apt install -y nvidia-settings libvulkan1
-sudo ubuntu-drivers list
-sudo ubuntu-drivers install
-
-echo \nInstalling Docker
-echo '######################################################################'\n
-sudo chmod +x ./docker-install.sh
-sudo ./docker-install.sh
-
-echo \nInstalling Bluetooth Audio for AirPods
-echo '######################################################################'\n
-sudo apt -y install 'bluez*' blueman
-modprobe btusb
-sudo tee -a /etc/bluetooth/main.conf <<< \
-"
-AutoEnable=true
-
-ControllerMode = bredr
-"
-sudo /etc/init.d/bluetooth restart
-sudo systemctl restart bluetooth
-
-sudo add-apt-repository -y ppa:pipewire-debian/pipewire-upstream
-sudo apt -y update
-sudo apt -y install pulseaudio-utils \
-  pipewire \
-  pipewire-pulse \
-  pipewire-tests \
-  pipewire-locales \
-  gstreamer1.0-pipewire \
-  libspa-0.2-bluetooth \
-  libspa-0.2-jack \
-  pipewire-audio-client-libraries
-sudo systemctl disable --global pulseaudio
-sudo systemctl enable --global pipewire-pulse
-pactl info | grep "Server Name"
-
-echo \nAll programm installed
-echo '######################################################################'\n
-
-echo \nSet autocomlete bash
-echo '######################################################################'\n
-
-sudo tee -a /etc/fstab <<< \
-"
-# UUID=<uuid>                             <mount point> <FSType> <FSOptions>        <dump> <pass>
-UUID=8A34B39934B3872B                     /mnt/Documents  ntfs   defaults,rw,realtime 0      0
-UUID=9A34BC1034BBECFF                     /mnt/Windows    ntfs   defaults,ro          0      0
-"
-
-sudo tee -a /etc/inputrc <<< \
-"
-# paste after all text
-set show-all-if-ambiguous On
-"\e[A": history-search-backward
-"\e[B": history-search-forward
-"
-
-sudo apt -y update \
-  && sudo apt -y upgrade \
-  && sudo apt -y autoremove \
-  && sudo apt -y autoclean
-
-echo \n"Ended"
-
-sudo reboot
+# sudo reboot
 # 127.0.0.1 testingme.ru
 # sudo service apache2 stop
 # sudo service mysql stop

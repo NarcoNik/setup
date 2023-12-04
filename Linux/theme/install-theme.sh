@@ -1,5 +1,5 @@
-echo \n'Install WhiteSur KDE, GTK & ICON theme'
-echo '######################################################################'\n
+echo \'nInstall WhiteSur KDE, GTK & ICON theme'
+echo '######################################################################\n'
 sudo add-apt-repository -y ppa:papirus/papirus \
   && sudo apt update -y \
   && sudo apt install -y \
@@ -13,9 +13,9 @@ sudo add-apt-repository -y ppa:papirus/papirus \
   inkscape \
   x11-apps
 
-echo \n\n'  echo '######################################################################'\n###########'
+echo '  ###############################################################################################\n'
 echo ' #### Read https://www.linuxuprising.com/2020/10/whitesur-macos-big-sur-like-gtk-gnome.html ####'
-echo '####################################################################'\n\n
+echo '###############################################################################################\n\n'
 
 git clone https://github.com/vinceliuice/grub2-themes.git
 git clone https://github.com/vinceliuice/McMojave-kde.git
@@ -46,10 +46,10 @@ cd /usr/share/icons/capitaine-cursors/
 sudo ./build.sh
 cd -
 
-echo \nInstall done
-echo '######################################################################'\n
-echo \nRemove files
-echo '######################################################################'\n
+echo '\nInstall done'
+echo '######################################################################\n'
+echo '\nRemove files'
+echo '######################################################################\n'
 
 sudo rm -r ./grub2-themes
 sudo rm -r ./McMojave-kde
@@ -70,8 +70,8 @@ sudo rm -r Oxygen_Yellow
 sudo rm -r Oxygen_Zion
 cd -
 
-echo \nRemove done
-echo '######################################################################'\n
+echo "\nRemove done"
+echo '######################################################################\n'
 
 
   ##########################################################

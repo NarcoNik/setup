@@ -2,7 +2,7 @@ echo "Installing git"
 sudo apt install -y git git-core git-gui
 git --version
 
-echo \n"Generate ssh"
+echo "\nGenerate ssh"
 echo "######################################################################"\n
 cd ~ \
   && mkdir ./.ssh \

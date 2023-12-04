@@ -1,5 +1,5 @@
 #### Audio
-echo '######################################################################'\n
+echo '######################################################################\n'
 sudo apt install linux-sound-base alsa-base alsa-utils alsa-tools
 sudo gedit /etc/modprobe.d/alsa-base.conf
 # paste after all text
@@ -19,7 +19,7 @@ alsamixer
 # press F6 & after, select correct audio card
 sudo alsa force-reload
 
-echo '######################################################################'\n
+echo '######################################################################\n'
 
 
 

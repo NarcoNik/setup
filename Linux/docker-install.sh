@@ -1,101 +1,43 @@
-
-echo \n'#### Installing Python3'
-echo '######################################################################'\n
-if [[ $(python3 --version) && $(pip3 --version) ]]; then
-   echo Python3 installed, continue...\n
-else
-sudo apt -y install \
-  cpu-checker \
-  python3-pip \
-  python3-dev \
-  python3-virtualenv \
-  software-properties-common \
-  python3 \
-  python3-full \
-  build-essential \
-  zlib1g-dev \
-  libncurses5-dev \
-  libgdbm-dev \
-  libnss3-dev \
-  libssl-dev \
-  libreadline-dev \
-  libffi-dev wget
-
-modprobe kvm \
-  && modprobe kvm_intel \
-  && kvm-ok \
-  && lsmod | grep kvm \
-  && ls -al /dev/kvm \
-  && sudo usermod -aG kvm msi
-
-cd /tmp \
-  && wget https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tgz \
-  && tar -xf Python-3.11.0.tgz \
-  && cd Python-3.11.0 \
-  && ./configure --enable-optimizations \
-  && sudo make install \
-  && python3 --version \
-  && pip3 --version \
-  && cd ~
-
-sudo apt -y update \
-  && sudo apt -y upgrade \
-  && sudo apt -y autoclean \
-  && sudo apt -y autoremove
-fi
-
-echo \n'#### Installing Docker'
-echo '######################################################################'\n
+echo '\n#### Installing Docker'
+echo '######################################################################\n'
 if [[ $(which docker) && $(docker --version) && $(docker compose) ]]; then
-   echo Docker installed, continue...\n
+   echo 'Docker installed, continue...\n'
 else
-# sudo apt remove --purge -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
-# sudo rm -rf /var/lib/docker
-# sudo rm -rf /var/lib/containerd
+echo 'Docker NOT installed, continue...\n'
+# dockerd-rootless-setuptool.sh uninstall --force
+# First uninstall another version docker
+for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do apt -y remove $pkg; done
+apt remove --purge -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
+rm -rf /var/lib/docker
+rm -rf /var/lib/containerd
+rm -rf /home/$USER/.docker
+groupdel docker
+groupdel docker-compose
+cd /bin
+rm -rf containerd containerd-shim containerd-shim-runc-v2 ctr docker docker-init docker-proxy dockerd dockerd-rootless-setuptool.sh dockerd-rootless.sh rootlesskit rootlesskit-docker-proxy runc vpnkit
+cd -
 
-sudo apt -y update \
-  && sudo apt -y install \
-  ca-certificates \
-  curl \
-  gnupg \
-  lsb-release \
-  nginx \
-  openssl \
-  && sudo apt -y clean \
-  && sudo rm -rf /var/lib/apt/lists/* \
-  && sudo mkdir -p /etc/apt/keyrings
+apt -y update \
+  && apt -y upgrade \
+  && apt -y autoclean \
+  && apt -y autoremove
 
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh ./get-docker.sh
 
-# Add Docker's official GPG key:
-sudo install -m 0755 -d /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-sudo chmod a+r /etc/apt/keyrings/docker.gpg
-
-# Add the repository to Apt sources:
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-sudo apt -y update \
-  && sudo apt -y install \
-  docker-ce \
-  docker-ce-cli \
-  containerd.io \
-  docker-buildx-plugin \
-  docker-compose-plugin
-
-sudo groupadd docker
-sudo usermod -aG docker $USER
-newgrp docker
-docker compose version
-
-sudo systemctl enable docker.service
-sudo systemctl enable containerd.service
-sudo systemctl daemon-reload
-
-fi
+apt -y install dbus-user-session uidmap docker-ce-rootless-extras
+systemctl disable --now docker.service docker.socket
+dockerd-rootless-setuptool.sh install --force
+systemctl enable --now docker.service docker.socket
+systemctl daemon-reload
 
 docker network create traefik-public
 
-# sudo docker-compose up -d --build
+apt -y update \
+  && apt -y upgrade \
+  && apt -y autoclean \
+  && apt -y autoremove
+# docker-compose up -d --build
+fi
+echo '\n#### Docker installed'
+echo '######################################################################\n'

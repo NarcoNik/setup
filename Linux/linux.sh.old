@@ -3,7 +3,7 @@ NODE_MAJOR=20
 echo Installing everything you need...\n
 
 echo \nFirst update all packages
-echo '######################################################################'\n
+echo '######################################################################\n'
 
 echo cdfecdfe | sudo -S sudo apt -y update \
   && sudo apt -y upgrade \
@@ -13,9 +13,9 @@ echo cdfecdfe | sudo -S sudo apt -y update \
   && sudo apt -y dist-upgrade
 
 echo \nAll packages updated
-echo '######################################################################'\n
+echo '######################################################################\n'
 echo \nInstall new usless packages
-echo '######################################################################'\n
+echo '######################################################################\n'
 
 sudo apt install -y nano \
   mc \
@@ -85,9 +85,9 @@ sudo dpkg -i ./libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb
 sudo apt -y --fix-broken install
 
 echo \nAll new usless packages installed successfully
-echo '######################################################################'\n
+echo '######################################################################\n'
 echo \nInstall programm
-echo '######################################################################'\n
+echo '######################################################################\n'
 
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
@@ -152,7 +152,7 @@ code --locate-shell-integration-path bash
 [[ "$TERM_PROGRAM" == "vscode" ]] && . "/path/to/shell/integration/script.sh"
 
 # echo \nInstalling wine
-# echo '######################################################################'\n
+# echo '######################################################################\n'
 
 # sudo dpkg --add-architecture i386
 # sudo mkdir -pm755 /etc/apt/keyrings
@@ -162,14 +162,14 @@ code --locate-shell-integration-path bash
 # sudo apt install -y --install-recommends winehq-stable
 
 # echo \nInstalling lutris
-# echo '######################################################################'\n
+# echo '######################################################################\n'
 
 # sudo add-apt-repository -y ppa:lutris-team/lutris
 # sudo apt -y update
 # sudo apt -y install lutris
 
 echo \nInstalling Nvidia & other graphics drivers
-echo '######################################################################'\n
+echo '######################################################################\n'
 # echo blacklist nouveau | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
 # echo options nouveau modeset=0 | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
 sudo update-initramfs -u
@@ -187,7 +187,7 @@ sudo chmod +x ./docker-install.sh
 sudo ./docker-install.sh
 
 echo \nInstalling Bluetooth Audio for AirPods
-echo '######################################################################'\n
+echo '######################################################################\n'
 
 sudo apt -y install 'bluez*' blueman
 modprobe btusb
@@ -216,7 +216,7 @@ sudo systemctl enable --global pipewire-pulse
 pactl info | grep "Server Name"
 
 echo \nAll programm installed
-echo '######################################################################'\n
+echo '######################################################################\n'
 
 # sudo a2enmod rewrite
 # sudo service mysql start
@@ -254,7 +254,7 @@ echo '######################################################################'\n
 # sudo systemctl reload apache2
 
 echo \nSet autocomlete bash
-echo '######################################################################'\n
+echo '######################################################################\n'
 
 sudo tee -a /etc/fstab <<< \
 "
