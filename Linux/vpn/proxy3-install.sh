@@ -1,32 +1,32 @@
 version="3proxy-0.9.3"
 echo Updating system
 echo '######################################################################'
-sudo -S sudo apt -y update \
-  && sudo apt -y upgrade \
-  && sudo apt -y autoremove \
-  && sudo apt -y autoclean \
-  && sudo apt -y --fix-broken install \
-  && sudo apt -y dist-upgrade \
-  && sudo apt install git wget nano resolvconf curl build-essential gcc make -y
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y autoclean
+sudo apt -y autoremove
+sudo apt -y --fix-broken install
+sudo apt install git wget nano resolvconf curl build-essential gcc make -y
 
 echo "Download and unpack the sources"
-cd ~ \
-  && sudo wget https://github.com/NarcoNik/setup/raw/main/Linux/vpn/${version}.tar.gz
+version="3proxy-0.9.3"
+cd ~
+sudo wget https://github.com/NarcoNik/setup/raw/main/Linux/vpn/${version}.tar.gz
 
-tar xzf ${version}.tar.gz \
-  && cd ~/${version}
+tar xzf ${version}.tar.gz
+cd ~/${version}
 
 echo "Compiling"
 sudo make -f Makefile.Linux
 
 echo "Installing"
-sudo mkdir /etc/3proxy \
-  && cd ~/3proxy-0.9.3/bin \
-  && sudo cp 3proxy /usr/bin/ \
-  && cd /etc/3proxy/
+sudo mkdir /etc/3proxy
+cd ~/3proxy-0.9.3/bin
+sudo cp 3proxy /usr/bin/
+cd /etc/3proxy/
 
-sudo adduser --system --no-create-home --disabled-login --group slaweekq \
-  && id slaweekq
+sudo adduser --system --no-create-home --disabled-login --group slaweekq
+id slaweekq
 
 echo "Getting config & proxyauth"
 sudo wget https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/3proxy.cfg
@@ -34,10 +34,10 @@ sudo wget https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/.proxy
 
 echo "Setting access rights to proxy server files"
 # sudo chmod 600 /etc/3proxy/
-sudo chown slaweekq:slaweekq -R /etc/3proxy \
-  && sudo chown slaweekq:slaweekq /usr/bin/3proxy \
-  && sudo chmod 444 /etc/3proxy/3proxy.cfg \
-  && sudo chmod 400 /etc/3proxy/.proxyauth
+sudo chown slaweekq:slaweekq -R /etc/3proxy
+sudo chown slaweekq:slaweekq /usr/bin/3proxy
+sudo chmod 444 /etc/3proxy/3proxy.cfg
+sudo chmod 400 /etc/3proxy/.proxyauth
 
 echo "Setting 3proxy.service"
 cd /etc/systemd/system
@@ -45,10 +45,10 @@ sudo wget https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/3proxy
 cd ~
 
 echo "Enable & starting 3proxy.service"
-sudo systemctl daemon-reload \
-  && sudo systemctl enable 3proxy \
-  && sudo systemctl start 3proxy \
-  && sudo ps -ela | grep "3proxy"
+sudo systemctl daemon-reload
+sudo systemctl enable 3proxy
+sudo systemctl start 3proxy
+sudo ps -ela | grep "3proxy"
   # && sudo systemctl status 3proxy.service \
 
 echo "Oppening port 3128 & 2525"
@@ -56,9 +56,9 @@ sudo iptables -I INPUT -p tcp -m tcp --dport 3128 -j ACCEPT
 sudo iptables -I INPUT -p tcp -m tcp --dport 2525 -j ACCEPT
 
 echo "Deleting temporery files"
-sudo rm ~/${version}.tar.gz \
-  && sudo rm -rf ~/${version} \
-  && cd ~
+sudo rm ~/${version}.tar.gz
+sudo rm -rf ~/${version}
+cd ~
 
 echo "3proxy installed & running now"
 echo '######################################################################'
