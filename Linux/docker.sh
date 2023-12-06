@@ -49,7 +49,6 @@ sudo apt -y install \
 sudo gpasswd -a $USER docker
 sudo systemctl restart docker
 
-sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
 exit
