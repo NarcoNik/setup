@@ -54,6 +54,15 @@ sudo apt install -f
 # Delete the downloaded package file
 sudo rm GitHubDesktop-linux-3.1.1-linux1.deb
 
+# Download the AnyDesk package file
+wget https://download.anydesk.com/linux/anydesk_6.1.1-1_amd64.deb
+# Install the AnyDesk package
+sudo dpkg -i anydesk_6.1.1-1_amd64.deb
+# Resolve missing dependencies and finish the install (if necessary)
+sudo apt install -f
+# Delete the downloaded package file
+sudo rm anydesk_6.1.1-1_amd64.deb
+sudo systemctl daemon-reload
 
 sudo add-apt-repository -y ppa:atareao/telegram
 sudo apt -y update

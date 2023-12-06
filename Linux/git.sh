@@ -28,9 +28,11 @@ git config --global user.name "Slaweekq" \
 sudo tee -a ~/.bashrc <<< \
 "
 alias sshcon='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/slaweekq && ssh -T git@github.com'
+alias dstop='docker compose down --rmi=all --volumes --remove-orphans && docker rmi $(docker images -a -q)'
 alias dreb='docker compose down --rmi=all --volumes --remove-orphans && docker compose -f ./*.yml up -d'
 alias gpush='ssh-add ~/.ssh/slaweekq && git add ./ && git commit -m «new» -a && git push origin'
 alias docon='ssh plaki@188.166.12.166'
+alias supd='sudo apt -y update && sudo apt -y upgrade && sudo apt -y --fix-broken install && sudo apt -y autoclean && sudo apt -y autoremove'
 "
 
 # cd ~/.ssh && kate slaweekq.pub
