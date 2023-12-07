@@ -1,6 +1,6 @@
 echo '#### Installing Python3'
 echo '######################################################################'
-if [[ $(python3 --version) && $(pip3 --version) ]]; then
+if [[ $(which --version) && $(python3 --version) && $(pip3 --version) ]]; then
    echo 'Python3 installed, continue...'
 else
    echo 'Python3 NOT installed, continue...'
@@ -42,7 +42,6 @@ make install
 python3 --version
 pip3 --version
 cd ~
-
 
 sudo apt -y update
 sudo apt -y upgrade

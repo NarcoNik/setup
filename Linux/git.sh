@@ -28,10 +28,11 @@ git config --global user.name "Slaweekq" \
 sudo tee -a ~/.bashrc <<< \
 "
 alias sshcon='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/slaweekq && ssh -T git@github.com'
-alias dstop='docker compose down --rmi=all --volumes --remove-orphans && docker rmi $(docker images -a -q)'
-alias dreb='docker compose down --rmi=all --volumes --remove-orphans && docker compose -f ./*.yml up -d'
+alias dstop='docker-compose down --rmi=all --volumes --remove-orphans && docker rmi $(docker images -a -q)'
+alias dreb='docker-compose -f ./docker-compose.yml down -v && docker-compose -f ./docker-compose.yml rm -v && docker-compose -f ./docker-compose.yml up -d --build'
+alias doccon='docker login --password dckr_pat_yJhGjotZbYBJLvQIcRq3P27yChc -u slaweekq'
 alias gpush='ssh-add ~/.ssh/slaweekq && git add ./ && git commit -m «new» -a && git push origin'
-alias docon='ssh plaki@188.166.12.166'
+alias digcon='ssh plaki@188.166.12.166'
 alias supd='sudo apt -y update && sudo apt -y upgrade && sudo apt -y --fix-broken install && sudo apt -y autoclean && sudo apt -y autoremove'
 "
 
