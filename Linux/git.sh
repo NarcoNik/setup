@@ -21,6 +21,7 @@ git config --global user.name "Slaweekq" \
  && git config --global --add safe.directory /mnt/Documents/CRYPTO/setup \
  && git config --global --add safe.directory /mnt/Documents/CRYPTO/websites \
  && git config --global core.editor code \
+ && git config --global credential.helper cache \
  && git config --global core.safecrlf true \
  && git config --global push.autoSetupRemote true \
  && git config --list
