@@ -4,8 +4,13 @@ if [[ $(which docker) && $(docker --version) && $(docker-compose) ]]; then
    echo 'Docker installed, continue...'
 else
 echo 'Docker NOT installed, continue...'
+#### Install DOCKER and setting him for work with NVIDIA in docker-compose
+# https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#installing-on-ubuntu-and-debian
+# https://github.com/NVIDIA/nvidia-docker/issues/838
+# https://yudanta.github.io/posts/nvidia-docker-and-docker-compose-enabled/
+
 # First uninstall another version Docker
-for pkg in docker docker.io docker-ce docker-ce-cli docker-doc docker-desktop docker-compose docker-compose-v2 docker-compose-plugin docker-ce-rootless-extras podman-docker containerd containerd.io runc; do sudo apt -y remove --purge $pkg; done
+for pkg in docker docker.io docker-ce docker-ce-cli docker-doc docker-compose docker-compose-v2 docker-ce-rootless-extras podman-docker containerd runc; do sudo apt -y remove --purge $pkg; done
 sudo rm -rf /etc/apt/sources.list.d/archive_uri-https_download_docker_com_linux_ubuntu-lunar.list
 sudo rm -rf /etc/apt/sources.list.d/docker.list
 
@@ -38,14 +43,14 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmour -o
 sudo apt-key fingerprint 0EBFCD88
 
 # Add the Docker repository to Apt sources:
-# sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/trusted.gpg.d/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 # Install docker & docker-compose
-sudo apt -y update
 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose
+# # Add the Docker repository to Apt sources
+# # Install docker & docker-compose
+# curl -fsSL https://get.docker.com -o get-docker.sh
+# sudo sh ./get-docker.sh # // --dry-run
 
 # Add all rules for docker
 sudo gpasswd -a $USER docker
@@ -53,31 +58,20 @@ sudo usermod -aG docker $USER
 sudo chown "$USER":"$USER" ~/.docker -R
 
 # Enabling docker services & restart systemctl
-sudo systemctl enable --now \
-  docker.service \
-  docker.socket \
-  containerd.service
+sudo systemctl enable --now docker docker.socket containerd
 sudo systemctl restart docker
+
+# wget https://desktop.docker.com/linux/main/amd64/docker-desktop-4.26.0-amd64.deb
+# sudo apt -y remove --purge ./docker-desktop-4.26.0-amd64.deb
+# sudo apt -y install ./docker-desktop-4.26.0-amd64.deb
+# sudo systemctl start docker-desktop
+# sudo rm -rf ./docker-desktop-4.26.0-amd64.deb
+
+echo 'alias docker-compose="docker compose"' >> ~/.bashrc
 
 docker-compose version
 docker --version
 docker version
-
-bash -c \
-"cat << EOF > ~/.docker/config.json
-{
-        "auths": {
-                "https://index.docker.io/v1/": {
-                        "auth": "c2xhd2Vla3E6ZGNrcl9wYXRfeUpoR2pvdFpiWUJKTHZRSWNScTNQMjd5Q2hj"
-                }
-        },
-        "currentContext": "default",
-        "plugins": {
-                "-x-cli-hints": {
-                        "enabled": "true"
-                }
-        }
-EOF"
 
 # docker network create traefik-public
 echo '#### Docker installed'
