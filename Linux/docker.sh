@@ -10,27 +10,7 @@ echo 'Docker NOT installed, continue...'
 # https://yudanta.github.io/posts/nvidia-docker-and-docker-compose-enabled/
 
 # First uninstall another version Docker
-for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt -y remove $pkg; done
-sudo apt -y remove --purge \
-  docker docker.io \
-  docker-ce \
-  docker-ce-cli \
-  containerd.io \
-  containerd \
-  docker-buildx-plugin \
-  docker-compose-plugin \
-  runc \
-  docker-ce-rootless-extras \
-  docker-compose
-sudo rm -rf /var/lib/docker
-sudo rm -rf /var/lib/containerd
-sudo rm -rf ~/.docker
-sudo rm -rf /usr/local/bin/com.docker.cli
-cd /bin
-sudo rm -rf containerd containerd-shim containerd-shim-runc-v2 ctr docker \
-  docker-init docker-proxy dockerd dockerd-rootless-setuptool.sh \
-  dockerd-rootless.sh rootlesskit rootlesskit-docker-proxy runc vpnkit
-cd -
+
 
 modprobe kvm
 modprobe kvm_intel  # Intel processors
@@ -73,6 +53,11 @@ sudo apt -y install \
   docker-compose \
   docker-buildx-plugin
 
+# # Add the Docker repository to Apt sources
+# # Install docker & docker-compose
+# curl -fsSL https://get.docker.com -o get-docker.sh
+# sudo sh ./get-docker.sh # // --dry-run
+
 # Add all rules for docker
 sudo gpasswd -a $USER docker
 sudo systemctl restart docker
@@ -83,6 +68,11 @@ sudo systemctl restart docker
 # exit
 sudo usermod -aG docker $USER
 sudo chown "$USER":"$USER" ~/.docker -R
+
+wget https://desktop.docker.com/linux/main/amd64/docker-desktop-4.26.0-amd64.deb
+sudo apt -y install ./docker-desktop-4.26.0-amd64.deb
+sudo systemctl start docker-desktop
+sudo rm -rf ./docker-desktop-4.26.0-amd64.deb
 
 # Enabling docker services & restart systemctl
 sudo systemctl enable --now \
