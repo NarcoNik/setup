@@ -76,12 +76,17 @@ nvm install lts/iron
 nvm list
 npm install -g npm@latest
 nvm use lts/iron
+
+sudo gpasswd -a $USER npm
+sudo usermod -aG npm $USER
+sudo chown "$USER":"$USER" ~/.npm -R
+
 npm i -g yarn \
   prettier \
   eslint \
   nodemon \
-  solc \
   serve \
+  dotenv \
   create-react-app
 
 sudo add-apt-repository -y ppa:ethereum/ethereum

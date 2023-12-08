@@ -39,6 +39,7 @@ sudo usermod -aG docker $USER
 sudo chown "$USER":"$USER" ~/.docker -R
 # Enabling docker services & restart systemctl
 sudo systemctl restart docker
+echo 'alias docker-compose="docker compose"' >> ~/.bashrc
 docker-compose version
 docker network create traefik-public
 echo '#### Docker installed'
