@@ -10,7 +10,18 @@ echo 'Docker NOT installed, continue...'
 # https://yudanta.github.io/posts/nvidia-docker-and-docker-compose-enabled/
 
 # First uninstall another version Docker
-
+for pkg in docker docker.io docker-ce docker-ce-cli docker-doc docker-desktop docker-compose docker-compose-v2 docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras podman-docker containerd containerd.io runc; do sudo apt -y remove --purge $pkg; done
+sudo rm -rf /var/lib/docker
+sudo rm -rf /var/lib/containerd
+sudo rm -rf ~/.docker
+sudo rm -rf /usr/local/bin/com.docker.cli
+cd /bin
+sudo rm -rf containerd containerd-shim containerd-shim-runc-v2 ctr docker \
+  docker-init docker-proxy dockerd dockerd-rootless-setuptool.sh \
+  dockerd-rootless.sh rootlesskit rootlesskit-docker-proxy runc vpnkit
+cd -
+sudo rm -rf /etc/apt/sources.list.d/archive_uri-https_download_docker_com_linux_ubuntu-lunar.list
+sudo rm -rf /etc/apt/sources.list.d/docker.list
 
 modprobe kvm
 modprobe kvm_intel  # Intel processors
@@ -35,14 +46,15 @@ sudo apt -y install \
   software-properties-common
 sudo apt -y clean
 
+sudo rm -rf /etc/apt/trusted.gpg.d/docker.gpg
 # Add Docker's official GPG key:
-sudo install -m 0755 -d /etc/apt/trusted.gpg.d
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg
-sudo chmod a+r /etc/apt/trusted.gpg.d/docker.gpg
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/docker.gpg
 sudo apt-key fingerprint 0EBFCD88
 
 # Add the Docker repository to Apt sources:
-sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu lunar stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 # Install docker & docker-compose
 sudo apt -y update
@@ -61,7 +73,6 @@ sudo apt -y install \
 # Add all rules for docker
 sudo gpasswd -a $USER docker
 sudo systemctl restart docker
-
 # sudo groupadd docker
 # sudo usermod -aG docker $USER
 # newgrp docker
