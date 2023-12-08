@@ -84,14 +84,9 @@ npm i -g yarn \
   serve \
   create-react-app
 
-sudo groupadd npm
-sudo usermod -aG npm $USER
-newgrp npm
-npm --version
-
 sudo add-apt-repository -y ppa:ethereum/ethereum
 sudo apt -y update
-sudo apt -y install solc
+sudo apt -y install solc ethereum
 
 # TODO for deleting nodejs
 # apt remove --purge nodejs npm
@@ -118,7 +113,7 @@ echo 'Installing Nvidia & other graphics drivers'
 echo '######################################################################'
 # # blacklist nouveau | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
 # # options nouveau modeset=0 | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
-update-initramfs -u
+sudo update-initramfs -u
 
 sudo add-apt-repository -y ppa:graphics-drivers/ppa
 sudo apt -y update
