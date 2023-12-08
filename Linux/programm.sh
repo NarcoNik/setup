@@ -68,14 +68,17 @@ sudo add-apt-repository -y ppa:atareao/telegram
 sudo apt -y update
 sudo apt -y install telegram
 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 source ~/.bashrc
-nvm list-remote
+nvm ls-remote
 nvm install lts/iron
-nvm list
-npm install -g npm@latest
+nvm ls
 nvm use lts/iron
+nvm install-latest-npm
+
+# nvm install v14.15.1
+# nvm use v14.15.1
+# nvm install-latest-npm
 
 sudo gpasswd -a $USER npm
 sudo usermod -aG npm $USER
