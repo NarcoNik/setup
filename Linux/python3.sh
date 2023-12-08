@@ -41,7 +41,7 @@ cd Python-3.11.0
 make install
 python3 --version
 pip3 --version
-cd ~
+cd -
 
 sudo apt -y update
 sudo apt -y upgrade
