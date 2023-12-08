@@ -1,6 +1,6 @@
 echo '#### Installing Docker'
 echo '######################################################################'
-if [[ $(which docker) && $(docker --version) && $(docker-compose) ]]; then
+if [[ $(which docker) && $(docker --version) && $(docker compose) ]]; then
    echo 'Docker installed, continue...'
 else
 echo 'Docker NOT installed, continue...'
