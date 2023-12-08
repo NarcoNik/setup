@@ -29,6 +29,7 @@ sudo apt -y clean
 # # Install docker & docker-compose
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh ./get-docker.sh # // --dry-run
+rm -rf ./get-docker.sh
 
 # Add all rules for docker
 sudo gpasswd -a $USER docker
