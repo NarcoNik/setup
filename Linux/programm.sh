@@ -128,7 +128,7 @@ ubuntu-drivers install
 
 echo 'Installing Bluetooth Audio for AirPods'
 echo '######################################################################'
-# sudo apt -y install 'bluez*' blueman
+sudo apt -y install 'bluez*' blueman
 modprobe btusb
 sudo tee -a /etc/bluetooth/main.conf <<< \
 "
