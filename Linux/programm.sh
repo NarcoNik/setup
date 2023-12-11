@@ -76,6 +76,10 @@ nvm ls
 nvm use lts/iron
 nvm install-latest-npm
 
+# nvm install v18.12.0
+# nvm use v18.12.0
+# nvm install-latest-npm
+
 # nvm install v14.15.1
 # nvm use v14.15.1
 # nvm install-latest-npm
