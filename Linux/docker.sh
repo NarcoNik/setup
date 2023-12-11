@@ -32,15 +32,17 @@ sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/u
 # Install docker & docker-compose
 apt-cache policy docker-ce
 sudo apt -y install docker docker.io containerd runc docker-compose
+# sudo apt install docker-ce docker-ce-cli docker-compose containerd.io
 # Add all rules for docker
 sudo gpasswd -a $USER docker
 sudo systemctl restart docker
-sudo usermod -aG docker $USER
+sudo usermod -aG docker ${USER}
 sudo chown "$USER":"$USER" ~/.docker -R
+su - ${USER} && groups && sudo usermod -aG docker ${USER} && exit
 # Enabling docker services & restart systemctl
 sudo systemctl enable --now docker.service docker.socket containerd.service
 sudo systemctl daemon-reload
-echo 'alias docker-compose="docker compose"' >> ~/.bashrc
+# echo 'alias docker-compose="docker compose"' >> ~/.bashrc
 # docker network create traefik-public
 echo '#### Docker installed'
 echo '######################################################################'
