@@ -5,20 +5,57 @@ git --version
 echo "Generate ssh"
 echo "######################################################################"
 cd ~
-mkdir ./.ssh
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
 cd ~/.ssh
 ssh-keygen -C "plakidin.vyacheslav@mail.ru"
 
 eval "$(ssh-agent -s)"
+ssh-agent /bin/bash
 ssh-add ~/.ssh/slaweekq
+ssh-add -l
 # ssh -T git@github.com
 
-git remote add docker-info https://github.com/NarcoNik/docker-info.git \
- && git remote add hardhat https://github.com/NarcoNik/hardhat.git \
- && git remote add setup https://github.com/NarcoNik/setup.git \
- && git remote add work https://github.com/NarcoNik/work.git \
- && git remote add defi https://gitlab.i-link.pro/defi-invest/defi-invest-smart-contract.git \
- && git config --global user.name "Slaweekq" \
+sudo tee -a ~/.bash_profile <<< \
+"
+SSH_ENV="$HOME/.ssh/agent-environment"
+
+function start_agent {
+    echo "Initialising new SSH agent..."
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    echo succeeded
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    /usr/bin/ssh-add;
+}
+
+# Source SSH settings, if applicable
+
+if [ -f "${SSH_ENV}" ]; then
+    . "${SSH_ENV}" > /dev/null
+    #ps ${SSH_AGENT_PID} doesn't work under cywgin
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+        start_agent;
+    }
+else
+    start_agent;
+fi
+"
+echo public_key_string >> ~/.ssh/authorized_keys
+chmod -R go= ~/.ssh
+chown -R $USER:$USER ~/.ssh
+sudo tee -a /etc/ssh/sshd_config <<< \
+"
+PasswordAuthentication no
+"
+
+sudo tee -a  ~/.ssh/config <<< \
+"
+PasswordAuthentication no
+"
+sudo systemctl restart ssh
+
+git config --global user.name "Slaweekq" \
  && git config --global user.email "plakidin.vyacheslav@mail.ru" \
  && git config --global --add safe.directory /mnt/Documents/CRYPTO/docker-info \
  && git config --global --add safe.directory /mnt/Documents/CRYPTO/hardhat \
