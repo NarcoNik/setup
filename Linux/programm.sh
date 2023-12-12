@@ -7,12 +7,12 @@ sudo apt -y install grub-customizer
 
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
-sudo sh -c '# "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge.list'
-sudo rm microsoft.gpg
-sudo rm -rf /etc/apt/sources.list.d/microsoft-edge-dev.list
+# sudo sh -c '# "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge.list'
+sudo echo "deb [arch=$(dpkg --print-architecture)] https://packages.microsoft.com/repos/edge stable main" | sudo tee /etc/apt/sources.list.d/microsoft-edge.list > /dev/null
+sudo rm -rf microsoft.gpg
+# sudo rm -rf /etc/apt/sources.list.d/microsoft-edge-dev.list
 sudo apt -y update
-sudo apt install -y microsoft-edge-stable
-
+sudo apt -y install microsoft-edge-stable
 
 # Download the PowerShell package file
 wget http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0/libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb
@@ -21,7 +21,7 @@ sudo dpkg -i libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb
 # Resolve missing dependencies and finish the install (if necessary)
 sudo apt install -f
 # Delete the downloaded package file
-sudo rm libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb
+sudo rm -rf libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb
 
 sudo apt -y --fix-broken install
 
@@ -32,7 +32,7 @@ sudo dpkg -i powershell_7.4.0-1.deb_amd64.deb
 # Resolve missing dependencies and finish the install (if necessary)
 sudo apt install -f
 # Delete the downloaded package file
-sudo rm powershell_7.4.0-1.deb_amd64.deb
+sudo rm -rf powershell_7.4.0-1.deb_amd64.deb
 
 # Download the Discord package file
 wget https://dl.discordapp.net/apps/linux/0.0.36/discord-0.0.36.deb
@@ -41,7 +41,7 @@ sudo dpkg -i discord-0.0.36.deb
 # Resolve missing dependencies and finish the install (if necessary)
 sudo apt install -f
 # Delete the downloaded package file
-sudo rm discord-0.0.36.deb
+sudo rm -rf discord-0.0.36.deb
 
 sudo apt -y --fix-broken install
 
@@ -52,7 +52,7 @@ sudo dpkg -i GitHubDesktop-linux-3.1.1-linux1.deb
 # Resolve missing dependencies and finish the install (if necessary)
 sudo apt install -f
 # Delete the downloaded package file
-sudo rm GitHubDesktop-linux-3.1.1-linux1.deb
+sudo rm -rf GitHubDesktop-linux-3.1.1-linux1.deb
 
 # Download the AnyDesk package file
 wget https://download.anydesk.com/linux/anydesk_6.1.1-1_amd64.deb
@@ -61,7 +61,7 @@ sudo dpkg -i anydesk_6.1.1-1_amd64.deb
 # Resolve missing dependencies and finish the install (if necessary)
 sudo apt install -f
 # Delete the downloaded package file
-sudo rm anydesk_6.1.1-1_amd64.deb
+sudo rm -rf anydesk_6.1.1-1_amd64.deb
 sudo systemctl daemon-reload
 
 sudo add-apt-repository -y ppa:atareao/telegram
@@ -76,13 +76,13 @@ nvm ls
 nvm use lts/iron
 nvm install-latest-npm
 
-# nvm install v18.12.0
-# nvm use v18.12.0
-# nvm install-latest-npm
+nvm install v18.12.0
+nvm use v18.12.0
+nvm install-latest-npm
 
-# nvm install v14.15.1
-# nvm use v14.15.1
-# nvm install-latest-npm
+nvm install v14.15.1
+nvm use v14.15.1
+nvm install-latest-npm
 
 sudo gpasswd -a $USER npm
 sudo usermod -aG npm $USER
@@ -101,13 +101,13 @@ sudo apt -y update
 sudo apt -y install solc ethereum
 
 # TODO for deleting nodejs
-# apt remove --purge nodejs npm
+# sudo apt remove --purge nodejs npm
 # sudo rm -rf /etc/apt/sources.list.d/nodesource.list
-# sudo rm -rf /etc/apt/keyrings/nodesource.gpg
+# sudo rm -rf /etc/apt/trusted.gpg.d/nodesource.gpg
 
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-sh -c '# "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/packages.microsoft.gpg
+sudo echo "deb [arch=$(dpkg --print-architecture)] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
 sudo rm -f packages.microsoft.gpg
 
 sudo apt -y update
@@ -117,7 +117,7 @@ sudo apt -y --fix-broken install
 source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
 eval $(/usr/bin/gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
-mkdir -p "$HOME"/.local/share/keyrings
+mkdir -p "$HOME"/.local/share/trusted.gpg.d
 code --locate-shell-integration-path bash
 [[ "$TERM_PROGRAM" == "vscode" ]] && . "/path/to/shell/integration/script.sh"
 
@@ -131,7 +131,8 @@ sudo add-apt-repository -y ppa:graphics-drivers/ppa
 sudo apt -y update
 sudo apt install -y nvidia-settings libvulkan1
 ubuntu-drivers list
-ubuntu-drivers install
+sudo ubuntu-drivers install
+sudo apt -y install linux-headers-$(uname -r)
 
 echo 'Installing Bluetooth Audio for AirPods'
 echo '######################################################################'

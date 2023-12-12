@@ -13,17 +13,22 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/slaweekq
 # ssh -T git@github.com
 
-git config --global user.name "Slaweekq" \
+git remote add docker-info https://github.com/NarcoNik/docker-info.git \
+ && git remote add hardhat https://github.com/NarcoNik/hardhat.git \
+ && git remote add setup https://github.com/NarcoNik/setup.git \
+ && git remote add work https://github.com/NarcoNik/work.git \
+ && git remote add defi https://gitlab.i-link.pro/defi-invest/defi-invest-smart-contract.git \
+ && git config --global user.name "Slaweekq" \
  && git config --global user.email "plakidin.vyacheslav@mail.ru" \
- && git config --global --add safe.directory /mnt/Documents/CRYPTO/contract \
  && git config --global --add safe.directory /mnt/Documents/CRYPTO/docker-info \
  && git config --global --add safe.directory /mnt/Documents/CRYPTO/hardhat \
  && git config --global --add safe.directory /mnt/Documents/CRYPTO/setup \
- && git config --global --add safe.directory /mnt/Documents/CRYPTO/websites \
+ && git config --global --add safe.directory /mnt/Documents/CRYPTO/work \
+ && git config --global --add safe.directory /mnt/Documents/CRYPTO/defi-invest-smart-contract \
  && git config --global core.editor code \
- && git config --global credential.helper cache \
  && git config --global core.safecrlf true \
  && git config --global push.autoSetupRemote true \
+ && git config --global credential.helper cache \
  && git config --list
 
 sudo tee -a ~/.bashrc <<< \
@@ -49,7 +54,7 @@ alias kalistart="docker pull kalilinux/kali-rolling && docker run --tty --intera
 # cd && mkdir git-test && cd ./git-test && git init
 # git clone git@github.com:NarcoNik/git-test.git
 
-# ssh-add ~/.ssh/GitHub && git add . && git commit -m «new» -a && git push origin
+# ssh-add ~/.ssh/slaweekq && git add . && git commit -m «new» -a && git push origin
 # git remote add origin git@github.com:NarcoNik/git-test.git
 # git push --set-upstream origin main
 

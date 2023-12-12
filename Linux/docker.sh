@@ -24,24 +24,25 @@ sudo apt -y install apt-transport-https ca-certificates curl \
   software-properties-common gnupg lsb-release openssl nginx
 sudo apt -y clean
 # Add Docker's official GPG key:
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
+#   sudo gpg -y --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
-  sudo gpg -y --dearmour -o /etc/apt/trusted.gpg.d/docker-archive-keyring.gpg
+  sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/docker-archive-keyring.gpg
 sudo apt-key fingerprint 0EBFCD88
 # Add the Docker repository to Apt sources:
 sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 # Install docker & docker-compose
 apt-cache policy docker-ce
-sudo apt -y install docker docker.io containerd runc docker-compose
-# sudo apt install docker-ce docker-ce-cli docker-compose containerd.io
+# sudo apt -y install docker docker.io containerd runc docker-compose
+sudo apt -y install docker-ce docker-ce-cli containerd.io docker-compose
 # Add all rules for docker
 sudo gpasswd -a $USER docker
 sudo systemctl restart docker
 sudo usermod -aG docker ${USER}
 sudo chown "$USER":"$USER" ~/.docker -R
-su - ${USER} && groups && sudo usermod -aG docker ${USER} && exit
-# Enabling docker services & restart systemctl
-sudo systemctl enable --now docker.service docker.socket containerd.service
-sudo systemctl daemon-reload
+su - ${USER} && groups && sudo usermod -aG docker ${USER} && exit && \
+  sudo systemctl enable --now docker.service docker.socket containerd.service && \
+  sudo systemctl daemon-reload
 # echo 'alias docker-compose="docker compose"' >> ~/.bashrc
 # docker network create traefik-public
 echo '#### Docker installed'

@@ -33,10 +33,10 @@ kate /etc/fstab
 # that works even if disks are added and removed. See fstab(5).
 #
 # UUID=<uuid>                             <mount point> <FSType> <FSOptions>        <dump> <pass>
-UUID=1e2475c3-103c-4c58-928b-f36c1b262f89 /               ext4   errors=remount-ro    0      1
-UUID=00B8-8DC5                            /boot/efi       vfat   umask=0077           0      1
+UUID=b2569fde-a4e2-46c9-b4b6-35ef22b6ad1f /               ext4   errors=remount-ro    0      1
+UUID=2200-9AEC                            /boot/efi       vfat   umask=0077           0      1
 UUID=8A34B39934B3872B                     /mnt/Documents  ntfs   defaults,rw,realtime 0      0
-UUID=9A34BC1034BBECFF                     /mnt/Windows    ntfs   defaults,ro          0      0
+UUID=6C2404B024047F78                     /mnt/Windows    ntfs   defaults,ro          0      0
 
 
 

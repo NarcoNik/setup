@@ -79,11 +79,11 @@ sudo chmod +x ./git.sh
 sudo chmod +x ./programm.sh
 ./programm.sh
 
-sudo chmod +x ./docker.sh
-./docker.sh
-
 sudo chmod +x ./python3.sh
 ./python3.sh
+
+sudo chmod +x ./docker.sh
+./docker.sh
 
 echo 'Set autocomlete bash'
 echo '######################################################################'
@@ -100,8 +100,7 @@ sudo tee -a /etc/inputrc <<< \
 # paste after all text
 set show-all-if-ambiguous On
 "\e[A": history-search-backward
-"\e[B": history-search-forward
-"
+"\e[B": history-search-forward"
 
 sudo apt -y update
 sudo apt -y upgrade
