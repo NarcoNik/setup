@@ -58,10 +58,10 @@ git config --global user.name "Slaweekq" \
  && git config --global credential.helper cache \
  && git config --list
 
-sudo tee -a ~/.bashrc <<< \
+tee -a ~/.bashrc <<< \
 "
 alias supd='sudo apt -y update && sudo apt -y upgrade && sudo apt -y --fix-broken install && sudo apt -y autoclean && sudo apt -y autoremove'
-alias sshcon='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/slaweekq && ssh -T git@github.com'
+alias sshcon='eval '$(ssh-agent -s)' && ssh-add ~/.ssh/slaweekq && ssh -T git@github.com'
 alias gpush='git add ./ && git commit -m «new» -a && git push origin'
 alias digcon='ssh plaki@188.166.12.166'
 alias doccon='docker login --password dckr_pat_yJhGjotZbYBJLvQIcRq3P27yChc -u slaweekq'
@@ -69,10 +69,14 @@ alias dstart='docker-compose -f ./docker-compose.yml up -d --build'
 alias dstop='docker-compose -f ./docker-compose.yml down -v && docker-compose -f ./docker-compose.yml rm -v'
 alias dstopall='docker-compose down --rmi=all -v --remove-orphans && docker rmi $(docker images -a -q)'
 alias dreb='docker-compose -f ./docker-compose.yml down -v && docker-compose -f ./docker-compose.yml rm -v && docker-compose -f ./docker-compose.yml up -d --build'
-alias docker-compose="docker compose"
-alias dexec="docker exec -it"
-alias kalistart="docker pull kalilinux/kali-rolling && docker run --tty --interactive kalilinux/kali-rolling"
-"
+# alias docker-compose='docker compose'
+alias dexec='docker exec -it'
+alias kalistart='docker pull kalilinux/kali-rolling && docker run --tty --interactive kalilinux/kali-rolling'
+alias project='cd /mnt/Documents/CRYPTO && ls -lf'
+
+export NVM_DIR='$HOME/.nvm'
+[ -s '$NVM_DIR/nvm.sh' ] && \. '$NVM_DIR/nvm.sh'  # This loads nvm
+[ -s '$NVM_DIR/bash_completion' ] && \. '$NVM_DIR/bash_completion'  # This loads nvm bash_completion"
 
 # restore bash_profile
 # declare > .bash_profile.recovered
