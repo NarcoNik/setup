@@ -33,7 +33,7 @@ Host digitalocean.com
     PasswordAuthentication no"
 
 eval "$(ssh-agent -s)"
-ssh-agent /bin/bash
+# ssh-agent /bin/bash
 echo $SSH_AGENT_SOCK
 ssh-add ~/.ssh/slaweekq
 ssh-add -l
@@ -44,8 +44,6 @@ ssh -T git@github.com
 #     PasswordAuthentication no
 #     IdentityFile ~/.ssh/slaweekq
 #     IdentitiesOnly yes"
-
-sudo systemctl restart ssh
 
 git config --global user.name "Slaweekq" \
  && git config --global user.email "plakidin.vyacheslav@mail.ru" \
@@ -64,7 +62,7 @@ sudo tee -a ~/.bashrc <<< \
 "
 alias supd='sudo apt -y update && sudo apt -y upgrade && sudo apt -y --fix-broken install && sudo apt -y autoclean && sudo apt -y autoremove'
 alias sshcon='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/slaweekq && ssh -T git@github.com'
-alias gpush='ssh-add ~/.ssh/slaweekq && git add ./ && git commit -m «new» -a && git push origin'
+alias gpush='git add ./ && git commit -m «new» -a && git push origin'
 alias digcon='ssh plaki@188.166.12.166'
 alias doccon='docker login --password dckr_pat_yJhGjotZbYBJLvQIcRq3P27yChc -u slaweekq'
 alias dstart='docker-compose -f ./docker-compose.yml up -d --build'
@@ -80,12 +78,12 @@ alias kalistart="docker pull kalilinux/kali-rolling && docker run --tty --intera
 # declare > .bash_profile.recovered
 # alias >> .bash_profile.recovered
 
-git remote set-url origin git@github.com:NarcoNik/docker-info.git
-git remote set-url origin git@github.com:NarcoNik/hardhat.git
-git remote set-url origin git@github.com:NarcoNik/setup.git
-git remote set-url origin git@github.com:NarcoNik/work.git
+# git remote set-url origin git@github.com:NarcoNik/docker-info.git
+# git remote set-url origin git@github.com:NarcoNik/hardhat.git
+# git remote set-url origin git@github.com:NarcoNik/setup.git
+# git remote set-url origin git@github.com:NarcoNik/work.git
 
-git remote -v
+# git remote -v
 
 # cd ~/.ssh && kate slaweekq.pub
 
