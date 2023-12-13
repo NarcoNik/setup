@@ -8,51 +8,21 @@ cd ~
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
 cd ~/.ssh
+ssh-keygen -t ed25519 -C "plakidin.vyacheslav@mail.ru"
 ssh-keygen -C "plakidin.vyacheslav@mail.ru"
+chmod 600 ~/.ssh/slaweekq
 
 eval "$(ssh-agent -s)"
 ssh-agent /bin/bash
 ssh-add ~/.ssh/slaweekq
 ssh-add -l
-# ssh -T git@github.com
+ssh -T git@github.com
 
-sudo tee -a ~/.bash_profile <<< \
-"
-SSH_ENV="$HOME/.ssh/agent-environment"
+sudo tee -a /etc/ssh/ssh_config <<< \
+"    PasswordAuthentication no
+    ForwardAgent yes
+    IdentityFile ~/.ssh/slaweekq"
 
-function start_agent {
-    echo "Initialising new SSH agent..."
-    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-    echo succeeded
-    chmod 600 "${SSH_ENV}"
-    . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add;
-}
-
-# Source SSH settings, if applicable
-
-if [ -f "${SSH_ENV}" ]; then
-    . "${SSH_ENV}" > /dev/null
-    #ps ${SSH_AGENT_PID} doesn't work under cywgin
-    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-        start_agent;
-    }
-else
-    start_agent;
-fi
-"
-echo public_key_string >> ~/.ssh/authorized_keys
-chmod -R go= ~/.ssh
-chown -R $USER:$USER ~/.ssh
-sudo tee -a /etc/ssh/sshd_config <<< \
-"
-PasswordAuthentication no
-"
-
-sudo tee -a  ~/.ssh/config <<< \
-"
-PasswordAuthentication no
-"
 sudo systemctl restart ssh
 
 git config --global user.name "Slaweekq" \
@@ -83,6 +53,12 @@ alias docker-compose="docker compose"
 alias dexec="docker exec -it"
 alias kalistart="docker pull kalilinux/kali-rolling && docker run --tty --interactive kalilinux/kali-rolling"
 "
+
+# restore bash_profile
+# declare > .bash_profile.recovered
+# alias >> .bash_profile.recovered
+
+
 
 # cd ~/.ssh && kate slaweekq.pub
 
