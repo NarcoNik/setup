@@ -62,7 +62,17 @@ sudo dpkg -i anydesk_6.1.1-1_amd64.deb
 sudo apt install -f
 # Delete the downloaded package file
 sudo rm -rf anydesk_6.1.1-1_amd64.deb
+
+# Download the RemixIDE package file
+wget https://github.com/ethereum/remix-desktop/releases/download/v1.3.6/remix-ide_1.3.6_amd64.deb
+# Install the RemixIDE package
+sudo dpkg -i remix-ide_1.3.6_amd64.deb
+# Resolve missing dependencies and finish the install (if necessary)
+sudo apt install -f
+# Delete the downloaded package file
+sudo rm -rf remix-ide_1.3.6_amd64.deb
 sudo systemctl daemon-reload
+
 
 sudo add-apt-repository -y ppa:atareao/telegram
 sudo apt -y update
