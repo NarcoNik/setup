@@ -4,23 +4,46 @@ git --version
 
 echo "Generate ssh"
 echo "######################################################################"
+sudo apt install -y nano openssh-client
+sudo ufw allow ssh
 cd ~
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
 cd ~/.ssh
 ssh-keygen -t ed25519 -C "plakidin.vyacheslav@mail.ru"
 chmod 600 ~/.ssh/slaweekq
+chmod 600 ~/.ssh/slaweekq.pub
+
+tee -a ~/.ssh/config <<< \
+"Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/slaweekq
+    IdentitiesOnly yes
+    PasswordAuthentication no
+Host gitlab.i-link.pro
+    HostName gitlab.i-link.pro
+    IdentityFile ~/.ssh/slaweekq
+    IdentitiesOnly yes
+    PasswordAuthentication no
+Host digitalocean.com
+    HostName digitalocean.com
+    IdentityFile ~/.ssh/slaweekq
+    IdentitiesOnly yes
+    PasswordAuthentication no"
 
 eval "$(ssh-agent -s)"
 ssh-agent /bin/bash
+echo $SSH_AGENT_SOCK
 ssh-add ~/.ssh/slaweekq
 ssh-add -l
 ssh -T git@github.com
 
-sudo tee -a /etc/ssh/ssh_config <<< \
-"    PasswordAuthentication no
-    ForwardAgent yes
-    IdentityFile ~/.ssh/slaweekq"
+# sudo tee -a /etc/ssh/ssh_config <<< \
+# "    ForwardAgent yes
+#     PasswordAuthentication no
+#     IdentityFile ~/.ssh/slaweekq
+#     IdentitiesOnly yes"
 
 sudo systemctl restart ssh
 
@@ -57,7 +80,12 @@ alias kalistart="docker pull kalilinux/kali-rolling && docker run --tty --intera
 # declare > .bash_profile.recovered
 # alias >> .bash_profile.recovered
 
+git remote set-url origin git@github.com:NarcoNik/docker-info.git
+git remote set-url origin git@github.com:NarcoNik/hardhat.git
+git remote set-url origin git@github.com:NarcoNik/setup.git
+git remote set-url origin git@github.com:NarcoNik/work.git
 
+git remote -v
 
 # cd ~/.ssh && kate slaweekq.pub
 

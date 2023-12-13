@@ -19,6 +19,7 @@ echo '######################################################################'
 sudo apt install -y nodejs \
   npm \
   nano \
+  openssh-client \
   mc \
   linux-firmware \
   inxi \
@@ -108,6 +109,12 @@ sudo apt -y autoremove
 sudo apt -y autoclean
 
 echo 'Ended'
+
+
+# search package name
+# dpkg -l | grep name
+# dpkg -l | grep openssh
+
 
 # sudo reboot
 # 127.0.0.1 testingme.ru

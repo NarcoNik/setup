@@ -47,7 +47,7 @@ cd ~ \
 # #### then on my local pc init ssh key
 # echo '######################################################################'
 # If no ssh keys
-# ssh-keygen # ->plaki->pswd->pswd
+# ssh-keygen -t ed25519 -C "plakidin.vyacheslav@mail.ru"  ->plaki->pswd->pswd
 # eval "$(ssh-agent -s)" && ssh-add ~/.ssh/plaki
 
 # ssh-copy-id -i ~/.ssh/plaki.pub plaki@64.227.69.234 # pswd user->enter
