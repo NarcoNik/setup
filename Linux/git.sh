@@ -72,11 +72,7 @@ alias dreb='docker-compose -f ./docker-compose.yml down -v && docker-compose -f 
 # alias docker-compose='docker compose'
 alias dexec='docker exec -it'
 alias kalistart='docker pull kalilinux/kali-rolling && docker run --tty --interactive kalilinux/kali-rolling'
-alias project='cd /mnt/Documents/CRYPTO && ls -lf'
-
-export NVM_DIR='$HOME/.nvm'
-[ -s '$NVM_DIR/nvm.sh' ] && \. '$NVM_DIR/nvm.sh'  # This loads nvm
-[ -s '$NVM_DIR/bash_completion' ] && \. '$NVM_DIR/bash_completion'  # This loads nvm bash_completion"
+alias project='cd /mnt/Documents/CRYPTO && ls -lf'"
 
 # restore bash_profile
 # declare > .bash_profile.recovered

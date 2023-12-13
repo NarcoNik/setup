@@ -71,18 +71,10 @@ sudo apt -y install telegram
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 source ~/.bashrc
 nvm ls-remote
-nvm install lts/iron
-nvm ls
-nvm use lts/iron
-nvm install-latest-npm
-
 nvm install v18.12.0
-nvm use v18.12.0
-nvm install-latest-npm
-
 nvm install v14.15.1
-nvm use v14.15.1
-nvm install-latest-npm
+nvm ls
+nvm use v18.12.0
 
 sudo gpasswd -a $USER npm
 sudo usermod -aG npm $USER
