@@ -9,7 +9,6 @@ mkdir -p ~/.ssh
 chmod 700 ~/.ssh
 cd ~/.ssh
 ssh-keygen -t ed25519 -C "plakidin.vyacheslav@mail.ru"
-ssh-keygen -C "plakidin.vyacheslav@mail.ru"
 chmod 600 ~/.ssh/slaweekq
 
 eval "$(ssh-agent -s)"
