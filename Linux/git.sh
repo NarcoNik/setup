@@ -20,17 +20,15 @@ tee -a ~/.ssh/config <<< \
     User git
     IdentityFile ~/.ssh/slaweekq
     IdentitiesOnly yes
-    PasswordAuthentication no
 Host gitlab.i-link.pro
     HostName gitlab.i-link.pro
     IdentityFile ~/.ssh/slaweekq
     IdentitiesOnly yes
-    PasswordAuthentication no
 Host digitalocean.com
     HostName digitalocean.com
     IdentityFile ~/.ssh/slaweekq
     IdentitiesOnly yes
-    PasswordAuthentication no"
+PasswordAuthentication no"
 
 eval "$(ssh-agent -s)"
 # ssh-agent /bin/bash
@@ -72,7 +70,8 @@ alias dreb='docker-compose -f ./docker-compose.yml down -v && docker-compose -f 
 # alias docker-compose='docker compose'
 alias dexec='docker exec -it'
 alias kalistart='docker pull kalilinux/kali-rolling && docker run --tty --interactive kalilinux/kali-rolling'
-alias project='cd /mnt/Documents/CRYPTO && ls -lf'"
+alias project='cd /mnt/Documents/CRYPTO && ls -lf'
+alias wclone='git clone git@gitlab.i-link.pro:defi-invest/defi-invest-smart-contract.git && cd defi-invest-smart-contract && git checkout dev && git pull && code .'"
 
 # restore bash_profile
 # declare > .bash_profile.recovered

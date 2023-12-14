@@ -86,9 +86,10 @@ nvm install v14.15.1
 nvm ls
 nvm use v18.12.0
 
-sudo gpasswd -a $USER npm
-sudo usermod -aG npm $USER
+# sudo gpasswd -a $USER npm
+# sudo usermod -aG npm $USER
 sudo chown "$USER":"$USER" ~/.npm -R
+sudo chown "$USER":"$USER" ~/.nvm -R
 
 npm i -g yarn \
   prettier \

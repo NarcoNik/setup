@@ -68,6 +68,10 @@ sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer \
   && sudo apt install grub-customizer \
   && sudo grub-customizer
 
+# kate /etc/frub.d/proxifiedScripts/linux
+# 400-410 line
+# linux=`echo $list | tr ' ' '\n' | sort -V | head -1 | cat`
+
 sudo gparted
 sudo mkdir /boot/efi
 sudo mount /dev/nvme0n1p1 /mnt/boot/efi
@@ -76,6 +80,9 @@ sudo mount /dev /mnt/dev
 sudo mount /proc /mnt/proc
 sudo mount /sys /mnt/sys
 
+for pkg in grub-common grub-customizer grub-efi grub-efi-amd64-bin grub-efi-amd64-signed grub-gfxpayload-lists grub-pc grub-pc-bin grub2-common; do sudo apt -y remove --purge $pkg; done
+
+sudo apt -y install grub-customizer
 
 sudo apt install -y grub-efi efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
@@ -89,6 +96,15 @@ sudo apt-add-repository -y ppa:yannubuntu/boot-repair \
   && sudo apt update -y \
   && sudo apt install -y boot-repair \
   && sudo boot-repair
+
+sudo dpkg --configure -a
+sudo apt-get install -fy
+sudo apt-get purge --allow-remove-essential -y grub-com*
+sudo apt-get purge --allow-remove-essential -y grub2-com*
+sudo apt-get purge --allow-remove-essential -y shim-signed
+sudo apt-get purge --allow-remove-essential -y grub-common:*
+sudo apt-get purge --allow-remove-essential -y grub2-common:*
+
 
 
 sudo apt -y update \
