@@ -108,6 +108,10 @@ sudo apt -y upgrade
 sudo apt -y autoremove
 sudo apt -y autoclean
 
+gpg --generate-key
+echo 'pass init
+systemctl --user start docker-desktop'
+
 echo 'Ended'
 
 

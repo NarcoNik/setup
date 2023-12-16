@@ -5,8 +5,9 @@ if [[ $(which docker) && $(docker --version) && $(docker compose) ]]; then
 else
 echo 'Docker NOT installed, continue...'
 # First uninstall another version Docker
-sudo apt -y remove --purge docker docker.io containerd runc docker-compose
-sudo apt -y remove --purge docker docker.io containerd runc
+for pkg in docker docker.io docker-ce docker-ce-cli docker-doc docker-desktop docker-compose docker-compose-v2 docker-compose-plugin podman-docker containerd runc docker-buildx-plugin; do sudo apt -y remove --purge $pkg; done
+rm -rf $HOME/.docker
+sudo rm /usr/local/bin/com.docker.cli
 modprobe kvm
 modprobe kvm_intel  # Intel processors
 modprobe kvm_amd    # AMD processors
@@ -15,17 +16,14 @@ lsmod | grep kvm
 ls -al /dev/kvm
 sudo usermod -aG kvm $USER
 sudo apt -y install gnome-terminal
-sudo apt remove docker-desktop
-rm -r $HOME/.docker/desktop
-sudo rm /usr/local/bin/com.docker.cli
-sudo apt purge docker-desktop
 # Update cash
 sudo apt -y update \
   && sudo apt -y upgrade \
   && sudo apt -y autoremove \
   && sudo apt -y autoclean
 # Install another packages for using Docker
-sudo apt-get install ca-certificates curl gnupg apt-transport-https lsb-release software-properties-common gnupg
+sudo apt-get install ca-certificates curl gnupg apt-transport-https lsb-release \
+  software-properties-common gnupg
 sudo apt -y clean
 # Add Docker's official GPG key:
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
@@ -35,13 +33,8 @@ sudo apt-key fingerprint 0EBFCD88
 sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 # Install docker & docker-compose
 apt-cache policy docker-ce
-# sudo apt -y install docker docker.io containerd runc docker-compose
-sudo apt -y install docker-ce docker-ce-cli containerd.io docker-compose \
+sudo apt -y install docker docker.io containerd runc docker-compose \
   docker-buildx-plugin docker-compose-plugin
-# install docker desktop
-wget https://desktop.docker.com/linux/main/amd64/docker-desktop-4.26.1-amd64.deb
-sudo apt -y install ./docker-desktop-4.26.1-amd64.deb
-systemctl --user start docker-desktop
 # add all rules for user in docker group
 sudo gpasswd -a $USER docker
 sudo systemctl restart docker
@@ -50,24 +43,36 @@ sudo chown "$USER":"$USER" ~/.docker -R
 # su - ${USER} && groups && sudo usermod -aG docker ${USER} && exit && \
 sudo systemctl enable --now docker.service docker.socket containerd.service && \
   sudo systemctl daemon-reload
+# install docker desktop
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+wget https://desktop.docker.com/linux/main/amd64/docker-desktop-4.26.1-amd64.deb
+sudo apt-get -y install ./docker-desktop-4.26.1-amd64.deb
+rm -rf ./docker-desktop-4.26.1-amd64.deb
+# gpg --generate-key
+# pass init <your_generated_gpg-id_public_key>
+# pass init 5E39490B002C89313DE7A3CE190897180AF3DF5C
+# systemctl --user start docker-desktop
 # echo 'alias docker-compose="docker compose"' >> ~/.bashrc
 # docker network create traefik-public
 echo '#### Docker installed'
 echo '######################################################################'
 fi
 
-# for pkg in docker docker.io docker-ce docker-ce-cli docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt -y remove --purge $pkg; done
-# sudo rm -rf /etc/apt/sources.list.d/archive_uri-https_download_docker_com_linux_ubuntu-lunar.list
-# sudo rm -rf /etc/apt/sources.list.d/docker.list
-# sudo rm -rf /var/lib/docker
-# sudo rm -rf /var/lib/containerd
-# sudo rm -rf ~/.docker
-# sudo rm -rf /usr/local/bin/com.docker.cli
-# cd /bin
-# sudo rm -rf containerd containerd-shim containerd-shim-runc-v2 ctr docker \
-#   docker-init docker-proxy dockerd dockerd-rootless-setuptool.sh \
-#   dockerd-rootless.sh rootlesskit rootlesskit-docker-proxy runc vpnkit
-# cd -
+sudo rm -rf /etc/apt/sources.list.d/archive_uri-https_download_docker_com_linux_ubuntu-lunar.list
+sudo rm -rf /etc/apt/sources.list.d/docker.list
+sudo rm -rf /etc/apt/trusted.gpg.d/docker-archive-keyring.gpg
+sudo rm -rf /etc/apt/keyrings/docker.gpg
+sudo rm -rf /var/lib/docker
+sudo rm -rf /var/lib/containerd
+sudo rm -rf ~/.docker
+sudo rm -rf /usr/local/bin/com.docker.cli
+cd /bin
+sudo rm -rf containerd containerd-shim containerd-shim-runc-v2 ctr docker \
+  docker-init docker-proxy dockerd dockerd-rootless-setuptool.sh \
+  dockerd-rootless.sh rootlesskit rootlesskit-docker-proxy runc vpnkit
+cd -
 
 # sudo apt -y install docker-ce docker-ce-cli containerd.io docker-compose
 # curl -fsSL https://get.docker.com -o get-docker.sh
