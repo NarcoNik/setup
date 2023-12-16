@@ -59,19 +59,20 @@ git config --global user.name "Slaweekq" \
 tee -a ~/.bashrc <<< \
 "
 alias supd='sudo apt -y update && sudo apt -y upgrade && sudo apt -y --fix-broken install && sudo apt -y autoclean && sudo apt -y autoremove'
-alias sshcon='eval '$(ssh-agent -s)' && ssh-add ~/.ssh/slaweekq && ssh -T git@github.com'
-alias gpush='git add ./ && git commit -m «new» -a && git push origin'
 alias digcon='ssh plaki@188.166.12.166'
 alias doccon='docker login --password dckr_pat_yJhGjotZbYBJLvQIcRq3P27yChc -u slaweekq'
+alias sshcon='eval '$(ssh-agent -s)' && ssh-add ~/.ssh/slaweekq && ssh -T git@github.com'
+alias gpush='git add ./ && git commit -m «new» -a && git push origin'
 alias dstart='docker-compose -f ./docker-compose.yml up -d --build'
-alias dstop='docker-compose -f ./docker-compose.yml down -v && docker-compose -f ./docker-compose.yml rm -v'
+alias dstop='docker-compose -f ./docker-compose.yml down -v && docker-compose -f ./docker-compose.yml rm -sfv'
 alias dstopall='docker-compose down --rmi=all -v --remove-orphans && docker rmi $(docker images -a -q)'
-alias dreb='docker-compose -f ./docker-compose.yml down -v && docker-compose -f ./docker-compose.yml rm -v && docker-compose -f ./docker-compose.yml up -d --build'
+alias dreb='docker-compose -f ./docker-compose.yml down -v && docker-compose -f ./docker-compose.yml rm -sfv && docker-compose -f ./docker-compose.yml up -d --build'
 # alias docker-compose='docker compose'
 alias dexec='docker exec -it'
 alias kalistart='docker pull kalilinux/kali-rolling && docker run --tty --interactive kalilinux/kali-rolling'
 alias project='cd /mnt/Documents/CRYPTO && ls -lf'
-alias wclone='git clone git@gitlab.i-link.pro:defi-invest/defi-invest-smart-contract.git && cd defi-invest-smart-contract && git checkout dev && git pull && code .'"
+alias wclone='git clone git@gitlab.i-link.pro:defi-invest/defi-invest-smart-contract.git && cd defi-invest-smart-contract && git checkout dev && git pull && code .'
+alias dres='docker-compose down && clear && docker-compose up'"
 
 # restore bash_profile
 # declare > .bash_profile.recovered

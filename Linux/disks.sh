@@ -42,7 +42,7 @@ UUID=6C2404B024047F78                     /mnt/Windows    ntfs   defaults,ro    
 
 sudo fdisk -l
 sudo findmnt --verify --verbose
-lsblk -f
+T
 
 sudo hdparm -r0 /dev/nvme1n1p1
 sudo hdparm -r0 /dev/nvme1n1p2

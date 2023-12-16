@@ -14,18 +14,20 @@ kvm-ok
 lsmod | grep kvm
 ls -al /dev/kvm
 sudo usermod -aG kvm $USER
+sudo apt -y install gnome-terminal
+sudo apt remove docker-desktop
+rm -r $HOME/.docker/desktop
+sudo rm /usr/local/bin/com.docker.cli
+sudo apt purge docker-desktop
 # Update cash
 sudo apt -y update \
   && sudo apt -y upgrade \
   && sudo apt -y autoremove \
   && sudo apt -y autoclean
 # Install another packages for using Docker
-sudo apt -y install apt-transport-https ca-certificates curl \
-  software-properties-common gnupg lsb-release openssl nginx
+sudo apt-get install ca-certificates curl gnupg apt-transport-https lsb-release software-properties-common gnupg
 sudo apt -y clean
 # Add Docker's official GPG key:
-# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
-#   sudo gpg -y --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
   sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/docker-archive-keyring.gpg
 sudo apt-key fingerprint 0EBFCD88
@@ -34,14 +36,19 @@ sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/u
 # Install docker & docker-compose
 apt-cache policy docker-ce
 # sudo apt -y install docker docker.io containerd runc docker-compose
-sudo apt -y install docker-ce docker-ce-cli containerd.io docker-compose
-# Add all rules for docker
+sudo apt -y install docker-ce docker-ce-cli containerd.io docker-compose \
+  docker-buildx-plugin docker-compose-plugin
+# install docker desktop
+wget https://desktop.docker.com/linux/main/amd64/docker-desktop-4.26.1-amd64.deb
+sudo apt -y install ./docker-desktop-4.26.1-amd64.deb
+systemctl --user start docker-desktop
+# add all rules for user in docker group
 sudo gpasswd -a $USER docker
 sudo systemctl restart docker
 sudo usermod -aG docker ${USER}
 sudo chown "$USER":"$USER" ~/.docker -R
-su - ${USER} && groups && sudo usermod -aG docker ${USER} && exit && \
-  sudo systemctl enable --now docker.service docker.socket containerd.service && \
+# su - ${USER} && groups && sudo usermod -aG docker ${USER} && exit && \
+sudo systemctl enable --now docker.service docker.socket containerd.service && \
   sudo systemctl daemon-reload
 # echo 'alias docker-compose="docker compose"' >> ~/.bashrc
 # docker network create traefik-public
