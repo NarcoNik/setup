@@ -37,12 +37,13 @@ UUID=b2569fde-a4e2-46c9-b4b6-35ef22b6ad1f /               ext4   errors=remount-
 UUID=2200-9AEC                            /boot/efi       vfat   umask=0077           0      1
 UUID=8A34B39934B3872B                     /mnt/Documents  ntfs   defaults,rw,realtime 0      0
 UUID=6C2404B024047F78                     /mnt/Windows    ntfs   defaults,ro          0      0
+/swapfile                                 none            swap   sw                   0      0
 
 
 
 sudo fdisk -l
 sudo findmnt --verify --verbose
-T
+lsblk -f
 
 sudo hdparm -r0 /dev/nvme1n1p1
 sudo hdparm -r0 /dev/nvme1n1p2
@@ -59,9 +60,33 @@ sudo mount -t ntfs -o remove_hiberfile /dev/nvme1n1p2 /mnt/Linux
 
 echo '######################################################################'
 
+echo '#### Swap install'
+echo '######################################################################'
+sudo swapon --show
+free -h
+df -h
+sudo fallocate -l 16G /swapfile
+ls -lh /swapfile
+sudo chmod 600 /swapfile
+ls -lh /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+sudo swapon --show
+free -h
+sudo cp /etc/fstab /etc/fstab.bak
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+cat /proc/sys/vm/swappiness
+sudo sysctl vm.swappiness=10
+cat /proc/sys/vm/vfs_cache_pressure
+sudo sysctl vm.vfs_cache_pressure=50
+sudo tee -a /etc/sysctl.conf <<< \
+"
+vm.swappiness=10
+vm.vfs_cache_pressure=50"
+echo '######################################################################'
 
 
-#### Grub2 install
+echo '#### Grub2 install'
 echo '######################################################################'
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer \
   && sudo apt update -y \
