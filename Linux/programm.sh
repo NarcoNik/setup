@@ -135,12 +135,17 @@ echo '######################################################################'
 # # options nouveau modeset=0 | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
 sudo update-initramfs -u
 
-sudo add-apt-repository -y ppa:graphics-drivers/ppa
-sudo apt -y update
-sudo apt install -y nvidia-settings libvulkan1
 ubuntu-drivers list
 sudo ubuntu-drivers install
 sudo apt -y install linux-headers-$(uname -r)
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+sudo dpkg -i cuda-keyring_1.1-1_all.deb
+sudo apt -y install cuda-drivers
+sudo rm -f cuda-keyring_1.1-1_all.deb
+
+# sudo add-apt-repository -y ppa:graphics-drivers/ppa
+# sudo apt -y update
+# sudo apt install -y nvidia-settings libvulkan1
 
 echo 'Installing Bluetooth Audio for AirPods'
 echo '######################################################################'
@@ -176,3 +181,9 @@ pactl info | grep "Server Name"
 
 echo 'All programm installed'
 echo '######################################################################'
+
+
+# sudo apt install nvidia-driver-470 nvidia-dkms-470
+# wget https://us.download.nvidia.com/tesla/470.223.02/NVIDIA-Linux-x86_64-470.223.02.run
+# sudo sh NVIDIA-Linux-x86_64-470.223.02.run
+# rm -rf NVIDIA-Linux-x86_64-470.223.02.run
