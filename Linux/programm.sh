@@ -138,14 +138,15 @@ sudo update-initramfs -u
 ubuntu-drivers list
 sudo ubuntu-drivers install
 sudo apt -y install linux-headers-$(uname -r)
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
-sudo dpkg -i cuda-keyring_1.1-1_all.deb
-sudo apt -y install cuda-drivers
-sudo rm -f cuda-keyring_1.1-1_all.deb
+sudo apt install nvidia-driver-535 nvidia-dkms-535
+wget https://us.download.nvidia.com/XFree86/Linux-x86_64/535.146.02/NVIDIA-Linux-x86_64-535.146.02.run
+sudo sh NVIDIA-Linux-x86_64-535.146.02.run
+rm -rf NVIDIA-Linux-x86_64-535.146.02.run
 
-# sudo add-apt-repository -y ppa:graphics-drivers/ppa
-# sudo apt -y update
-# sudo apt install -y nvidia-settings libvulkan1
+# wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+# sudo dpkg -i cuda-keyring_1.1-1_all.deb
+# sudo apt -y install cuda-drivers
+# sudo rm -f cuda-keyring_1.1-1_all.deb
 
 echo 'Installing Bluetooth Audio for AirPods'
 echo '######################################################################'
@@ -184,6 +185,6 @@ echo '######################################################################'
 
 
 # sudo apt install nvidia-driver-470 nvidia-dkms-470
-# wget https://us.download.nvidia.com/tesla/470.223.02/NVIDIA-Linux-x86_64-470.223.02.run
+# wget https://us.download.nvidia.com/XFree86/Linux-x86_64/470.223.02/NVIDIA-Linux-x86_64-470.223.02.run
 # sudo sh NVIDIA-Linux-x86_64-470.223.02.run
 # rm -rf NVIDIA-Linux-x86_64-470.223.02.run
