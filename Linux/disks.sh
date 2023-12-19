@@ -65,7 +65,7 @@ echo '######################################################################'
 sudo swapon --show
 free -h
 df -h
-sudo fallocate -l 16G /swapfile
+sudo fallocate -l 32G /swapfile
 ls -lh /swapfile
 sudo chmod 600 /swapfile
 ls -lh /swapfile

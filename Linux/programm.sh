@@ -35,13 +35,13 @@ sudo apt install -f
 sudo rm -rf powershell_7.4.0-1.deb_amd64.deb
 
 # Download the Discord package file
-wget https://dl.discordapp.net/apps/linux/0.0.36/discord-0.0.36.deb
+wget https://dl.discordapp.net/apps/linux/0.0.38/discord-0.0.38.deb
 # Install the Discord package
-sudo dpkg -i discord-0.0.36.deb
+sudo dpkg -i discord-0.0.38.deb
 # Resolve missing dependencies and finish the install (if necessary)
 sudo apt install -f
 # Delete the downloaded package file
-sudo rm -rf discord-0.0.36.deb
+sudo rm -rf discord-0.0.38.deb
 
 sudo apt -y --fix-broken install
 
