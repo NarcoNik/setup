@@ -70,6 +70,7 @@ sudo apt install -y nodejs \
 
 sudo systemctl daemon-reload
 sudo dpkg --configure -a
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
 
 echo 'All new usless packages installed successfully'
 echo '######################################################################'
@@ -110,7 +111,7 @@ sudo apt -y autoclean
 gpg --generate-key
 echo 'pass init
 systemctl --user start docker-desktop'
-
+curl -L https://foundry.paradigm.xyz | bash
 echo 'Ended'
 
 

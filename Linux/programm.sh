@@ -64,6 +64,8 @@ sudo apt install -f
 sudo rm -rf anydesk_6.1.1-1_amd64.deb
 sudo systemctl daemon-reload
 
+
+
 # wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 # sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 # sudo apt -y update
@@ -77,7 +79,6 @@ sudo systemctl daemon-reload
 # sudo apt install -f
 # # Delete the downloaded package file
 # sudo rm -rf remix-ide_1.3.6_amd64.deb
-
 
 sudo add-apt-repository -y ppa:atareao/telegram
 sudo apt -y update
@@ -142,11 +143,6 @@ sudo apt install nvidia-driver-535 nvidia-dkms-535
 wget https://us.download.nvidia.com/XFree86/Linux-x86_64/535.146.02/NVIDIA-Linux-x86_64-535.146.02.run
 sudo sh NVIDIA-Linux-x86_64-535.146.02.run
 rm -rf NVIDIA-Linux-x86_64-535.146.02.run
-
-# wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
-# sudo dpkg -i cuda-keyring_1.1-1_all.deb
-# sudo apt -y install cuda-drivers
-# sudo rm -f cuda-keyring_1.1-1_all.deb
 
 echo 'Installing Bluetooth Audio for AirPods'
 echo '######################################################################'
