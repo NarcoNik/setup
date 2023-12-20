@@ -64,10 +64,10 @@ sudo apt install -f
 sudo rm -rf anydesk_6.1.1-1_amd64.deb
 sudo systemctl daemon-reload
 
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-sudo apt -y update
-sudo apt -y install google-chrome-stable
+# wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+# sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+# sudo apt -y update
+# sudo apt -y install google-chrome-stable
 
 # # Download the RemixIDE package file
 # wget https://github.com/ethereum/remix-desktop/releases/download/v1.3.6/remix-ide_1.3.6_amd64.deb

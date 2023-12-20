@@ -20,7 +20,6 @@ sudo apt install -y nodejs \
   npm \
   nano \
   openssh-client \
-  mc \
   linux-firmware \
   inxi \
   curl \
