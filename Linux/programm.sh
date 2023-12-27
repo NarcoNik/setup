@@ -64,8 +64,6 @@ sudo apt install -f
 sudo rm -rf anydesk_6.1.1-1_amd64.deb
 sudo systemctl daemon-reload
 
-
-
 # wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 # sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 # sudo apt -y update
@@ -132,17 +130,16 @@ code --locate-shell-integration-path bash
 
 echo 'Installing Nvidia & other graphics drivers'
 echo '######################################################################'
-# # blacklist nouveau | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
-# # options nouveau modeset=0 | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
-sudo update-initramfs -u
+sudo apt-cache policy linux-headers-$(uname -r)
+sudo apt install linux-headers-$(uname -r)
+ubuntu-drivers list --gpgpu
+sudo ubuntu-drivers install nvidia:535
 
-ubuntu-drivers list
-sudo ubuntu-drivers install
-sudo apt -y install linux-headers-$(uname -r)
-sudo apt install nvidia-driver-535 nvidia-dkms-535
 wget https://us.download.nvidia.com/XFree86/Linux-x86_64/535.146.02/NVIDIA-Linux-x86_64-535.146.02.run
 sudo sh NVIDIA-Linux-x86_64-535.146.02.run
 rm -rf NVIDIA-Linux-x86_64-535.146.02.run
+
+echo '######################################################################'
 
 echo 'Installing Bluetooth Audio for AirPods'
 echo '######################################################################'
@@ -178,6 +175,47 @@ pactl info | grep "Server Name"
 
 echo 'All programm installed'
 echo '######################################################################'
+
+
+
+
+# echo 'Installing Nvidia & other graphics drivers'
+# echo '######################################################################'
+# # blacklist nouveau | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
+# # options nouveau modeset=0 | tee -a /etc/modprobe.d/blacklist-nvidia-nouveau.conf
+# sudo update-initramfs -u
+# ubuntu-drivers list
+# sudo ubuntu-drivers install
+
+# wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/nvidia-driver-545_545.23.08-0ubuntu1_amd64.deb
+# wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/nvidia-dkms-545_545.23.08-0ubuntu1_amd64.deb
+
+
+# sudo apt install nvidia-driver-535 nvidia-driver-535-server nvidia-dkms-535
+# wget https://us.download.nvidia.com/XFree86/Linux-x86_64/535.146.02/NVIDIA-Linux-x86_64-535.146.02.run
+# sudo sh NVIDIA-Linux-x86_64-535.146.02.run
+# rm -rf NVIDIA-Linux-x86_64-535.146.02.run
+
+
+
+# lspci | grep -i nvidia
+# sudo apt -y install linux-headers-$(uname -r)
+# wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+# sudo dpkg -i cuda-keyring_1.1-1_all.deb
+# sudo apt update
+
+# wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-archive-keyring.gpg
+# sudo install -D -o root -g root -m 644 cuda-archive-keyring.gpg /etc/apt/trusted.gpg.d/cuda-archive-keyring.gpg
+# echo "deb [signed-by=/etc/apt/trusted.gpg.d/cuda-archive-keyring.gpg] https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/ /" | sudo tee /etc/apt/sources.list.d/cuda-ubuntu2204-x86_64.list
+
+# wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin
+# sudo mv cuda-ubuntu2204.pin /etc/apt/preferences.d/cuda-repository-pin-600
+
+# sudo apt -y install cuda-drivers
+# rm -rf cuda-keyring_1.1-1_all.deb
+# rm -rf cuda-archive-keyring.gpg
+
+
 
 
 # sudo apt install nvidia-driver-470 nvidia-dkms-470
