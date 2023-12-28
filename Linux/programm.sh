@@ -147,8 +147,6 @@ sudo apt -y install 'bluez*' blueman
 modprobe btusb
 sudo tee -a /etc/bluetooth/main.conf <<< \
 "
-AutoEnable=true
-
 ControllerMode = bredr
 "
 sudo /etc/init.d/bluetooth restart
@@ -168,6 +166,24 @@ sudo apt -y install pulseaudio-utils \
 sudo systemctl disable --global pulseaudio
 sudo systemctl enable --global pipewire-pulse
 pactl info | grep "Server Name"
+
+# echo '######################################################################'
+
+# echo 'Installing Wine & Safari'
+# echo '######################################################################'
+# cd ~
+# sudo dpkg --add-architecture i386
+# sudo mkdir -pm755 /etc/apt/keyrings
+# sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+# sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/lunar/winehq-lunar.sources
+# sudo apt update
+# sudo apt install --install-recommends winehq-stable
+
+# mkdir -p ~/build/safari
+# cd ~/build/safari
+
+# wget http://appldnld.apple.com/Safari5/041-5487.20120509.INU8B/SafariSetup.exe
+# wine SafariSetup.exe
 
 # echo "deb [trusted=yes] https://apt.fury.io/kurtosis-tech/ /" | sudo tee /etc/apt/sources.list.d/kurtosis.list
 # sudo apt update
