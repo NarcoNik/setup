@@ -29,7 +29,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
   sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/docker-archive-keyring.gpg
 sudo apt-key fingerprint 0EBFCD88
 # Add the Docker repository to Apt sources:
-sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable"
 # Install docker & docker-compose
 apt-cache policy docker-ce
 sudo apt -y install docker.io containerd runc docker-compose
@@ -78,6 +78,6 @@ fi
 # rm -rf ./docker-desktop-4.26.1-amd64.deb
 # gpg --generate-key
 # pass init <your_generated_gpg-id_public_key>
-# pass init 5E39490B002C89313DE7A3CE190897180AF3DF5C
+# pass init 999C51E658F56983A2717BC60B7202C027D6D570
 # systemctl --user start docker-desktop
 # systemctl --user enable docker-desktop

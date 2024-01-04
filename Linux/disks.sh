@@ -40,6 +40,13 @@ UUID=6C2404B024047F78                     /mnt/Windows    ntfs   defaults,ro    
 /swapfile                                 none            swap   sw                   0      0
 
 
+# UUID=<uuid>                             <mount point> <FSType> <FSOptions>        <dump> <pass>
+UUID=232c7d91-cb9b-4a25-8442-20bb32d7989c /               ext4   errors=remount-ro    0      1
+UUID=A506-3E8C                            /boot/efi       vfat   umask=0077           0      1
+UUID=70bb2e56-8bbe-49c2-aae4-312a61b44639 /home           ext4   defaults             0      2
+UUID=8A34B39934B3872B                     /mnt/Documents  ntfs   defaults,rw,realtime 0      0
+UUID=426d9e06-ea95-4a0b-a3cb-8ba7659204f1 none            swap   sw                   0      0
+
 
 sudo fdisk -l
 sudo findmnt --verify --verbose
@@ -74,7 +81,7 @@ sudo swapon /swapfile
 sudo swapon --show
 free -h
 sudo cp /etc/fstab /etc/fstab.bak
-echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+echo '/swapfile                                 none            swap   sw                   0      0' | sudo tee -a /etc/fstab
 cat /proc/sys/vm/swappiness
 sudo sysctl vm.swappiness=10
 cat /proc/sys/vm/vfs_cache_pressure

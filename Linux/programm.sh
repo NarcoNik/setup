@@ -35,13 +35,13 @@ sudo apt install -f
 sudo rm -rf powershell_7.4.0-1.deb_amd64.deb
 
 # Download the Discord package file
-wget https://dl.discordapp.net/apps/linux/0.0.38/discord-0.0.38.deb
+wget https://dl.discordapp.net/apps/linux/0.0.39/discord-0.0.39.deb
 # Install the Discord package
-sudo dpkg -i discord-0.0.38.deb
+sudo dpkg -i discord-0.0.39.deb
 # Resolve missing dependencies and finish the install (if necessary)
 sudo apt install -f
 # Delete the downloaded package file
-sudo rm -rf discord-0.0.38.deb
+sudo rm -rf discord-0.0.39.deb
 
 sudo apt -y --fix-broken install
 
@@ -130,14 +130,28 @@ code --locate-shell-integration-path bash
 
 echo 'Installing Nvidia & other graphics drivers'
 echo '######################################################################'
+sudo apt install -y
+
+sudo apt install -y \
+   nvidia-settings \
+   libvulkan1 \
+   pkg-config \
+   linux-headers-$(uname -r)
 sudo apt-cache policy linux-headers-$(uname -r)
-sudo apt install linux-headers-$(uname -r)
 ubuntu-drivers list --gpgpu
 sudo ubuntu-drivers install nvidia:535
 
-wget https://us.download.nvidia.com/XFree86/Linux-x86_64/535.146.02/NVIDIA-Linux-x86_64-535.146.02.run
-sudo sh NVIDIA-Linux-x86_64-535.146.02.run
-rm -rf NVIDIA-Linux-x86_64-535.146.02.run
+# wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+# sudo dpkg -i cuda-keyring_1.1-1_all.deb
+# sudo apt -y install cuda-drivers
+# sudo rm -f cuda-keyring_1.1-1_all.deb
+
+# wget https://us.download.nvidia.com/XFree86/Linux-x86_64/535.146.02/NVIDIA-Linux-x86_64-535.146.02.run
+# sudo sh NVIDIA-Linux-x86_64-535.146.02.run
+# rm -rf NVIDIA-Linux-x86_64-535.146.02.run
+# sudo update-initramfs -u
+
+nvidia-smi
 
 echo '######################################################################'
 
@@ -158,7 +172,6 @@ sudo apt -y install pulseaudio-utils \
   pipewire \
   pipewire-pulse \
   pipewire-tests \
-  pipewire-locales \
   gstreamer1.0-pipewire \
   libspa-0.2-bluetooth \
   libspa-0.2-jack \
@@ -194,6 +207,15 @@ echo '######################################################################'
 
 
 
+
+
+# sudo apt -y remove --purge nvidia-*
+# sudo apt -y remove --purge libnvidia-*
+# sudo rm /etc/X11/xorg.conf
+# sudo rm /etc/modprobe.d/nvidia.conf
+# sudo rm /etc/modprobe.d/blacklist-nvidia-nouveau.conf
+# sudo rm /etc/systemd/system/nvidia-persistenced.service
+# echo 'nouveau' | sudo tee -a /etc/modules
 
 # echo 'Installing Nvidia & other graphics drivers'
 # echo '######################################################################'

@@ -24,7 +24,8 @@ sudo apt -y install \
   libnss3-dev \
   libssl-dev \
   libreadline-dev \
-  libffi-dev wget
+  libffi-dev \
+  wget
 
 modprobe kvm
 modprobe kvm_intel

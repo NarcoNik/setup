@@ -10,6 +10,7 @@ sudo apt -y autoclean
 sudo apt -y autoremove
 sudo apt -y --fix-broken install
   # && sudo apt -y dist-upgrade
+sudo timedatectl set-local-rtc 1
 
 echo 'All packages updated'
 echo '######################################################################'
@@ -109,7 +110,7 @@ sudo apt -y autoremove
 sudo apt -y autoclean
 
 gpg --generate-key
-echo 'pass init
+echo 'pass init E4B1AC2E540EFB0BE015CBFFD1FA3E1585BED13B
 systemctl --user start docker-desktop'
 curl -L https://foundry.paradigm.xyz | bash
 echo 'Ended'
