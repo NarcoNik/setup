@@ -124,20 +124,6 @@ cd ~ \
 
 # https://habr.com/ru/articles/594877/
 
-# echo "Installing GO Lang"
-# echo "echo '######################################################################'"
-# sudo apt install wget software-properties-common apt-transport-https -y \
-#   && wget https://golang.org/dl/go1.17.linux-amd64.tar.gz \
-#   && sudo tar -zxvf go1.17.linux-amd64.tar.gz -C /usr/local/
-
-# echo "export PATH=/usr/local/go/bin:${PATH}" | sudo tee /etc/profile.d/go.sh
-# source /etc/profile.d/go.sh
-
-# echo "export PATH=/usr/local/go/bin:${PATH}" | sudo tee -a $HOME/.profile source
-# source $HOME/.profile
-
-# echo $PATH
-
 # echo "Installing DNS-proxy"
 # echo "echo '######################################################################'"
 # git clone https://github.com/AdguardTeam/dnsproxy.git \

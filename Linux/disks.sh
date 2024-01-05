@@ -41,11 +41,10 @@ UUID=6C2404B024047F78                     /mnt/Windows    ntfs   defaults,ro    
 
 
 # UUID=<uuid>                             <mount point> <FSType> <FSOptions>        <dump> <pass>
-UUID=232c7d91-cb9b-4a25-8442-20bb32d7989c /               ext4   errors=remount-ro    0      1
-UUID=A506-3E8C                            /boot/efi       vfat   umask=0077           0      1
-UUID=70bb2e56-8bbe-49c2-aae4-312a61b44639 /home           ext4   defaults             0      2
+UUID=4a11f8de-cc46-4d1e-b9b1-9de353ba813f /               ext4   errors=remount-ro    0      1
+UUID=A977-4509                            /boot/efi       vfat   umask=0077           0      1
 UUID=8A34B39934B3872B                     /mnt/Documents  ntfs   defaults,rw,realtime 0      0
-UUID=426d9e06-ea95-4a0b-a3cb-8ba7659204f1 none            swap   sw                   0      0
+UUID=a81c389c-8f0c-4689-b852-73b1e92e3981 none            swap   sw                   0      0
 
 
 sudo fdisk -l

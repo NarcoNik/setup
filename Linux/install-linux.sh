@@ -17,65 +17,16 @@ echo '######################################################################'
 echo 'Install new usless packages'
 echo '######################################################################'
 
-sudo apt install -y nodejs \
-  npm \
-  nano \
-  openssh-client \
-  linux-firmware \
-  inxi \
-  curl \
-  cpu-x \
-  dpkg \
-  gpg \
-  software-properties-common \
-  apt-transport-https \
-  wget \
-  make \
-  build-essential \
-  libssl-dev \
-  libcurl4-gnutls-dev \
-  libexpat1-dev \
-  gettext \
-  unzip \
-  p7zip-rar \
-  p7zip-full \
-  rar \
-  unrar \
-  zip \
-  nmon \
-  nload \
-  conmon \
-  ca-certificates \
-  gnupg \
-  lsb-release \
-  cmake \
-  g++ \
-  zlib1g-dev \
-  hardinfo \
-  hwinfo \
-  ppa-purge \
-  bash-completion \
-  ubuntu-restricted-extras \
-  clang \
-  xz-utils \
-  gcc-multilib \
-  kate \
-  sweeper \
-  gparted \
-  wireguard \
-  network-manager \
-  network-manager-vpnc \
-  network-manager-gnome \
-  net-tools \
-  vlc \
-  snap \
-  snapd \
-  flatpak \
-  plasma-discover-backend-flatpak
-
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-
+sudo apt install -y nodejs npm nano openssh-client inxi curl \
+  linux-firmware cpu-x dpkg gpg software-properties-common \
+  apt-transport-https wget make build-essential libssl-dev \
+  libcurl4-gnutls-dev libexpat1-dev gettext unzip p7zip-rar \
+  p7zip-full rar unrar zip nmon nload conmon ca-certificates \
+  gnupg lsb-release cmake g++ zlib1g-dev hardinfo hwinfo \
+  ppa-purge bash-completion ubuntu-restricted-extras \
+  clang xz-utils gcc-multilib sweeper gparted wireguard \
+  network-manager network-manager-vpnc network-manager-gnome \
+  net-tools vlc
 sudo systemctl daemon-reload
 sudo dpkg --configure -a
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
@@ -84,26 +35,15 @@ echo 'All new usless packages installed successfully'
 echo '######################################################################'
 sudo chmod +x ./git.sh
 ./git.sh
-
 sudo chmod +x ./programm.sh
 ./programm.sh
-
-sudo chmod +x ./python3.sh
-./python3.sh
-
+# sudo chmod +x ./python3.sh
+# ./python3.sh
 sudo chmod +x ./docker.sh
 ./docker.sh
 
 echo 'Set autocomlete bash'
 echo '######################################################################'
-
-# sudo tee -a /etc/fstab <<< \
-# "
-# # UUID=<uuid>                             <mount point> <FSType> <FSOptions>        <dump> <pass>
-# UUID=8A34B39934B3872B                     /mnt/Documents  ntfs   defaults,rw,realtime 0      0
-# UUID=9A34BC1034BBECFF                     /mnt/Windows    ntfs   defaults,ro          0      0
-# "
-
 sudo tee -a /etc/inputrc <<< \
 "
 # paste after all text
@@ -115,17 +55,20 @@ sudo apt -y update
 sudo apt -y upgrade
 sudo apt -y autoremove
 sudo apt -y autoclean
-
 gpg --generate-key
-echo 'pass init B0A74B2C7FA1E745E1A5CC462BE2CF77609B0912
+echo 'pass init BA1F0CFD9CE6CDDAA7353AD10BD169A868EBC999
 systemctl --user start docker-desktop'
 curl -L https://foundry.paradigm.xyz | bash
 echo 'Ended'
 
 
+# sudo apt install -y snap snapd flatpak plasma-discover-backend-flatpak
+# flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+
+
 # search package name
 # dpkg -l | grep name
-# dpkg -l | grep openssh
 
 
 # sudo reboot

@@ -43,6 +43,7 @@ sudo ./WhiteSur-icon-theme/install.sh -a -b
 mkdir -p ~/.icons/capitaine-cursors
 sudo cp -pr ./capitaine-cursors /usr/share/icons/capitaine-cursors
 cd /usr/share/icons/capitaine-cursors/
+sudo chmod +x ./build.sh
 sudo ./build.sh
 cd -
 
