@@ -130,8 +130,6 @@ code --locate-shell-integration-path bash
 
 echo 'Installing Nvidia & other graphics drivers'
 echo '######################################################################'
-sudo apt install -y
-
 sudo apt install -y \
    nvidia-settings \
    libvulkan1 \
@@ -198,9 +196,20 @@ pactl info | grep "Server Name"
 # wget http://appldnld.apple.com/Safari5/041-5487.20120509.INU8B/SafariSetup.exe
 # wine SafariSetup.exe
 
-# echo "deb [trusted=yes] https://apt.fury.io/kurtosis-tech/ /" | sudo tee /etc/apt/sources.list.d/kurtosis.list
-# sudo apt update
-# sudo apt install kurtosis-cli
+echo 'Installing Wine'
+echo '######################################################################'
+sudo dpkg --add-architecture i386 &&\
+  sudo add-apt-repository multiverse &&\
+  sudo apt -y update &&\
+  sudo apt -y upgrade &&\
+  sudo apt -y install curl file libc6 libnss3 policykit-1 xz-utils zenity \
+  bubblewrap curl icoutils tar libvulkan1 libvulkan1:i386 wget zenity zstd \
+  cabextract xdg-utils openssl bc libgl1-mesa-glx libgl1-mesa-glx:i386
+
+wget https://github.com/lutris/lutris/releases/download/v0.5.14/lutris_0.5.14_all.deb
+sudo dpkg -i lutris_0.5.14_all.deb
+sudo apt install -f
+sudo rm -f lutris_0.5.14_all.deb
 
 echo 'All programm installed'
 echo '######################################################################'

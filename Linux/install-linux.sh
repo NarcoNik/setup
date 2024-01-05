@@ -28,7 +28,7 @@ sudo apt install -y nodejs \
   dpkg \
   gpg \
   software-properties-common \
-  sudo apt-transport-https \
+  apt-transport-https \
   wget \
   make \
   build-essential \
@@ -67,7 +67,14 @@ sudo apt install -y nodejs \
   network-manager-vpnc \
   network-manager-gnome \
   net-tools \
-  vlc
+  vlc \
+  snap \
+  snapd \
+  flatpak \
+  plasma-discover-backend-flatpak
+
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
 
 sudo systemctl daemon-reload
 sudo dpkg --configure -a
@@ -110,7 +117,7 @@ sudo apt -y autoremove
 sudo apt -y autoclean
 
 gpg --generate-key
-echo 'pass init E4B1AC2E540EFB0BE015CBFFD1FA3E1585BED13B
+echo 'pass init B0A74B2C7FA1E745E1A5CC462BE2CF77609B0912
 systemctl --user start docker-desktop'
 curl -L https://foundry.paradigm.xyz | bash
 echo 'Ended'
