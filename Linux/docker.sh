@@ -42,6 +42,10 @@ sudo chown "$USER":"$USER" ~/.docker -R
 sudo systemctl enable --now docker docker.socket containerd && \
   sudo systemctl daemon-reload
 
+wget https://github.com/DockStation/dockstation/releases/download/v1.5.1/dockstation_1.5.1_amd64.deb
+sudo apt-get -y install ./dockstation_1.5.1_amd64.deb
+sudo apt install -f
+sudo rm -rf ./dockstation_1.5.1_amd64.deb
 # echo 'alias docker-compose="docker compose"' >> ~/.bashrc
 # docker network create traefik-public
 echo '#### Docker installed'

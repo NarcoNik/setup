@@ -58,7 +58,8 @@ git config --global user.name "Slaweekq" \
 
 tee -a ~/.bashrc <<< \
 "
-alias supd='sudo apt -y update && sudo apt -y upgrade && sudo apt -y --fix-broken install && sudo apt -y autoclean && sudo apt -y autoremove'
+alias srp='sudo apt -y remove --purge'
+alias supd='sudo apt -y update && sudo apt -y upgrade && sudo apt -y --fix-broken install && sudo apt -y autoremove --purge && sudo apt -y autoclean'
 alias digcon='ssh plaki@188.166.12.166'
 alias doccon='docker login --password dckr_pat_yJhGjotZbYBJLvQIcRq3P27yChc -u slaweekq'
 alias sshcon='eval '$(ssh-agent -s)' && ssh-add ~/.ssh/slaweekq && ssh -T git@github.com'

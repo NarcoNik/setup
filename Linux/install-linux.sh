@@ -26,7 +26,7 @@ sudo apt install -y nodejs npm nano openssh-client inxi curl \
   ppa-purge bash-completion ubuntu-restricted-extras \
   clang xz-utils gcc-multilib sweeper gparted wireguard \
   network-manager network-manager-vpnc network-manager-gnome \
-  net-tools vlc
+  net-tools vlc snap snapd
 sudo systemctl daemon-reload
 sudo dpkg --configure -a
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
@@ -60,12 +60,6 @@ echo 'pass init BA1F0CFD9CE6CDDAA7353AD10BD169A868EBC999
 systemctl --user start docker-desktop'
 curl -L https://foundry.paradigm.xyz | bash
 echo 'Ended'
-
-
-# sudo apt install -y snap snapd flatpak plasma-discover-backend-flatpak
-# flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-
 
 # search package name
 # dpkg -l | grep name
