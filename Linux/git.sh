@@ -1,10 +1,7 @@
-echo "Installing git"
-sudo apt -y install -y git git-core git-gui
-git --version
-
-echo "Generate ssh"
+echo "Installing git & Generate ssh"
 echo "######################################################################"
-sudo apt install -y nano openssh-client
+sudo apt install -y git git-core git-gui nano openssh-client
+git --version
 sudo ufw allow ssh
 cd ~
 mkdir -p ~/.ssh

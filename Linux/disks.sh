@@ -86,8 +86,7 @@ sudo sysctl vm.swappiness=10
 cat /proc/sys/vm/vfs_cache_pressure
 sudo sysctl vm.vfs_cache_pressure=50
 sudo tee -a /etc/sysctl.conf <<< \
-"
-vm.swappiness=10
+"vm.swappiness=10
 vm.vfs_cache_pressure=50"
 echo '######################################################################'
 

@@ -5,7 +5,7 @@ sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
 sudo add-apt-repository -y ppa:atareao/telegram
 sudo add-apt-repository -y ppa:ethereum/ethereum
 sudo apt -y update
-sudo apt -y install grub-customizer telegram solc ethereum
+sudo apt -y install grub-customizer solc ethereum telegram
 
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
@@ -30,7 +30,6 @@ sudo apt -y install ./powershell_7.4.0-1.deb_amd64.deb ./discord-0.0.39.deb \
   ./GitHubDesktop-linux-3.1.1-linux1.deb ./anydesk_6.1.1-1_amd64.deb
 
 sudo apt -y --fix-broken install
-
 sudo apt install -f
 sudo systemctl daemon-reload
 
@@ -56,10 +55,8 @@ nvm install v18.12.0
 nvm install v14.15.1
 nvm ls
 nvm use v18.12.0
-
 sudo chown "$USER":"$USER" ~/.npm -R
 sudo chown "$USER":"$USER" ~/.nvm -R
-
 npm i -g yarn prettier eslint nodemon serve dotenv create-react-app
 
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
@@ -100,14 +97,9 @@ sudo systemctl restart bluetooth
 
 sudo add-apt-repository -y ppa:pipewire-debian/pipewire-upstream
 sudo apt -y update
-sudo apt -y install pulseaudio-utils \
-  pipewire \
-  pipewire-pulse \
-  pipewire-tests \
-  gstreamer1.0-pipewire \
-  libspa-0.2-bluetooth \
-  libspa-0.2-jack \
-  pipewire-audio-client-libraries
+sudo apt -y install pulseaudio-utils pipewire pipewire-pulse \
+  pipewire-tests gstreamer1.0-pipewire libspa-0.2-bluetooth \
+  libspa-0.2-jack pipewire-audio-client-libraries
 sudo systemctl disable --global pulseaudio
 sudo systemctl enable --global pipewire-pulse
 pactl info | grep "Server Name"
@@ -117,12 +109,14 @@ echo '######################################################################'
 sudo wget -O /etc/apt/trusted.gpg.d/winehq.key https://dl.winehq.org/wine-builds/winehq.key
 sudo echo "deb [signed-by=/etc/apt/trusted.gpg.d/winehq.key] https://dl.winehq.org/wine-builds/ubuntu lunar main" | \
   sudo tee /etc/apt/sources.list.d/winehq.list > /dev/null
+sudo dpkg --add-architecture amd64
+sudo dpkg --add-architecture i386
 sudo apt -y update
 sudo apt -y install --install-recommends winehq-stable
 # wine winecfg
 # wine clock
 
-sudo apt -y install flatpak plasma-discover-backend-flatpak
+sudo apt -y install flatpak gnome-software-plugin-flatpak plasma-discover-backend-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 wget https://github.com/lutris/lutris/releases/download/v0.5.14/lutris_0.5.14_all.deb
@@ -150,11 +144,6 @@ echo '######################################################################'
 
 # wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/nvidia-driver-545_545.23.08-0ubuntu1_amd64.deb
 # wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/nvidia-dkms-545_545.23.08-0ubuntu1_amd64.deb
-
-
-# sudo apt install nvidia-driver-535 nvidia-dkms-535
-
-
 
 # sudo apt install nvidia-driver-470 nvidia-dkms-470
 # wget https://us.download.nvidia.com/XFree86/Linux-x86_64/470.223.02/NVIDIA-Linux-x86_64-470.223.02.run

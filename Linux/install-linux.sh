@@ -3,7 +3,6 @@ echo 'Installing everything you need...'
 echo 'First update all packages'
 echo '######################################################################'
 
-# echo cdfecdfe | sudo -S
 sudo apt -y update
 sudo apt -y upgrade
 sudo apt -y autoclean
@@ -17,21 +16,19 @@ echo '######################################################################'
 echo 'Install new usless packages'
 echo '######################################################################'
 
-sudo apt install -y nodejs npm nano openssh-client inxi curl \
-  linux-firmware cpu-x dpkg gpg software-properties-common \
-  apt-transport-https wget make build-essential libssl-dev \
-  libcurl4-gnutls-dev libexpat1-dev gettext unzip p7zip-rar \
-  p7zip-full rar unrar zip nmon nload conmon ca-certificates \
-  gnupg lsb-release cmake g++ zlib1g-dev hardinfo hwinfo \
-  ppa-purge bash-completion ubuntu-restricted-extras \
-  clang xz-utils gcc-multilib sweeper gparted wireguard \
-  network-manager network-manager-vpnc network-manager-gnome \
-  net-tools vlc snap snapd
+sudo apt install -y nodejs npm nano openssh-client inxi curl zip \
+  cpu-x dpkg gpg software-properties-common rar unrar nmon cmake \
+  apt-transport-https wget make build-essential libssl-dev unzip \
+  p7zip-full nload wireguard gparted sweeper conmon ca-certificates \
+  gnupg lsb-release g++ hardinfo hwinfo gcc-multilib p7zip-rar \
+  ppa-purge bash-completion ubuntu-restricted-extras clang xz-utils \
+  network-manager network-manager-vpnc network-manager-gnome net-tools \
+  snap snapd
 sudo systemctl daemon-reload
 sudo dpkg --configure -a
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
 
-echo 'All new usless packages installed successfully'
+echo 'All new useless packages installed successfully'
 echo '######################################################################'
 sudo chmod +x ./git.sh
 ./git.sh
@@ -56,7 +53,7 @@ sudo apt -y upgrade
 sudo apt -y autoremove
 sudo apt -y autoclean
 gpg --generate-key
-echo 'pass init BA1F0CFD9CE6CDDAA7353AD10BD169A868EBC999
+echo 'pass init 35E637FD3D4AF581E338DBC11D3E110D4315F230
 systemctl --user start docker-desktop'
 curl -L https://foundry.paradigm.xyz | bash
 echo 'Ended'

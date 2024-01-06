@@ -16,10 +16,10 @@ lsmod | grep kvm
 ls -al /dev/kvm
 sudo usermod -aG kvm $USER
 # Update cash
-sudo apt -y update \
-  && sudo apt -y upgrade \
-  && sudo apt -y autoremove \
-  && sudo apt -y autoclean
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y autoremove
+sudo apt -y autoclean
 # Install another packages for using Docker
 sudo apt -y install ca-certificates curl gnupg apt-transport-https lsb-release \
   software-properties-common gnupg
@@ -29,7 +29,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
   sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/docker-archive-keyring.gpg
 sudo apt-key fingerprint 0EBFCD88
 # Add the Docker repository to Apt sources:
-sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable"
+sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu lunar stable"
 # Install docker & docker-compose
 apt-cache policy docker-ce
 sudo apt -y install docker.io containerd runc docker-compose
@@ -43,7 +43,7 @@ sudo systemctl enable --now docker docker.socket containerd && \
   sudo systemctl daemon-reload
 
 wget https://github.com/DockStation/dockstation/releases/download/v1.5.1/dockstation_1.5.1_amd64.deb
-sudo apt-get -y install ./dockstation_1.5.1_amd64.deb
+sudo apt -y install ./dockstation_1.5.1_amd64.deb
 sudo apt install -f
 sudo rm -rf ./dockstation_1.5.1_amd64.deb
 # echo 'alias docker-compose="docker compose"' >> ~/.bashrc
