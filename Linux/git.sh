@@ -55,6 +55,7 @@ tee -a ~/.bashrc <<< \
 '
 alias si="sudo apt install -y"
 alias srp="sudo apt -y remove --purge"
+alias sdr="sudo systemctl daemon-reload"
 alias supd="sudo apt -y update && sudo apt -y upgrade && sudo apt -y --fix-broken install && sudo apt -y autoremove --purge && sudo apt -y autoclean"
 alias digcon="ssh plaki@188.166.12.166"
 alias doccon="docker login --password dckr_pat_yJhGjotZbYBJLvQIcRq3P27yChc -u slaweekq"
