@@ -3,6 +3,7 @@ echo '#################################################################'
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
 sudo add-apt-repository -y ppa:atareao/telegram
 sudo add-apt-repository -y ppa:ethereum/ethereum
+sudo add-apt-repository -y multiverse
 # Adding keys
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
@@ -26,13 +27,16 @@ sudo rm -rf packages.microsoft.gpg
 sudo rm -rf microsoft.gpg
 # installing
 sudo apt -y update
+sudo apt -y upgrade
 sudo dpkg --add-architecture amd64
 sudo dpkg --add-architecture i386
 sudo apt -y update
 sudo apt -y install --install-recommends winehq-stable
 # wine winecfg
 # sudo apt -y install google-chrome-stable
-sudo apt -y install grub-customizer solc ethereum telegram microsoft-edge-stable code
+sudo apt -y install grub-customizer solc ethereum telegram code \
+  microsoft-edge-stable libgl1-mesa-dri:amd64 libgl1-mesa-dri:i386 \
+  libgl1-mesa-glx:amd64 libgl1-mesa-glx:i386
 sudo apt -y --fix-broken install
 # Options for shell in vscode
 source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
@@ -43,5 +47,6 @@ code --locate-shell-integration-path bash
 [[ "$TERM_PROGRAM" == "vscode" ]] && . "/path/to/shell/integration/script.sh"
 
 flatpak install flathub org.gnome.Maps
+
 echo 'All programm installed'
 echo '#################################################################'
