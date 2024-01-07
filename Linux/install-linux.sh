@@ -53,7 +53,7 @@ sudo apt -y upgrade
 sudo apt -y autoremove
 sudo apt -y autoclean
 gpg --generate-key
-echo 'pass init 35E637FD3D4AF581E338DBC11D3E110D4315F230
+echo 'pass init 1ECC234008F70DBD3EAD28A0BFC8CC47D256B15D
 systemctl --user start docker-desktop'
 curl -L https://foundry.paradigm.xyz | bash
 echo 'Ended'

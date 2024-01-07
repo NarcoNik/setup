@@ -1,0 +1,2 @@
+deb [signed-by=/etc/apt/trusted.gpg.d/telegram.gpg] https://ppa.launchpadcontent.net/atareao/telegram/ubuntu/ lunar main
+# deb-src https://ppa.launchpadcontent.net/atareao/telegram/ubuntu/ lunar main

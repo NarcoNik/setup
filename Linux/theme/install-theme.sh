@@ -2,16 +2,8 @@ echo \'nInstall WhiteSur KDE, GTK & ICON theme'
 echo '######################################################################'
 sudo add-apt-repository -y ppa:papirus/papirus \
   && sudo apt update -y \
-  && sudo apt install -y \
-  qt5-style-kvantum \
-  qt5-style-kvantum-themes \
-  sassc \
-  libglib2.0-dev-bin \
-  imagemagick \
-  dialog \
-  optipng \
-  inkscape \
-  x11-apps
+  && sudo apt install -y qt5-style-kvantum qt5-style-kvantum-themes sassc \
+  libglib2.0-dev-bin imagemagick dialog optipng inkscape x11-apps
 
 echo '  ###############################################################################################'
 echo ' #### Read https://www.linuxuprising.com/2020/10/whitesur-macos-big-sur-like-gtk-gnome.html ####'

@@ -33,18 +33,10 @@ kate /etc/fstab
 # that works even if disks are added and removed. See fstab(5).
 #
 # UUID=<uuid>                             <mount point> <FSType> <FSOptions>        <dump> <pass>
-UUID=b2569fde-a4e2-46c9-b4b6-35ef22b6ad1f /               ext4   errors=remount-ro    0      1
-UUID=2200-9AEC                            /boot/efi       vfat   umask=0077           0      1
+UUID=10be2a1f-0371-44e0-80d9-be41f9f74981 /               ext4   errors=remount-ro    0      1
+UUID=5A67-70C3                            /boot/efi       vfat   umask=0077           0      1
 UUID=8A34B39934B3872B                     /mnt/Documents  ntfs   defaults,rw,realtime 0      0
-UUID=6C2404B024047F78                     /mnt/Windows    ntfs   defaults,ro          0      0
-/swapfile                                 none            swap   sw                   0      0
-
-
-# UUID=<uuid>                             <mount point> <FSType> <FSOptions>        <dump> <pass>
-UUID=4a11f8de-cc46-4d1e-b9b1-9de353ba813f /               ext4   errors=remount-ro    0      1
-UUID=A977-4509                            /boot/efi       vfat   umask=0077           0      1
-UUID=8A34B39934B3872B                     /mnt/Documents  ntfs   defaults,rw,realtime 0      0
-UUID=a81c389c-8f0c-4689-b852-73b1e92e3981 none            swap   sw                   0      0
+UUID=94a06914-b3f6-4d2e-9cca-23b32d8f0a9a none            swap   sw                   0      0
 
 
 sudo fdisk -l

@@ -1,0 +1,1 @@
+deb [signed-by=/etc/apt/trusted.gpg.d/winehq.key] https://dl.winehq.org/wine-builds/ubuntu lunar main

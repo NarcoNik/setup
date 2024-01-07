@@ -4,7 +4,6 @@ if [[ $(which docker) && $(docker --version) && $(docker compose) ]]; then
    echo 'Docker installed, continue...'
 else
 echo 'Docker NOT installed, continue...'
-# First uninstall another version Docker
 for pkg in docker docker.io docker-ce docker-ce-cli docker-doc docker-desktop docker-compose docker-compose-v2 docker-compose-plugin docker-ce-rootless-extras podman-docker containerd runc docker-buildx-plugin; do sudo apt -y remove --purge $pkg; done
 rm -rf $HOME/.docker
 sudo rm /usr/local/bin/com.docker.cli
@@ -15,25 +14,19 @@ kvm-ok
 lsmod | grep kvm
 ls -al /dev/kvm
 sudo usermod -aG kvm $USER
-# Update cash
 sudo apt -y update
 sudo apt -y upgrade
 sudo apt -y autoremove
 sudo apt -y autoclean
-# Install another packages for using Docker
 sudo apt -y install ca-certificates curl gnupg apt-transport-https lsb-release \
   software-properties-common gnupg
 sudo apt -y clean
-# Add Docker's official GPG key:
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
-  sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/docker-archive-keyring.gpg
-sudo apt-key fingerprint 0EBFCD88
-# Add the Docker repository to Apt sources:
-sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu lunar stable"
-# Install docker & docker-compose
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
+#   sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/docker-archive-keyring.gpg
+# sudo apt-key fingerprint 0EBFCD88
+# sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu lunar stable"
 apt-cache policy docker-ce
 sudo apt -y install docker.io containerd runc docker-compose
-# add all rules for user in docker group
 sudo gpasswd -a $USER docker
 sudo systemctl restart docker
 sudo usermod -aG docker ${USER}
