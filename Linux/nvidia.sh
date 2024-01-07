@@ -1,5 +1,5 @@
 echo 'Installing Nvidia & other graphics drivers'
-echo '######################################################################'
+echo '#################################################################'
 sudo add-apt-repository ppa:graphics-drivers/ppa && \
   sudo dpkg --add-architecture i386 && \
   sudo apt -y update

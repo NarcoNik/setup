@@ -1,5 +1,5 @@
 echo '#### Installing Python3'
-echo '######################################################################'
+echo '#################################################################'
 if [[ $(which --version) && $(python3 --version) && $(pip3 --version) ]]; then
    echo 'Python3 installed, continue...'
 else
@@ -37,5 +37,5 @@ sudo apt -y autoclean
 sudo apt -y autoremove
 
 echo '#### Python3 installed'
-echo '######################################################################'
+echo '#################################################################'
 fi

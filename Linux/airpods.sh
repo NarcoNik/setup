@@ -1,5 +1,5 @@
 echo 'Installing Bluetooth Audio for AirPods'
-echo '######################################################################'
+echo '#################################################################'
 # sudo apt -y install 'bluez*' blueman
 modprobe btusb
 sudo tee -a /etc/bluetooth/main.conf <<< \

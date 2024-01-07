@@ -1,31 +1,14 @@
 #### Mount disks
-echo '######################################################################'
+echo '#################################################################'
 sudo fdisk -l
-sudo mount -o rw UUID=0E7A-1BF7 /boot/efi
-sudo mount -t ntfs -o rw,realtime /dev/nvme1n1p2 /mnt/Linux && sudo chmod 0777 /mnt/Documents
+sudo findmnt --verify --verbose
+lsblk -f
 
-sudo mount -t fat32 -o rw,realtime /dev/sda2 /mnt/MacOS
-sudo mount -o rw UUID=2023-05-31-19-32-03-00 /mnt/MacOS
-
-
-sudo add-apt-repository universe \
-  && sudo apt update -y \
-  && sudo apt install dmg2img \
-  && dmg2img -v -i /path/to/image_file.dmg -o /path/to/image_file.iso
-
-sudo dd if=/path/to/image_file.iso of=/dev/sdd
-
-dd if=image.dmg of=/dev/sdb bs=16M status=progress
-
-sudo dd if=/mnt/Documents/Ventura.iso of=/dev/nvme0n1p2
-for windows dd if=\\.\d:\Ventura.iso of=\\.\p:
-
-sudo chown -R slaweekq /Windows
-sudo chown -R slaweekq /mnt/Documents
-sudo chown -R slaweekq /mnt/Linux
+sudo chown -R $USER PATH/*
 
 kate /etc/fstab
-# sudo kate /etc/mtab
+sudo bash -c \
+"cat << EOF > /etc/fstab
 # /etc/fstab: static file system information.
 #
 # Use 'blkid' to print the universally unique identifier for a
@@ -37,40 +20,19 @@ UUID=10be2a1f-0371-44e0-80d9-be41f9f74981 /               ext4   errors=remount-
 UUID=5A67-70C3                            /boot/efi       vfat   umask=0077           0      1
 UUID=8A34B39934B3872B                     /mnt/Documents  ntfs   defaults,rw,realtime 0      0
 UUID=94a06914-b3f6-4d2e-9cca-23b32d8f0a9a none            swap   sw                   0      0
-
-
-sudo fdisk -l
-sudo findmnt --verify --verbose
-lsblk -f
-
-sudo hdparm -r0 /dev/nvme1n1p1
-sudo hdparm -r0 /dev/nvme1n1p2
-
-# mount | grep 'mnt'
-# sudo umount /mnt/Linux
-# cat /etc/fstab
-# sudo blkid -c /dev/null
-
-sudo mount -t ntfs -o rw,realtime /dev/nvme1n1p2 /mnt/Linux
-sudo umount /deb/nvme1n1p2
-sudo ntfsfix /deb/nvme1n1p2
-sudo mount -t ntfs -o remove_hiberfile /dev/nvme1n1p2 /mnt/Linux
-
-echo '######################################################################'
+EOF"
+echo '#################################################################'
 
 echo '#### Swap install'
-echo '######################################################################'
+echo '#################################################################'
 sudo swapon --show
 free -h
 df -h
 sudo fallocate -l 32G /swapfile
-ls -lh /swapfile
 sudo chmod 600 /swapfile
 ls -lh /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
-sudo swapon --show
-free -h
 sudo cp /etc/fstab /etc/fstab.bak
 echo '/swapfile                                 none            swap   sw                   0      0' | sudo tee -a /etc/fstab
 cat /proc/sys/vm/swappiness
@@ -80,27 +42,15 @@ sudo sysctl vm.vfs_cache_pressure=50
 sudo tee -a /etc/sysctl.conf <<< \
 "vm.swappiness=10
 vm.vfs_cache_pressure=50"
-echo '######################################################################'
+echo '#################################################################'
 
 
 echo '#### Grub2 install'
-echo '######################################################################'
+echo '#################################################################'
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer \
   && sudo apt update -y \
   && sudo apt install grub-customizer \
   && sudo grub-customizer
-
-# kate /etc/frub.d/proxifiedScripts/linux
-# 400-410 line
-# linux=`echo $list | tr ' ' '\n' | sort -V | head -1 | cat`
-
-sudo gparted
-sudo mkdir /boot/efi
-sudo mount /dev/nvme0n1p1 /mnt/boot/efi
-sudo mount /dev/nvme0n1p5 /mnt
-sudo mount /dev /mnt/dev
-sudo mount /proc /mnt/proc
-sudo mount /sys /mnt/sys
 
 for pkg in grub-common grub-customizer grub-efi grub-efi-amd64-bin grub-efi-amd64-signed grub-gfxpayload-lists grub-pc grub-pc-bin grub2-common; do sudo apt -y remove --purge $pkg; done
 
@@ -114,10 +64,8 @@ sudo update-grub --output=/boot/grub/grub.cfg
 sudo grub-install /dev/nvme1n1
 kate /boot/grub/grub.cfg
 
-sudo apt-add-repository -y ppa:yannubuntu/boot-repair \
-  && sudo apt update -y \
-  && sudo apt install -y boot-repair \
-  && sudo boot-repair
+sudo apt-add-repository -y ppa:yannubuntu/boot-repair && \
+  sudo apt update -y && sudo apt install -y boot-repair && sudo boot-repair
 
 sudo dpkg --configure -a
 sudo apt install -fy
@@ -127,23 +75,32 @@ sudo apt purge --allow-remove-essential -y shim-signed
 sudo apt purge --allow-remove-essential -y grub-common:*
 sudo apt purge --allow-remove-essential -y grub2-common:*
 
+sudo apt -y update && sudo apt install -y ubuntu-desktop xorg dbus-x11 \
+  xfce4 xfce4-goodies x11-xserver-utils
 
-
-sudo apt -y update \
-  && sudo apt install -y ubuntu-desktop \
-  xfce4 \
-  xfce4-goodies \
-  xorg \
-  dbus-x11 \
-  x11-xserver-utils
-
-sudo apt -y update \
-  && sudo apt -y upgrade \
-  && sudo add-apt-repository ppa:kubuntu-ppa/backports -y \
-  && sudo apt -y update \
-  && sudo apt install -y kde-plasma-desktop
+sudo apt -y update && sudo apt -y upgrade && \
+  sudo add-apt-repository ppa:kubuntu-ppa/backports -y && \
+  sudo apt -y update && sudo apt install -y kde-plasma-desktop
 
 cat /etc/sddm.conf
 echo -e "[General]\nInputMethod=" | sudo tee -a /etc/sddm.conf
+echo '#################################################################'
 
-echo '######################################################################'
+
+echo '#### Mac'
+echo '#################################################################'
+sudo mount -t fat32 -o rw,realtime /dev/sda2 /mnt/MacOS
+sudo mount -o rw UUID=2023-05-31-19-32-03-00 /mnt/MacOS
+
+sudo add-apt-repository universe \
+  && sudo apt update -y \
+  && sudo apt install dmg2img \
+  && dmg2img -v -i /path/to/image_file.dmg -o /path/to/image_file.iso
+
+sudo dd if=/path/to/image_file.iso of=/dev/sdd
+
+dd if=image.dmg of=/dev/sdb bs=16M status=progress
+
+sudo dd if=/mnt/Documents/Ventura.iso of=/dev/nvme0n1p2
+for windows dd if=\\.\d:\Ventura.iso of=\\.\p:
+echo '#################################################################'

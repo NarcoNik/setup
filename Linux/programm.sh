@@ -1,5 +1,5 @@
 echo 'Install programm'
-echo '######################################################################'
+echo '#################################################################'
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
 sudo add-apt-repository -y ppa:atareao/telegram
 sudo add-apt-repository -y ppa:ethereum/ethereum
@@ -42,4 +42,4 @@ mkdir -p "$HOME"/.local/share/trusted.gpg.d
 code --locate-shell-integration-path bash
 [[ "$TERM_PROGRAM" == "vscode" ]] && . "/path/to/shell/integration/script.sh"
 echo 'All programm installed'
-echo '######################################################################'
+echo '#################################################################'

@@ -1,6 +1,6 @@
 echo 'Installing everything you need...'
 echo 'First update all packages'
-echo '######################################################################'
+echo '#################################################################'
 sudo tee -a /etc/apt/sources.list <<< \
 "
 deb http://security.ubuntu.com/ubuntu lunar-security main universe
@@ -15,9 +15,9 @@ sudo apt -y --fix-broken install
 sudo timedatectl set-local-rtc 1
 
 echo 'All packages updated'
-echo '######################################################################'
+echo '#################################################################'
 echo 'Install new usless packages'
-echo '######################################################################'
+echo '#################################################################'
 sudo apt install -y nodejs npm nano openssh-client inxi curl zip \
   cpu-x dpkg gpg software-properties-common rar unrar nmon cmake \
   apt-transport-https wget make build-essential libssl-dev unzip \
@@ -33,26 +33,26 @@ sudo dpkg --configure -a
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
 
 echo 'All new useless packages installed successfully'
-echo '######################################################################'
-sudo chmod +x ./debs.sh
-./debs.sh
-sudo chmod +x ./nvidia.sh
-./nvidia.sh
-sudo chmod +x ./nvm.sh
-./nvm.sh
-sudo chmod +x ./airpods.sh
-./airpods.sh
-sudo chmod +x ./programm.sh
-./programm.sh
-sudo chmod +x ./docker.sh
-./docker.sh
-sudo chmod +x ./git.sh
-./git.sh
-# sudo chmod +x ./python3.sh
+echo '#################################################################'
+chmod +x ./debs.sh
+sudo ./debs.sh
+chmod +x ./nvidia.sh
+sudo ./nvidia.sh
+chmod +x ./nvm.sh
+sudo ./nvm.sh
+chmod +x ./airpods.sh
+sudo ./airpods.sh
+chmod +x ./programm.sh
+sudo ./programm.sh
+chmod +x ./docker.sh
+sudo ./docker.sh
+chmod +x ./git.sh
+sudo ./git.sh
+# chmod +x ./python3.sh
 # ./python3.sh
 
 echo 'Set autocomlete bash'
-echo '######################################################################'
+echo '#################################################################'
 sudo tee -a /etc/inputrc <<< \
 "
 # paste after all text

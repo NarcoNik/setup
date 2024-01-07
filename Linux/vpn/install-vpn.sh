@@ -4,14 +4,14 @@
 #   && sudo ./install-vpn.sh
 
 # echo "First add new user"
-# echo "echo '######################################################################'"
+# echo "echo '#################################################################'"
 # echo "adduser plaki
 # sudo usermod -aG sudo plaki
 # su - plaki"
-# echo "echo '######################################################################'"
+# echo "echo '#################################################################'"
 
 echo "Updating system"
-echo '######################################################################'
+echo '#################################################################'
 echo cdfecdfe | sudo -S sudo apt -y update \
   && sudo apt -y upgrade \
   && sudo apt -y autoremove \
@@ -21,14 +21,14 @@ echo cdfecdfe | sudo -S sudo apt -y update \
   && sudo apt -y install git nano resolvconf curl
 
 echo "Installing wireguard"
-echo '######################################################################'
+echo '#################################################################'
 cd ~ \
   && curl -O https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/wireguard-install.sh \
   && chmod +x wireguard-install.sh \
   && sudo ./wireguard-install.sh
 
 echo "Installing 3proxy"
-echo '######################################################################'
+echo '#################################################################'
 cd ~ \
   && curl -O https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/proxy3-install.sh \
   && curl -O https://raw.githubusercontent.com/NarcoNik/setup/main/Linux/vpn/proxy3-uninstall.sh \
@@ -45,7 +45,7 @@ cd ~ \
 
 
 # #### then on my local pc init ssh key
-# echo '######################################################################'
+# echo '#################################################################'
 # If no ssh keys
 # ssh-keygen -t ed25519 -C "plakidin.vyacheslav@mail.ru"  ->plaki->pswd->pswd
 # eval "$(ssh-agent -s)" && ssh-add ~/.ssh/plaki
@@ -53,7 +53,7 @@ cd ~ \
 # ssh-copy-id -i ~/.ssh/plaki.pub plaki@64.227.69.234 # pswd user->enter
 
 # #### after connect to droplet
-# echo '######################################################################'
+# echo '#################################################################'
 # ssh 64.227.69.234
 
 # check adding keys
@@ -70,7 +70,7 @@ cd ~ \
 
 
 #### Node.js
-# echo '######################################################################'
+# echo '#################################################################'
 # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh
 # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 # source ~/.bashrc
@@ -81,10 +81,10 @@ cd ~ \
 # nvm use v16.17.0
 # sudo npm i -g pm2@latest
 
-# echo '######################################################################'
+# echo '#################################################################'
 
 #### npm service
-# echo '######################################################################'
+# echo '#################################################################'
 # git clone git@github.com:NarcoNik/newton-bot.git && cd ./newton-bot
 # sudo npm i
 # sudo pm2 start bot.js
@@ -102,7 +102,7 @@ cd ~ \
 # sudo pm2 list
 # sudo pm2 info app_name
 # sudo pm2 monit
-# echo '######################################################################'
+# echo '#################################################################'
 
 
 
@@ -125,7 +125,7 @@ cd ~ \
 # https://habr.com/ru/articles/594877/
 
 # echo "Installing DNS-proxy"
-# echo "echo '######################################################################'"
+# echo "echo '#################################################################'"
 # git clone https://github.com/AdguardTeam/dnsproxy.git \
 #   && cd dnsproxy \
 #   && go build -mod=vendor

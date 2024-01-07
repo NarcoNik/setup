@@ -1,5 +1,5 @@
 echo '#### Installing Docker'
-echo '######################################################################'
+echo '#################################################################'
 if [[ $(which docker) && $(docker --version) && $(docker compose) ]]; then
    echo 'Docker installed, continue...'
 else
@@ -43,7 +43,7 @@ sudo rm -rf ./dockstation_1.5.1_amd64.deb
 # echo 'alias docker-compose="docker compose"' >> ~/.bashrc
 # docker network create traefik-public
 echo '#### Docker installed'
-echo '######################################################################'
+echo '#################################################################'
 fi
 # $(lsb_release -cs)
 

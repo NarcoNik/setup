@@ -1,14 +1,12 @@
-echo \'nInstall WhiteSur KDE, GTK & ICON theme'
-echo '######################################################################'
+echo 'Install WhiteSur KDE, GTK & ICON theme'
+echo '#################################################################'
 sudo add-apt-repository -y ppa:papirus/papirus \
   && sudo apt update -y \
   && sudo apt install -y qt5-style-kvantum qt5-style-kvantum-themes sassc \
   libglib2.0-dev-bin imagemagick dialog optipng inkscape x11-apps
 
-echo '  ###############################################################################################'
-echo ' #### Read https://www.linuxuprising.com/2020/10/whitesur-macos-big-sur-like-gtk-gnome.html ####'
-echo '###############################################################################################'
 
+cd ~
 git clone https://github.com/vinceliuice/grub2-themes.git
 git clone https://github.com/vinceliuice/McMojave-kde.git
 git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
@@ -35,14 +33,14 @@ sudo ./WhiteSur-icon-theme/install.sh -a -b
 mkdir -p ~/.icons/capitaine-cursors
 sudo cp -pr ./capitaine-cursors /usr/share/icons/capitaine-cursors
 cd /usr/share/icons/capitaine-cursors/
-sudo chmod +x ./build.sh
+chmod +x ./build.sh
 sudo ./build.sh
 cd -
 
 echo 'Install done'
-echo '######################################################################'
+echo '#################################################################'
 echo 'Remove files'
-echo '######################################################################'
+echo '#################################################################'
 
 sudo rm -rf ./grub2-themes
 sudo rm -rf ./McMojave-kde
@@ -61,69 +59,44 @@ sudo rm -rf Oxygen_Blue
 sudo rm -rf Oxygen_White
 sudo rm -rf Oxygen_Yellow
 sudo rm -rf Oxygen_Zion
-cd -
+cd ~
 
+echo '#################################################################'
+echo 'Read'
+echo '# https://www.linuxuprising.com/2020/10/whitesur-macos-big-sur-like-gtk-gnome.html'
+echo '# https://www.youtube.com/watch?v=DX_gQTQLUZc'
+echo 'Install Widgets'
+echo '# Application Tittle, Plasma Drawer, tiled menu, latte spacer'
+echo '# latte separator, Inline clock, big sur inline battery'
+echo '#################################################################'
 echo "Remove done"
-echo '######################################################################'
-
-
-  ##########################################################
- #### Read https://www.youtube.com/watch?v=DX_gQTQLUZc ####
-##########################################################
-
+echo '#################################################################'
 
 # Widgets
 # Application Tittle
-# control centre
-# osxlaunchpad
+# Plasma Drawer
 # tiled menu
-# latte soacer sidebar separator
-# Inline battery & clock
+# latte spacer separator
+# Inline clock
 # big sur inline battery
-# mediacontroller
 
 # install Latte Dock
 # sudo add-apt-repository -y ppa:kubuntu-ppa/backports \
-#   && sudo apt update -y \
-#   && sudo apt install -y cmake \
-#   extra-cmake-modules \
-#   qtdeclarative5-dev \
-#   libqt5x11extras5-dev \
-#   libkf5iconthemes-dev \
-#   libkf5plasma-dev \
-#   libkf5windowsystem-dev \
-#   libkf5declarative-dev \
-#   libkf5xmlgui-dev \
-#   libkf5activities-dev \
-#   build-essential \
-#   libxcb-util-dev \
-#   libkf5wayland-dev \
-#   git \
-#   gettext \
-#   libkf5archive-dev \
-#   libkf5notifications-dev \
-#   libxcb-util0-dev \
-#   libsm-dev \
-#   libkf5crash-dev \
-#   libkf5newstuff-dev \
-#   libxcb-shape0-dev \
-#   libxcb-randr0-dev \
-#   libx11-dev \
-#   libx11-xcb-dev \
-#   kirigami2-dev \
-#   libwayland-dev \
-#   libwayland-client0 \
-#   plasma-wayland-protocols \
-#   libqt5waylandclient5-dev \
-#   qtwayland5-dev-tools
+#   && sudo apt update -y && sudo apt install -y cmake \
+#   extra-cmake-modules qtdeclarative5-dev libqt5x11extras5-dev \
+#   libkf5iconthemes-dev libkf5plasma-dev libkf5windowsystem-dev \
+#   libkf5declarative-dev libkf5xmlgui-dev libkf5activities-dev \
+#   build-essential libxcb-util-dev libkf5wayland-dev gettext \
+#   libkf5archive-dev libkf5notifications-dev libxcb-util0-dev \
+#   libsm-dev libkf5crash-dev libkf5newstuff-dev libxcb-shape0-dev \
+#   libxcb-randr0-dev libx11-dev libx11-xcb-dev kirigami2-dev \
+#   libwayland-dev libwayland-client0 plasma-wayland-protocols \
+#   libqt5waylandclient5-dev qtwayland5-dev-tools
 
-# git clone https://github.com/KDE/latte-dock.git \
-#   && chmod +x ./latte-dock/install.sh \
-#   && sudo ./latte-dock/install.sh \
-#   && rm -rf ./latte-dock
+# git clone https://github.com/KDE/latte-dock.git && \
+#   chmod +x ./latte-dock/install.sh && \
+#   sudo ./latte-dock/install.sh && rm -rf ./latte-dock
 
 # https://www.pling.com/p/1399346
 
-# sudo apt install gnome-tweaks \
-#   gnome-shell-extensions \
-#   && sudo gnome-tweaks
+# sudo apt install gnome-tweaks gnome-shell-extensions && sudo gnome-tweaks

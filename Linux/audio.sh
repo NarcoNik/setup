@@ -1,5 +1,5 @@
 echo '#### Audio'
-echo '######################################################################'
+echo '#################################################################'
 sudo apt install linux-sound-base alsa-base alsa-utils alsa-tools
 sudo gedit /etc/modprobe.d/alsa-base.conf
 # paste after all text
@@ -18,7 +18,7 @@ alsamixer
 # press F6 & after, select correct audio card
 sudo alsa force-reload
 
-echo '######################################################################'
+echo '#################################################################'
 pacmd list-sinks
 
 amixer -c 0 sset "Auto-Mute Mode" Enabled

@@ -4,7 +4,7 @@ sudo apt -y update \
   && sudo apt -y autoremove
 
 #### update kernel
-echo '######################################################################'
+echo '#################################################################'
 sudo uname -mrs
 sudo add-apt-repository-y ppa:cappelikan/ppa \
   && sudo apt install -y mainline
@@ -34,4 +34,4 @@ sudo reboot
 uname -r
 
 sudo apt remove --purge linux-image-5.15.0-43-generic
-echo '######################################################################'
+echo '#################################################################'

@@ -20,7 +20,7 @@ sudo ./grub2-themes/install.sh -r -t tela
 
 
 # First step clean default icons & themes
-echo '######################################################################'###########
+echo '#################################################################'###########
 cd /usr/share/icons
 sudo rm -rf Adwaita
 sudo rm -rf breeze
