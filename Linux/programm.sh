@@ -42,7 +42,6 @@ mkdir -p "$HOME"/.local/share/trusted.gpg.d
 code --locate-shell-integration-path bash
 [[ "$TERM_PROGRAM" == "vscode" ]] && . "/path/to/shell/integration/script.sh"
 
-
-
+flatpak install flathub org.gnome.Maps
 echo 'All programm installed'
 echo '#################################################################'
