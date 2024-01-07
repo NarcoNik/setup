@@ -1,2 +1,0 @@
-deb [signed-by=/etc/apt/trusted.gpg.d/ethereum.gpg] https://ppa.launchpadcontent.net/ethereum/ethereum/ubuntu/ lunar main
-# deb-src https://ppa.launchpadcontent.net/ethereum/ethereum/ubuntu/ lunar main

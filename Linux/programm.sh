@@ -1,10 +1,5 @@
 echo 'Install programm'
 echo '######################################################################'
-
-sudo cp -r ./apt/* /etc/apt/
-sudo apt -y update
-sudo apt -y install grub-customizer solc ethereum telegram microsoft-edge-stable code
-
 # Download the packages file
 wget https://github.com/PowerShell/PowerShell/releases/download/v7.4.0/powershell_7.4.0-1.deb_amd64.deb
 wget https://dl.discordapp.net/apps/linux/0.0.39/discord-0.0.39.deb
@@ -33,6 +28,39 @@ nvm use v18.12.0
 sudo chown "$USER":"$USER" ~/.npm -R
 sudo chown "$USER":"$USER" ~/.nvm -R
 npm i -g yarn prettier eslint nodemon serve dotenv create-react-app
+
+sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
+sudo add-apt-repository -y ppa:atareao/telegram
+sudo add-apt-repository -y ppa:ethereum/ethereum
+
+# Adding keys
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/packages.microsoft.gpg
+sudo wget -O /etc/apt/trusted.gpg.d/winehq.key https://dl.winehq.org/wine-builds/winehq.key
+
+sudo echo "deb [signed-by=/etc/apt/trusted.gpg.d/winehq.key] https://dl.winehq.org/wine-builds/ubuntu $(lsb_release -cs) main" | \
+  sudo tee /etc/apt/sources.list.d/winehq.list > /dev/null
+
+sudo echo "deb [arch=$(dpkg --print-architecture)] https://packages.microsoft.com/repos/code stable main" |\
+  sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
+
+sudo echo "deb [arch=$(dpkg --print-architecture)] https://packages.microsoft.com/repos/edge stable main" |\
+  sudo tee /etc/apt/sources.list.d/microsoft-edge.list > /dev/null
+# sudo sh -c '# "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge.list'
+
+sudo rm -rf packages.microsoft.gpg
+sudo rm -rf microsoft.gpg
+
+sudo apt -y update
+sudo dpkg --add-architecture amd64
+sudo dpkg --add-architecture i386
+sudo apt -y update
+sudo apt -y install --install-recommends winehq-stable
+# wine winecfg
+sudo apt -y install grub-customizer solc ethereum telegram microsoft-edge-stable code
+sudo apt -y --fix-broken install
 
 source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
 eval $(/usr/bin/gnome-keyring-daemon --start)
@@ -70,21 +98,8 @@ sudo systemctl disable --global pulseaudio
 sudo systemctl enable --global pipewire-pulse
 pactl info | grep "Server Name"
 
-echo 'Installing Wine'
+echo 'Installing lutris'
 echo '######################################################################'
-sudo wget -O /etc/apt/trusted.gpg.d/winehq.key https://dl.winehq.org/wine-builds/winehq.key
-sudo echo "deb [signed-by=/etc/apt/trusted.gpg.d/winehq.key] https://dl.winehq.org/wine-builds/ubuntu lunar main" | \
-  sudo tee /etc/apt/sources.list.d/winehq.list > /dev/null
-sudo dpkg --add-architecture amd64
-sudo dpkg --add-architecture i386
-sudo apt -y update
-sudo apt -y install --install-recommends winehq-stable
-# wine winecfg
-# wine clock
-
-sudo apt -y install flatpak gnome-software-plugin-flatpak plasma-discover-backend-flatpak
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
 wget https://github.com/lutris/lutris/releases/download/v0.5.14/lutris_0.5.14_all.deb
 sudo dpkg -i lutris_0.5.14_all.deb
 sudo apt install -f

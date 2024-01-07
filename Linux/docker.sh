@@ -21,10 +21,12 @@ sudo apt -y autoclean
 sudo apt -y install ca-certificates curl gnupg apt-transport-https lsb-release \
   software-properties-common gnupg
 sudo apt -y clean
-# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
-#   sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/docker-archive-keyring.gpg
-# sudo apt-key fingerprint 0EBFCD88
-# sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu lunar stable"
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
+  sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/docker-archive-keyring.gpg
+sudo apt-key fingerprint 0EBFCD88
+sudo echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu lunar stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt -y update
 apt-cache policy docker-ce
 sudo apt -y install docker.io containerd runc docker-compose
 sudo gpasswd -a $USER docker
@@ -44,6 +46,10 @@ sudo rm -rf ./dockstation_1.5.1_amd64.deb
 echo '#### Docker installed'
 echo '######################################################################'
 fi
+
+
+# $(lsb_release -cs) stable
+
 
 # sudo rm -rf /etc/apt/sources.list.d/archive_uri-https_download_docker_com_linux_ubuntu-lunar.list
 # sudo rm -rf /etc/apt/sources.list.d/docker.list
