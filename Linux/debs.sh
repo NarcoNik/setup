@@ -7,7 +7,6 @@ wget https://download.anydesk.com/linux/anydesk_6.1.1-1_amd64.deb
 wget https://github.com/lutris/lutris/releases/download/v0.5.14/lutris_0.5.14_all.deb
 wget https://repo.steampowered.com/steam/archive/precise/steam_latest-stable.deb
 
-
 # Install packages
 sudo apt -y install ./powershell_7.4.0-1.deb_amd64.deb ./discord-0.0.39.deb \
   ./GitHubDesktop-linux-3.1.1-linux1.deb ./anydesk_6.1.1-1_amd64.deb \

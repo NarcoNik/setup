@@ -4,7 +4,7 @@
 
 ### Installing debs programm
 
-- PowerShell, Discord, Github Desktop, Anydesk, Lutris
+- PowerShell, Discord, Github Desktop, Anydesk, Lutris, Steam
 
 - `chmod +x ./setup/Linux/debs.sh`
 - `sudo ./setup/Linux/debs.sh`
