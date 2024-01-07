@@ -54,11 +54,11 @@ sudo ./git.sh
 echo 'Set autocomlete bash'
 echo '#################################################################'
 sudo tee -a /etc/inputrc <<< \
-"
+'
 # paste after all text
 set show-all-if-ambiguous On
 "\e[A": history-search-backward
-"\e[B": history-search-forward"
+"\e[B": history-search-forward'
 
 sudo apt -y update
 sudo apt -y upgrade
