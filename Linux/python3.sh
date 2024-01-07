@@ -9,23 +9,10 @@ sudo apt -y upgrade
 sudo apt -y autoclean
 sudo apt -y autoremove
 
-sudo apt -y install \
-  cpu-checker \
-  python3-pip \
-  python3-dev \
-  python3-virtualenv \
-  software-properties-common \
-  python3 \
-  python3-full \
-  build-essential \
-  zlib1g-dev \
-  libncurses5-dev \
-  libgdbm-dev \
-  libnss3-dev \
-  libssl-dev \
-  libreadline-dev \
-  libffi-dev \
-  wget
+sudo apt -y install cpu-checker python3-pip python3-dev python3-virtualenv \
+  software-properties-common python3 python3-full build-essential zlib1g-dev \
+  libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev \
+  libffi-dev wget
 
 modprobe kvm
 modprobe kvm_intel

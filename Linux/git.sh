@@ -1,7 +1,6 @@
 echo "Installing git & Generate ssh"
 echo "######################################################################"
 sudo apt install -y git git-core git-gui nano openssh-client
-git --version
 sudo ufw allow ssh
 cd ~
 mkdir -p ~/.ssh
@@ -76,24 +75,6 @@ alias dres='docker-compose down && clear && docker-compose up'"
 # restore bash_profile
 # declare > .bash_profile.recovered
 # alias >> .bash_profile.recovered
-
-# git remote set-url origin git@github.com:NarcoNik/docker-info.git
-# git remote set-url origin git@github.com:NarcoNik/hardhat.git
-# git remote set-url origin git@github.com:NarcoNik/setup.git
-# git remote set-url origin git@github.com:NarcoNik/work.git
-
-# git remote -v
-
-# cd ~/.ssh && kate slaweekq.pub
-
-#### git create
-# echo "######################################################################"
-# cd && mkdir git-test && cd ./git-test && git init
-# git clone git@github.com:NarcoNik/git-test.git
-
-# ssh-add ~/.ssh/slaweekq && git add . && git commit -m «new» -a && git push origin
-# git remote add origin git@github.com:NarcoNik/git-test.git
-# git push --set-upstream origin main
 
 #### md
 # echo "######################################################################"

@@ -8,13 +8,6 @@
   },
   {
     "enabled": true,
-    "name": "cpp",
-    "paths": [],
-    "rootPath": "D:\\CRYPTO\\cpp",
-    "tags": []
-  },
-  {
-    "enabled": true,
     "name": "docker-info",
     "paths": [],
     "rootPath": "D:\\CRYPTO\\docker-info",
@@ -29,37 +22,9 @@
   },
   {
     "enabled": true,
-    "name": "hash",
-    "paths": [],
-    "rootPath": "D:\\CRYPTO\\hash",
-    "tags": []
-  },
-  {
-    "enabled": true,
-    "name": "newproj",
-    "paths": [],
-    "rootPath": "D:\\CRYPTO\\newproj",
-    "tags": []
-  },
-  {
-    "enabled": true,
-    "name": "project",
-    "paths": [],
-    "rootPath": "D:\\CRYPTO\\project",
-    "tags": []
-  },
-  {
-    "enabled": true,
     "name": "setup",
     "paths": [],
     "rootPath": "D:\\CRYPTO\\setup",
-    "tags": []
-  },
-  {
-    "enabled": true,
-    "name": "websites",
-    "paths": [],
-    "rootPath": "D:\\CRYPTO\\websites",
     "tags": []
   }
 ]

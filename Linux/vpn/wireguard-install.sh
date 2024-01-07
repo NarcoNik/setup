@@ -151,8 +151,8 @@ function installWireGuard() {
 
 	# Install WireGuard tools and module
 	if [[ ${OS} == 'ubuntu' ]] || [[ ${OS} == 'debian' && ${VERSION_ID} -gt 10 ]]; then
-		apt-get -y update
-		apt-get install -y wireguard iptables resolvconf qrencode
+		apt -y update
+		apt install -y wireguard iptables resolvconf qrencode
 	fi
 
 	# Make sure the directory exists (this does not seem the be the case on fedora)
@@ -389,9 +389,9 @@ function uninstallWg() {
 		systemctl disable "wg-quick@${SERVER_WG_NIC}"
 
 		if [[ ${OS} == 'ubuntu' ]]; then
-			apt-get remove -y wireguard wireguard-tools qrencode
+			apt remove -y wireguard wireguard-tools qrencode
 		elif [[ ${OS} == 'debian' ]]; then
-			apt-get remove -y wireguard wireguard-tools qrencode
+			apt remove -y wireguard wireguard-tools qrencode
 		elif [[ ${OS} == 'fedora' ]]; then
 			dnf remove -y --noautoremove wireguard-tools qrencode
 			if [[ ${VERSION_ID} -lt 32 ]]; then

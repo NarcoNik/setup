@@ -1,4 +1,4 @@
-#### Audio
+echo '#### Audio'
 echo '######################################################################'
 sudo apt install linux-sound-base alsa-base alsa-utils alsa-tools
 sudo gedit /etc/modprobe.d/alsa-base.conf
@@ -11,7 +11,6 @@ options snd-hda-intel model=alc298-dell1
 # options snd-hda-intel model=dell-headset3
 # options snd-hda-intel patch=alc298-sound-patch.fw,alc298-sound-patch.fw,
 
-
 sudo echo «ControllerMode = bredr» /etc/bluetooth/main.conf
 sudo service bluetooth restart
 
@@ -20,14 +19,10 @@ alsamixer
 sudo alsa force-reload
 
 echo '######################################################################'
-
-
-
 pacmd list-sinks
 
 amixer -c 0 sset "Auto-Mute Mode" Enabled
 pactl set-sink-port 0 'Speaker'
-
 
 -Скачать эту программу:
 sudo apt install pavucontrol

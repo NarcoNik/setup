@@ -8,13 +8,6 @@
   },
   {
     "enabled": true,
-    "name": "cpp",
-    "paths": [],
-    "rootPath": "/mnt/Documents/CRYPTO/cpp",
-    "tags": []
-  },
-  {
-    "enabled": true,
     "name": "docker-info",
     "paths": [],
     "rootPath": "/mnt/Documents/CRYPTO/docker-info",
@@ -29,37 +22,9 @@
   },
   {
     "enabled": true,
-    "name": "hash",
-    "paths": [],
-    "rootPath": "/mnt/Documents/CRYPTO/hash",
-    "tags": []
-  },
-  {
-    "enabled": true,
-    "name": "newproj",
-    "paths": [],
-    "rootPath": "/mnt/Documents/CRYPTO/newproj",
-    "tags": []
-  },
-  {
-    "enabled": true,
-    "name": "project",
-    "paths": [],
-    "rootPath": "/mnt/Documents/CRYPTO/project",
-    "tags": []
-  },
-  {
-    "enabled": true,
     "name": "setup",
     "paths": [],
     "rootPath": "/mnt/Documents/CRYPTO/setup",
-    "tags": []
-  },
-  {
-    "enabled": true,
-    "name": "websites",
-    "paths": [],
-    "rootPath": "/mnt/Documents/CRYPTO/websites",
     "tags": []
   }
 ]

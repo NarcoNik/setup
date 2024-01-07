@@ -19,7 +19,6 @@ sudo apt list --installed | egrep "linux-image|linux-headers"
 # sudo dpkg --list | egrep "linux-image|linux-headers"
 # sudo apt purge linux-image-4.15.0-66-generic linux-headers-4.15.0-91-generic
 
-
 sudo apt -y update \
   && sudo apt search linux-image-*| more \
   && sudo apt search linux-image-5.19.0-28*
@@ -34,7 +33,5 @@ dpkg --list | grep linux-image
 sudo reboot
 uname -r
 
-
 sudo apt remove --purge linux-image-5.15.0-43-generic
-
 echo '######################################################################'

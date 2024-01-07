@@ -36,7 +36,6 @@ sudo chown "$USER":"$USER" ~/.docker -R
 # su - ${USER} && groups && sudo usermod -aG docker ${USER} && exit && \
 sudo systemctl enable --now docker docker.socket containerd && \
   sudo systemctl daemon-reload
-
 wget https://github.com/DockStation/dockstation/releases/download/v1.5.1/dockstation_1.5.1_amd64.deb
 sudo apt -y install ./dockstation_1.5.1_amd64.deb
 sudo apt install -f
@@ -46,10 +45,7 @@ sudo rm -rf ./dockstation_1.5.1_amd64.deb
 echo '#### Docker installed'
 echo '######################################################################'
 fi
-
-
-# $(lsb_release -cs) stable
-
+# $(lsb_release -cs)
 
 # sudo rm -rf /etc/apt/sources.list.d/archive_uri-https_download_docker_com_linux_ubuntu-lunar.list
 # sudo rm -rf /etc/apt/sources.list.d/docker.list
@@ -65,14 +61,8 @@ fi
 #   dockerd-rootless.sh rootlesskit rootlesskit-docker-proxy runc vpnkit
 # cd -
 
-# sudo apt -y install docker-ce docker-ce-cli containerd.io docker-compose
-# curl -fsSL https://get.docker.com -o get-docker.sh
-# sudo sh ./get-docker.sh --dry-run
-# rm -rf ./get-docker.sh
-
-
 # install docker desktop
-# sudo apt-get -y install gnome-terminal
+# sudo apt -y install gnome-terminal
 # sudo install -m 0755 -d /etc/apt/keyrings
 # curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 # sudo chmod a+r /etc/apt/keyrings/docker.gpg

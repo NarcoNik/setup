@@ -9,7 +9,7 @@ setup, the Linux system must have:
 
 qemu python3 pip KVM modules Notably, we can install these requirements on Debian-based systems using the package installer:
 
-$ sudo apt-get install qemu-system qemu-utils python3 python3-pip Reading package lists... Done Building dependency tree Reading state
+$ sudo apt install qemu-system qemu-utils python3 python3-pip Reading package lists... Done Building dependency tree Reading state
 information... Done ... Copy However, we can follow the guide on the project documentation to install these requirements on other Linux
 distributions.
 

@@ -86,13 +86,14 @@ Install eslint
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
  
                                                                                     install solana      
-|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-|||  1) curl https://release.solana.com/v1.9.16/solana-install-init-x86_64-pc-windows-msvc.exe --output C:\solana-install-tmp\solana-install-init.exe --create-dirs   |||
-|||  2) cd C:\solana-install-tmp                                                                                                                                      |||
-|||  3) solana-install-init.exe v1.9.16                                                                                                                               |||
-|||  4) solana --version                                                                                                                                              |||
-|||  5) solana config set --url https://api.devnet.solana.com                                                                                                         |||
-|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+|||  1) curl https://release.solana.com/v1.9.16/solana-install-init-x86_64-pc-windows-msvc.exe --output \ |||
+|||       C:\solana-install-tmp\solana-install-init.exe --create-dirs                                     |||
+|||  2) cd C:\solana-install-tmp                                                                          |||
+|||  3) solana-install-init.exe v1.9.16                                                                   |||
+|||  4) solana --version                                                                                  |||
+|||  5) solana config set --url https://api.devnet.solana.com                                             |||
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
                              install metaplex
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -113,7 +114,7 @@ Install eslint
 |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 |||  1) create wallet & give sol                                                                                                    |||
 |||     solana-keygen new --outfile buyer.json                                                                                      |||
-|||     solana-keygen new --outfile seller.json //FMupYBEeU74g86Y4mRJ7Ry8oWZxsRNSrqgQqeg8n3fT                                       |||             
+|||     solana-keygen new --outfile seller.json //FMupYBEeU74g86Y4mRJ7Ry8oWZxsRNSrqgQqeg8n3fT                                       |||
 |||     solana config set --keypair seller.json                                                                                     |||
 |||     solana airdrop 2                                                                                                            |||
 |||     solana balance                                                                                                              |||

@@ -120,12 +120,12 @@ sudo apt-add-repository -y ppa:yannubuntu/boot-repair \
   && sudo boot-repair
 
 sudo dpkg --configure -a
-sudo apt-get install -fy
-sudo apt-get purge --allow-remove-essential -y grub-com*
-sudo apt-get purge --allow-remove-essential -y grub2-com*
-sudo apt-get purge --allow-remove-essential -y shim-signed
-sudo apt-get purge --allow-remove-essential -y grub-common:*
-sudo apt-get purge --allow-remove-essential -y grub2-common:*
+sudo apt install -fy
+sudo apt purge --allow-remove-essential -y grub-com*
+sudo apt purge --allow-remove-essential -y grub2-com*
+sudo apt purge --allow-remove-essential -y shim-signed
+sudo apt purge --allow-remove-essential -y grub-common:*
+sudo apt purge --allow-remove-essential -y grub2-common:*
 
 
 
