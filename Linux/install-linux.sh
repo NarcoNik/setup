@@ -25,7 +25,7 @@ sudo apt install -y nodejs npm nano openssh-client inxi curl zip \
   gnupg lsb-release g++ hardinfo hwinfo gcc-multilib p7zip-rar \
   ppa-purge bash-completion ubuntu-restricted-extras clang xz-utils \
   network-manager network-manager-vpnc network-manager-gnome net-tools \
-  snap snapd
+  snap snapd qbittorrent
 sudo apt -y install flatpak gnome-software-plugin-flatpak plasma-discover-backend-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 sudo systemctl daemon-reload

@@ -41,5 +41,8 @@ export SSH_AUTH_SOCK
 mkdir -p "$HOME"/.local/share/trusted.gpg.d
 code --locate-shell-integration-path bash
 [[ "$TERM_PROGRAM" == "vscode" ]] && . "/path/to/shell/integration/script.sh"
+
+
+
 echo 'All programm installed'
 echo '#################################################################'
