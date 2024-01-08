@@ -24,9 +24,8 @@ sudo apt -y install \
   build-essential libssl-dev unzip p7zip-full nload wireguard gparted \
   sweeper conmon ca-certificates gnupg lsb-release g++ hardinfo hwinfo \
   gcc-multilib p7zip-rar ppa-purge bash-completion clang xz-utils \
-  ubuntu-restricted-extras net-tools snap snapd qbittorrent \
-  network-manager network-manager-vpnc network-manager-gnome \
-  flatpak gnome-software-plugin-flatpak plasma-discover-backend-flatpak
+  ubuntu-restricted-extras net-tools snap snapd qbittorrent flatpak \
+  network-manager-* gnome-software-plugin-flatpak plasma-discover-backend-flatpak
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 sudo systemctl daemon-reload
