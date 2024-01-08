@@ -25,9 +25,10 @@ sudo apt -y install \
   unzip p7zip-rar p7zip-full rar unrar zip nmon nload conmon cmake g++ \
   ca-certificates gnupg lsb-release zlib1g-dev hardinfo hwinfo clang \
   bash-completion ubuntu-restricted-extras ppa-purge xz-utils vlc \
-  gcc-multilib sweeper gparted wireguard network-manager snap snapd \
-  qbittorrent network-manager-vpnc network-manager-gnome net-tools \
-  flatpak gnome-software-plugin-flatpak plasma-discover-backend-flatpak
+  gcc-multilib sweeper gparted wireguard snap snapd qbittorrent \
+  network-manager network-manager-gnome network-manager-openvpn \
+  network-manager-vpnc network-manager-openconnect net-tools flatpak \
+  gnome-software-plugin-flatpak plasma-discover-backend-flatpak
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 sudo systemctl daemon-reload

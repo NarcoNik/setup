@@ -12,7 +12,8 @@ sudo apt -y autoremove --purge
 
 sudo apt -y install cpu-checker python3-pip python3-dev python3-virtualenv \
   software-properties-common python3 python3-full build-essential wget \
-  zlib1g-dev libffi-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev
+  zlib1g-dev libffi-dev libgdbm-dev libnss3-dev python-is-python3 \
+  libssl-dev libreadline-dev
 
 modprobe kvm
 modprobe kvm_intel
