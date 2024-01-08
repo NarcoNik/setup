@@ -6,12 +6,12 @@ sudo tee -a /etc/apt/sources.list <<< \
 deb http://security.ubuntu.com/ubuntu lunar-security main universe
 deb http://archive.ubuntu.com/ubuntu/ lunar universe"
 
-sudo apt -y update
+sudo apt update
 sudo apt -y upgrade
-sudo apt -y autoclean
-sudo apt -y autoremove
 sudo apt -y --fix-broken install
-  # && sudo apt -y dist-upgrade
+sudo apt -y autoclean
+sudo apt -y autoremove --purge
+# sudo apt -y dist-upgrade
 sudo timedatectl set-local-rtc 1
 
 echo 'All packages updated'
@@ -63,10 +63,11 @@ set show-all-if-ambiguous On
 "\e[A": history-search-backward
 "\e[B": history-search-forward'
 
-sudo apt -y update
+sudo apt update
 sudo apt -y upgrade
-sudo apt -y autoremove
+sudo apt -y --fix-broken install
 sudo apt -y autoclean
+sudo apt -y autoremove --purge
 gpg --generate-key
 echo 'pass init 1ECC234008F70DBD3EAD28A0BFC8CC47D256B15D
 systemctl --user start docker-desktop'
@@ -119,7 +120,7 @@ echo 'Ended'
 # sudo systemctl reload apache2
 
 # ganache
-# sudo sudo apt -y update
+# sudo sudo apt update
 # sudo apt -y upgrade
 # sudo apt -y install wget \
 #   libgtk-3-dev \

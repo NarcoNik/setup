@@ -26,11 +26,11 @@ sudo echo "deb [arch=$(dpkg --print-architecture)] https://packages.microsoft.co
 sudo rm -rf packages.microsoft.gpg
 sudo rm -rf microsoft.gpg
 # installing
-sudo apt -y update
+sudo apt update
 sudo apt -y upgrade
 sudo dpkg --add-architecture amd64
 sudo dpkg --add-architecture i386
-sudo apt -y update
+sudo apt update
 sudo apt -y install --install-recommends winehq-stable
 # wine winecfg
 # sudo apt -y install google-chrome-stable

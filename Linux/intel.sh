@@ -6,11 +6,11 @@ wget -qO - https://repositories.intel.com/gpu/intel-graphics.key | \
 echo "deb [arch=amd64,i386 signed-by=/usr/share/keyrings/intel-graphics.gpg] https://repositories.intel.com/gpu/ubuntu jammy client" | \
   sudo tee /etc/apt/sources.list.d/intel-gpu-jammy.list
 
-sudo apt -y update && \
-  sudo apt -y upgrade && \
-  sudo apt -y autoremove --purge && \
-  sudo apt -y autoclean && \
-  sudo apt -y --fix-broken install
+sudo apt update
+sudo apt -y upgrade
+sudo apt -y --fix-broken install
+sudo apt -y autoclean
+sudo apt -y autoremove --purge
 
 sudo apt -y install \
   intel-opencl-icd intel-level-zero-gpu level-zero \

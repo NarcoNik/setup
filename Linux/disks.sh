@@ -23,91 +23,6 @@ UUID=94a06914-b3f6-4d2e-9cca-23b32d8f0a9a none            swap   sw             
 EOF"
 echo '#################################################################'
 
-echo '#### Restore network-manager or another package'
-echo '#################################################################'
-ls /var/cache/apt/archives/
-tar -xf ./wifi.tar.gz
-cd wifi
-
-sudo dpkg -i \
-  libnm0_1.42.4-1ubuntu2_amd64.deb libnm0_1.42.4-1ubuntu2_i386.deb \
-  libndp0_1.8-1fakesync1_amd64.deb libteamdctl0_1.31-1build2_amd64.deb \
-  network-manager_1.42.4-1ubuntu2_amd64.deb
-sudo cp ./iwlwifi/*.ucode /lib/firmware
-sudo ./ssu.sh
-
-sudo service NetworkManager restart
-sudo systemctl restart NetworkManager
-sudo systemctl daemon-reload
-sudo ifconfig wlo1 up
-sudo iwconfig wlo1 essid Zeniko
-sudo iwconfig wlo1 essid zeniko && sudo dhclient wlo1
-sudo su
-sudo iwconfig wlo1 essid zeniko && sudo dhclient wlo1
-rfkill unblock all
-
-# This device appears to be connected to a network but is unable to reach the internet.
-# https://linux-hardware.org/?probe=6027d9f940
-sudo mkdir /mnt/ubuntu && sudo mount /dev/nvme1n1p5 /mnt/ubuntu
-sudo mount --bind /dev /mnt/ubuntu/dev
-sudo mount --bind /proc /mnt/ubuntu/proc
-sudo mount --bind /sys /mnt/ubuntu/sys
-sudo cp /etc/resolv.conf /mnt/ubuntu/etc/resolv.conf
-sudo chroot /mnt/ubuntu
-
-apt -y update && \
-  apt -y upgrade && \
-  apt -y autoremove --purge && \
-  apt -y autoclean && \
-  apt -y --fix-broken install
-apt -y install --reinstall kubuntu-desktop plasma-nm \
-  network-manager network-manager-vpnc network-manager-gnome net-tools
-
-rfkill unblock all
-lspci -knn | grep Net -A2
-update-pciids
-lshw -c net
-
-# https://community.intel.com/t5/Wireless/Problem-using-802-11r-FT-on-Ubuntu-AX200/td-p/1233573
-ethtool -i wlo1 | grep firmware
-# firmware-version: 83.e8f84e98.0 so-a0-gf-a0-83.uc
-rfkill unblock wifi
-service NetworkManager stop
-# killall wpa_supplicant
-iw wlo1 set type monitor
-ifconfig wlo1 up
-iw wlo1 set freq 2412
-# tcpdump -i wlo1 -w capture.pcap
-service NetworkManager start
-systemctl restart NetworkManager
-apt install -y hw-probe
-hw-probe -all -upload
-
-modinfo iwlwifi
-lsmod | grep iwlwifi
-dmesg | grep iwlwifi
-sudo modprobe iwlwifi
-lspci -nnk | grep 0280 -A3
-rfkill list all
-lsmod | grep iwl
-sudo dmesg | grep iwl
-sudo dmesg | grep ASSERT
-exit
-reboot
-
-# # All firmware of Intel
-# # https://wireless.wiki.kernel.org/en/users/drivers/iwlwifi
-# wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20231211.tar.gz
-# tar -xf linux-firmware-20231211.tar.gz
-# sudo cp ./linux-firmware-20231211/*.ucode /lib/firmware/
-# sudo ./linux-firmware-20231211/copy-firmware.sh /lib/firmware --ignore-duplicates
-
-# wget https://git.kernel.org/pub/scm/linux/kernel/git/iwlwifi/linux-firmware.git/snapshot/linux-firmware-iwlwifi-fw-2023-12-21.tar.gz
-# tar -xf linux-firmware-iwlwifi-fw-2023-12-21.tar.gz
-# sudo cp ./linux-firmware-iwlwifi-fw-2023-12-21/*.ucode /lib/firmware/
-# sudo ./linux-firmware-iwlwifi-fw-2023-12-21/copy-firmware.sh /lib/firmware --ignore-duplicates
-echo '#################################################################'
-
 echo '#### Swap install'
 echo '#################################################################'
 sudo swapon --show
@@ -131,16 +46,15 @@ echo '#################################################################'
 
 echo '#### Grub2 install'
 echo '#################################################################'
-sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer \
-  && sudo apt update -y \
-  && sudo apt install grub-customizer \
-  && sudo grub-customizer
+sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer && \
+  sudo apt update && \
+  sudo apt -y install grub-customizer && \
+  sudo grub-customizer
 
 for pkg in grub-common grub-customizer grub-efi grub-efi-amd64-bin grub-efi-amd64-signed grub-gfxpayload-lists grub-pc grub-pc-bin grub2-common; do sudo apt -y remove --purge $pkg; done
 
-sudo apt -y install grub-customizer
+sudo apt -y install grub-customizer grub-efi efibootmgr
 
-sudo apt install -y grub-efi efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 sudo grub-install /dev/nvme1n1p1
 sudo grub-mkconfig -o /boot/grub/grub.cfg
@@ -149,22 +63,22 @@ sudo grub-install /dev/nvme1n1
 kate /boot/grub/grub.cfg
 
 sudo apt-add-repository -y ppa:yannubuntu/boot-repair && \
-  sudo apt update -y && sudo apt install -y boot-repair && sudo boot-repair
+  sudo apt update && sudo apt -y install boot-repair && sudo boot-repair
 
 sudo dpkg --configure -a
 sudo apt install -fy
-sudo apt purge --allow-remove-essential -y grub-com*
-sudo apt purge --allow-remove-essential -y grub2-com*
-sudo apt purge --allow-remove-essential -y shim-signed
-sudo apt purge --allow-remove-essential -y grub-common:*
-sudo apt purge --allow-remove-essential -y grub2-common:*
+sudo apt -y purge --allow-remove-essential grub-com*
+sudo apt -y purge --allow-remove-essential grub2-com*
+sudo apt -y purge --allow-remove-essential shim-signed
+sudo apt -y purge --allow-remove-essential grub-common:*
+sudo apt -y purge --allow-remove-essential grub2-common:*
 
-sudo apt -y update && sudo apt install -y ubuntu-desktop xorg dbus-x11 \
+sudo apt update && sudo apt -y install ubuntu-desktop xorg dbus-x11 \
   xfce4 xfce4-goodies x11-xserver-utils
 
-sudo apt -y update && sudo apt -y upgrade && \
+sudo apt update && sudo apt -y upgrade && \
   sudo add-apt-repository ppa:kubuntu-ppa/backports -y && \
-  sudo apt -y update && sudo apt install -y kde-plasma-desktop
+  sudo apt update && sudo apt -y install kde-plasma-desktop
 
 cat /etc/sddm.conf
 echo -e "[General]\nInputMethod=" | sudo tee -a /etc/sddm.conf
@@ -175,10 +89,10 @@ echo '#################################################################'
 sudo mount -t fat32 -o rw,realtime /dev/sda2 /mnt/MacOS
 sudo mount -o rw UUID=2023-05-31-19-32-03-00 /mnt/MacOS
 
-sudo add-apt-repository universe \
-  && sudo apt update -y \
-  && sudo apt install dmg2img \
-  && dmg2img -v -i /path/to/image_file.dmg -o /path/to/image_file.iso
+sudo add-apt-repository universe && \
+  sudo apt update && \
+  sudo apt -y install dmg2img && \
+  dmg2img -v -i /path/to/image_file.dmg -o /path/to/image_file.iso
 
 sudo dd if=/path/to/image_file.iso of=/dev/sdd
 

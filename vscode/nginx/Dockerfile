@@ -71,6 +71,6 @@ CMD [ "npm", "run", "start" ]
 # EXPOSE 80 443
 # ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
-# # sudo apt update && sudo apt install -y --no-install-recommends nginx openssl && sudo apt clean && sudo rm -rf /var/lib/apt/lists/*
+# # sudo apt update && sudo apt -y install --no-install-recommends nginx openssl && sudo apt clean && sudo rm -rf /var/lib/apt/lists/*
 
 # # sudo openssl req -x509 -subj "/C=KE/ST=Nairobi/L=Nairobi/O=Company Name Ltd/OU=Portfolio website/CN=localhost" -nodes -days 365 -new -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt

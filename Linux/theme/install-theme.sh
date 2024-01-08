@@ -1,10 +1,10 @@
 echo 'Install WhiteSur KDE, GTK & ICON theme'
 echo '#################################################################'
-sudo add-apt-repository -y ppa:papirus/papirus \
-  && sudo apt update -y \
-  && sudo apt install -y qt5-style-kvantum qt5-style-kvantum-themes sassc \
-  libglib2.0-dev-bin imagemagick dialog optipng inkscape x11-apps
-
+sudo add-apt-repository -y ppa:papirus/papirus
+sudo apt update
+sudo apt -y install \
+  qt5-style-kvantum qt5-style-kvantum-themes sassc libglib2.0-dev-bin \
+  imagemagick dialog optipng inkscape x11-apps
 
 cd ~
 git clone https://github.com/vinceliuice/grub2-themes.git
@@ -81,9 +81,9 @@ echo '#################################################################'
 # big sur inline battery
 
 # install Latte Dock
-# sudo add-apt-repository -y ppa:kubuntu-ppa/backports \
-#   && sudo apt update -y && sudo apt install -y cmake \
-#   extra-cmake-modules qtdeclarative5-dev libqt5x11extras5-dev \
+# sudo add-apt-repository -y ppa:kubuntu-ppa/backports
+# sudo apt update && sudo apt -y install \
+#   cmake extra-cmake-modules qtdeclarative5-dev libqt5x11extras5-dev \
 #   libkf5iconthemes-dev libkf5plasma-dev libkf5windowsystem-dev \
 #   libkf5declarative-dev libkf5xmlgui-dev libkf5activities-dev \
 #   build-essential libxcb-util-dev libkf5wayland-dev gettext \
@@ -99,4 +99,4 @@ echo '#################################################################'
 
 # https://www.pling.com/p/1399346
 
-# sudo apt install gnome-tweaks gnome-shell-extensions && sudo gnome-tweaks
+# sudo apt -y install gnome-tweaks gnome-shell-extensions && sudo gnome-tweaks

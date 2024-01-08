@@ -2,9 +2,9 @@ echo 'Installing Nvidia & other graphics drivers'
 echo '#################################################################'
 sudo add-apt-repository ppa:graphics-drivers/ppa && \
   sudo dpkg --add-architecture i386 && \
-  sudo apt -y update
+  sudo apt update
 
-sudo apt reinstall xserver-xorg-video-nouveau
+sudo apt -y install --reinstall xserver-xorg-video-nouveau
 sudo apt -y install linux-headers-$(uname -r) gcc make acpid dkms \
   libglvnd-core-dev libglvnd0 libglvnd-dev libc-dev freeglut3-dev \
   libx11-dev libxmu-dev libxi-dev libglu1-mesa-dev libfreeimage-dev \
@@ -22,7 +22,7 @@ update-alternatives --display cuda
 sudo update-alternatives --config cuda
 # sudo add-apt-repository ppa:bumblebee/stable
 # sudo apt update
-# sudo apt install --no-install-recommends bumblebee
+# sudo apt -y install --no-install-recommends bumblebee
 
 # Error running 32-bit applications on a 64-bit system
 # apt-cache policy libgl1-mesa-glx:i386

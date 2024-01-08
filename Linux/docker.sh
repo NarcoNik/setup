@@ -14,10 +14,10 @@ kvm-ok
 lsmod | grep kvm
 ls -al /dev/kvm
 sudo usermod -aG kvm $USER
-sudo apt -y update
+sudo apt update
 sudo apt -y upgrade
-sudo apt -y autoremove
 sudo apt -y autoclean
+sudo apt -y autoremove --purge
 sudo apt -y install \
   ca-certificates curl gnupg apt-transport-https lsb-release gnupg \
   software-properties-common
@@ -27,7 +27,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
 sudo apt-key fingerprint 0EBFCD88
 sudo echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu lunar stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt -y update
+sudo apt update
 apt-cache policy docker-ce
 sudo apt -y install docker.io containerd runc docker-compose
 sudo gpasswd -a $USER docker
