@@ -26,17 +26,21 @@ echo '#################################################################'
 echo '#### Restore network-manager or another package'
 echo '#################################################################'
 ls /var/cache/apt/archives/
+tar -xf ./wifi.tar.gz
+cd wifi
 
-sudo dpkg -i libnm0_1.42.4-1ubuntu2_amd64.deb
-sudo dpkg -i libnm0_1.42.4-1ubuntu2_i386.deb
-sudo dpkg -i network-manager_1.42.4-1ubuntu2_amd64.deb
+sudo dpkg -i \
+  libnm0_1.42.4-1ubuntu2_amd64.deb libnm0_1.42.4-1ubuntu2_i386.deb \
+  libndp0_1.8-1fakesync1_amd64.deb libteamdctl0_1.31-1build2_amd64.deb \
+  network-manager_1.42.4-1ubuntu2_amd64.deb
+sudo cp ./iwlwifi/*.ucode /lib/firmware
+sudo ./ssu.sh
 
 sudo service NetworkManager restart
 sudo systemctl restart NetworkManager
 sudo systemctl daemon-reload
 sudo ifconfig wlo1 up
 sudo iwconfig wlo1 essid Zeniko
-sudo ./ssu/ssu.sh
 sudo iwconfig wlo1 essid zeniko && sudo dhclient wlo1
 sudo su
 sudo iwconfig wlo1 essid zeniko && sudo dhclient wlo1
@@ -79,17 +83,9 @@ systemctl restart NetworkManager
 apt install -y hw-probe
 hw-probe -all -upload
 
-wget https://downloadmirror.intel.com/26735/ssu_3.0.0.2_tar.gz
-mkdir /home/msi/ssu && tar -xf ssu_3.0.0.2_tar.gz -C /home/msi/ssu
-/home/msi/ssu/ssu.sh
 modinfo iwlwifi
 lsmod | grep iwlwifi
 dmesg | grep iwlwifi
-
-wget https://wireless.wiki.kernel.org/_media/en/users/drivers/iwlwifi-ty-59.601f3a66.0.tgz
-tar -xf iwlwifi-ty-59.601f3a66.0.tgz -C /home/msi
-sudo cp /home/msi/iwlwifi-ty-59.601f3a66.0/iwlwifi-ty-a0-gf-a0-59.ucode /lib/firmware
-
 sudo modprobe iwlwifi
 lspci -nnk | grep 0280 -A3
 rfkill list all
