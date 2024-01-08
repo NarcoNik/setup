@@ -26,9 +26,8 @@ sudo apt -y install \
   ca-certificates gnupg lsb-release zlib1g-dev hardinfo hwinfo clang \
   bash-completion ubuntu-restricted-extras ppa-purge xz-utils vlc \
   gcc-multilib sweeper gparted wireguard snap snapd qbittorrent \
-  network-manager network-manager-gnome network-manager-openvpn \
-  network-manager-vpnc network-manager-openconnect net-tools flatpak \
-  gnome-software-plugin-flatpak plasma-discover-backend-flatpak
+  network-manager network-manager-gnome network-manager-vpnc net-tools \
+  flatpak gnome-software-plugin-flatpak plasma-discover-backend-flatpak
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 sudo systemctl daemon-reload
