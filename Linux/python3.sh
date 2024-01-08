@@ -11,9 +11,8 @@ sudo apt -y autoclean
 sudo apt -y autoremove --purge
 
 sudo apt -y install cpu-checker python3-pip python3-dev python3-virtualenv \
-  software-properties-common python3 python3-full build-essential zlib1g-dev \
-  libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev \
-  libffi-dev wget
+  software-properties-common python3 python3-full build-essential wget \
+  zlib1g-dev libffi-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev
 
 modprobe kvm
 modprobe kvm_intel
@@ -31,11 +30,6 @@ sudo make install
 cd ~
 python3 --version
 pip3 --version
-
-sudo apt update
-sudo apt -y upgrade
-sudo apt -y autoclean
-sudo apt -y autoremove
 echo '#### Python3 installed'
 echo '#################################################################'
 fi

@@ -20,7 +20,7 @@ echo 'Install new usless packages'
 echo '#################################################################'
 sudo apt -y install \
   nodejs npm nano openssh-client inxi curl linux-firmware cpu-x dpkg \
-  gpg software-properties-common apt-transport-https wget make \
+  gpg software-properties-common apt-transport-https wget make gedit \
   build-essential libssl-dev libcurl4-gnutls-dev libexpat1-dev gettext \
   unzip p7zip-rar p7zip-full rar unrar zip nmon nload conmon cmake g++ \
   ca-certificates gnupg lsb-release zlib1g-dev hardinfo hwinfo clang \
