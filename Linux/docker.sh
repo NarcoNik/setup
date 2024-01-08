@@ -18,8 +18,9 @@ sudo apt -y update
 sudo apt -y upgrade
 sudo apt -y autoremove
 sudo apt -y autoclean
-sudo apt -y install ca-certificates curl gnupg apt-transport-https lsb-release \
-  software-properties-common gnupg
+sudo apt -y install \
+  ca-certificates curl gnupg apt-transport-https lsb-release gnupg \
+  software-properties-common
 sudo apt -y clean
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
   sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/docker-archive-keyring.gpg

@@ -23,6 +23,95 @@ UUID=94a06914-b3f6-4d2e-9cca-23b32d8f0a9a none            swap   sw             
 EOF"
 echo '#################################################################'
 
+echo '#### Restore network-manager or another package'
+echo '#################################################################'
+ls /var/cache/apt/archives/
+
+sudo dpkg -i libnm0_1.42.4-1ubuntu2_amd64.deb
+sudo dpkg -i libnm0_1.42.4-1ubuntu2_i386.deb
+sudo dpkg -i network-manager_1.42.4-1ubuntu2_amd64.deb
+
+sudo service NetworkManager restart
+sudo systemctl restart NetworkManager
+sudo systemctl daemon-reload
+sudo ifconfig wlo1 up
+sudo iwconfig wlo1 essid Zeniko
+sudo ./ssu/ssu.sh
+sudo iwconfig wlo1 essid zeniko && sudo dhclient wlo1
+sudo su
+sudo iwconfig wlo1 essid zeniko && sudo dhclient wlo1
+rfkill unblock all
+
+# This device appears to be connected to a network but is unable to reach the internet.
+# https://linux-hardware.org/?probe=6027d9f940
+sudo mkdir /mnt/ubuntu && sudo mount /dev/nvme1n1p5 /mnt/ubuntu
+sudo mount --bind /dev /mnt/ubuntu/dev
+sudo mount --bind /proc /mnt/ubuntu/proc
+sudo mount --bind /sys /mnt/ubuntu/sys
+sudo cp /etc/resolv.conf /mnt/ubuntu/etc/resolv.conf
+sudo chroot /mnt/ubuntu
+
+apt -y update && \
+  apt -y upgrade && \
+  apt -y autoremove --purge && \
+  apt -y autoclean && \
+  apt -y --fix-broken install
+apt -y install --reinstall kubuntu-desktop plasma-nm \
+  network-manager network-manager-vpnc network-manager-gnome net-tools
+
+rfkill unblock all
+lspci -knn | grep Net -A2
+update-pciids
+lshw -c net
+
+# https://community.intel.com/t5/Wireless/Problem-using-802-11r-FT-on-Ubuntu-AX200/td-p/1233573
+ethtool -i wlo1 | grep firmware
+# firmware-version: 83.e8f84e98.0 so-a0-gf-a0-83.uc
+rfkill unblock wifi
+service NetworkManager stop
+# killall wpa_supplicant
+iw wlo1 set type monitor
+ifconfig wlo1 up
+iw wlo1 set freq 2412
+# tcpdump -i wlo1 -w capture.pcap
+service NetworkManager start
+systemctl restart NetworkManager
+apt install -y hw-probe
+hw-probe -all -upload
+
+wget https://downloadmirror.intel.com/26735/ssu_3.0.0.2_tar.gz
+mkdir /home/msi/ssu && tar -xf ssu_3.0.0.2_tar.gz -C /home/msi/ssu
+/home/msi/ssu/ssu.sh
+modinfo iwlwifi
+lsmod | grep iwlwifi
+dmesg | grep iwlwifi
+
+wget https://wireless.wiki.kernel.org/_media/en/users/drivers/iwlwifi-ty-59.601f3a66.0.tgz
+tar -xf iwlwifi-ty-59.601f3a66.0.tgz -C /home/msi
+sudo cp /home/msi/iwlwifi-ty-59.601f3a66.0/iwlwifi-ty-a0-gf-a0-59.ucode /lib/firmware
+
+sudo modprobe iwlwifi
+lspci -nnk | grep 0280 -A3
+rfkill list all
+lsmod | grep iwl
+sudo dmesg | grep iwl
+sudo dmesg | grep ASSERT
+exit
+reboot
+
+# # All firmware of Intel
+# # https://wireless.wiki.kernel.org/en/users/drivers/iwlwifi
+# wget https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20231211.tar.gz
+# tar -xf linux-firmware-20231211.tar.gz
+# sudo cp ./linux-firmware-20231211/*.ucode /lib/firmware/
+# sudo ./linux-firmware-20231211/copy-firmware.sh /lib/firmware --ignore-duplicates
+
+# wget https://git.kernel.org/pub/scm/linux/kernel/git/iwlwifi/linux-firmware.git/snapshot/linux-firmware-iwlwifi-fw-2023-12-21.tar.gz
+# tar -xf linux-firmware-iwlwifi-fw-2023-12-21.tar.gz
+# sudo cp ./linux-firmware-iwlwifi-fw-2023-12-21/*.ucode /lib/firmware/
+# sudo ./linux-firmware-iwlwifi-fw-2023-12-21/copy-firmware.sh /lib/firmware --ignore-duplicates
+echo '#################################################################'
+
 echo '#### Swap install'
 echo '#################################################################'
 sudo swapon --show
@@ -43,7 +132,6 @@ sudo tee -a /etc/sysctl.conf <<< \
 "vm.swappiness=10
 vm.vfs_cache_pressure=50"
 echo '#################################################################'
-
 
 echo '#### Grub2 install'
 echo '#################################################################'
@@ -85,7 +173,6 @@ sudo apt -y update && sudo apt -y upgrade && \
 cat /etc/sddm.conf
 echo -e "[General]\nInputMethod=" | sudo tee -a /etc/sddm.conf
 echo '#################################################################'
-
 
 echo '#### Mac'
 echo '#################################################################'

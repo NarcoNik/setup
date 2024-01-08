@@ -18,15 +18,16 @@ echo 'All packages updated'
 echo '#################################################################'
 echo 'Install new usless packages'
 echo '#################################################################'
-sudo apt install -y nodejs npm nano openssh-client inxi curl zip \
-  cpu-x dpkg gpg software-properties-common rar unrar nmon cmake \
-  apt-transport-https wget make build-essential libssl-dev unzip \
-  p7zip-full nload wireguard gparted sweeper conmon ca-certificates \
-  gnupg lsb-release g++ hardinfo hwinfo gcc-multilib p7zip-rar \
-  ppa-purge bash-completion ubuntu-restricted-extras clang xz-utils \
-  network-manager network-manager-vpnc network-manager-gnome net-tools \
-  snap snapd qbittorrent
-sudo apt -y install flatpak gnome-software-plugin-flatpak plasma-discover-backend-flatpak
+sudo apt -y install \
+  nodejs npm nano openssh-client inxi curl zip cpu-x dpkg gpg rar unrar \
+  software-properties-common nmon cmake apt-transport-https wget make \
+  build-essential libssl-dev unzip p7zip-full nload wireguard gparted \
+  sweeper conmon ca-certificates gnupg lsb-release g++ hardinfo hwinfo \
+  gcc-multilib p7zip-rar ppa-purge bash-completion clang xz-utils \
+  ubuntu-restricted-extras net-tools snap snapd qbittorrent \
+  network-manager network-manager-vpnc network-manager-gnome \
+  flatpak gnome-software-plugin-flatpak plasma-discover-backend-flatpak
+
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 sudo systemctl daemon-reload
 sudo dpkg --configure -a
@@ -36,6 +37,8 @@ echo 'All new useless packages installed successfully'
 echo '#################################################################'
 chmod +x ./debs.sh
 sudo ./debs.sh
+chmod +x ./intel.sh
+sudo ./intel.sh
 chmod +x ./nvidia.sh
 sudo ./nvidia.sh
 chmod +x ./nvm.sh
@@ -71,20 +74,14 @@ curl -L https://foundry.paradigm.xyz | bash
 echo 'See All ppa repos grep ^ /etc/apt/sources.list /etc/apt/sources.list.d/*'
 echo 'Ended'
 
-# search package name
-# dpkg -l | grep name
-
-
 # sudo reboot
 # 127.0.0.1 testingme.ru
 # sudo service apache2 stop
 # sudo service mysql stop
 
-
 #   apache2
 #   mysql-server
 #   nginx
-
 
 # sudo a2enmod rewrite
 # sudo service mysql start
@@ -120,23 +117,6 @@ echo 'Ended'
 #
 # sudo a2ensite testingme.ru.conf
 # sudo systemctl reload apache2
-
-
-# sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh
-# sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-# source ~/.bashrc
-# nvm list-remote
-# nvm install stable
-# nvm list
-# npm install -g npm@latest
-# nvm use stable
-# npm i -g yarn \
-#   prettier \
-#   eslint \
-#   nodemon \
-#   serve \
-#   create-react-app
-
 
 # ganache
 # sudo sudo apt -y update

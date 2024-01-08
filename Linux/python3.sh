@@ -35,7 +35,6 @@ sudo apt -y update
 sudo apt -y upgrade
 sudo apt -y autoclean
 sudo apt -y autoremove
-
 echo '#### Python3 installed'
 echo '#################################################################'
 fi
