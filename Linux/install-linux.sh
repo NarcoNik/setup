@@ -19,13 +19,15 @@ echo '#################################################################'
 echo 'Install new usless packages'
 echo '#################################################################'
 sudo apt -y install \
-  nodejs npm nano openssh-client inxi curl zip cpu-x dpkg gpg rar unrar \
-  software-properties-common nmon cmake apt-transport-https wget make \
-  build-essential libssl-dev unzip p7zip-full nload wireguard gparted \
-  sweeper conmon ca-certificates gnupg lsb-release g++ hardinfo hwinfo \
-  gcc-multilib p7zip-rar ppa-purge bash-completion clang xz-utils \
-  ubuntu-restricted-extras net-tools snap snapd qbittorrent flatpak \
-  network-manager-* gnome-software-plugin-flatpak plasma-discover-backend-flatpak
+  nodejs npm nano openssh-client inxi curl linux-firmware cpu-x dpkg \
+  gpg software-properties-common apt-transport-https wget make \
+  build-essential libssl-dev libcurl4-gnutls-dev libexpat1-dev gettext \
+  unzip p7zip-rar p7zip-full rar unrar zip nmon nload conmon cmake g++ \
+  ca-certificates gnupg lsb-release zlib1g-dev hardinfo hwinfo clang \
+  bash-completion ubuntu-restricted-extras ppa-purge xz-utils vlc \
+  gcc-multilib sweeper gparted wireguard network-manager snap snapd \
+  qbittorrent network-manager-vpnc network-manager-gnome net-tools \
+  flatpak gnome-software-plugin-flatpak plasma-discover-backend-flatpak
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 sudo systemctl daemon-reload
